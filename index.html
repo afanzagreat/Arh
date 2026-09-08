@@ -694,7 +694,7 @@
             font-weight: 700
         }
 
-        /* PRICING — new */
+        /* PRICING */
         .price-toggle {
             display: inline-flex;
             margin-top: 38px;
@@ -805,6 +805,24 @@
         .plan.pop a {
             background: var(--ink);
             color: white
+        }
+
+        /* lifetime note */
+        .lifetime-note {
+            margin-top: 18px;
+            padding: 14px 20px;
+            border-radius: 14px;
+            background: var(--yellow);
+            border: 2px solid var(--ink);
+            font-weight: 700;
+            font-size: 14px;
+            display: inline-block;
+            color: var(--ink)
+        }
+        .lifetime-note span {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px
         }
 
         .blog-grid {
@@ -930,7 +948,7 @@
             max-height: 200px
         }
 
-        /* CONTACT — new */
+        /* CONTACT */
         .contact-grid {
             margin-top: 55px;
             display: grid;
@@ -1092,7 +1110,6 @@
             display: block
         }
 
-        /* Promo code field extra styling */
         .field .promo-status {
             font-size: 12px;
             font-weight: 700;
@@ -1157,42 +1174,75 @@
             font-weight: 600
         }
 
+        /* ===== WHATSAPP FLOAT — ENHANCED ===== */
         .wa-float {
             position: fixed;
             bottom: 26px;
             right: 26px;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: #25D366;
-            display: grid;
-            place-items: center;
-            box-shadow: 0 8px 20px #00000030;
             z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #25D366;
             border: 2px solid var(--ink);
-            transition: .2s
+            border-radius: 999px;
+            padding: 10px 18px 10px 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+            transition: .25s;
+            cursor: pointer;
+            color: #fff;
+            font-weight: 700;
+            font-size: 13px;
+            text-decoration: none;
         }
         .wa-float:hover {
-            transform: scale(1.08)
+            transform: scale(1.05);
+            box-shadow: 0 12px 32px rgba(37, 211, 102, 0.4);
         }
-        .wa-float svg {
-            width: 30px;
-            height: 30px
+        .wa-float .wa-icon-wrap {
+            position: relative;
+            width: 36px;
+            height: 36px;
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
         }
-        .wa-float .pulse {
+        .wa-float .wa-icon-wrap .pulse {
             position: absolute;
             inset: 0;
             border-radius: 50%;
             background: #25D366;
-            animation: wapulse 2s infinite
+            animation: wapulse 2s infinite;
+            opacity: 0.5;
+        }
+        .wa-float svg {
+            width: 28px;
+            height: 28px;
+            position: relative;
+            z-index: 1;
+            fill: white;
+        }
+        .wa-float .wa-label {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            color: #fff;
+            white-space: nowrap;
+        }
+        .wa-float .wa-label small {
+            font-weight: 400;
+            font-size: 10px;
+            opacity: 0.85;
+            display: block;
+            margin-top: 1px;
         }
         @keyframes wapulse {
             0% {
                 transform: scale(1);
-                opacity: .6
+                opacity: 0.6
             }
             100% {
-                transform: scale(1.6);
+                transform: scale(1.8);
                 opacity: 0
             }
         }
@@ -1202,13 +1252,26 @@
         }
         @media(max-width:600px) {
             .wa-float {
-                width: 52px;
-                height: 52px;
-                bottom: 18px;
-                right: 18px
+                padding: 8px 14px 8px 10px;
+                bottom: 16px;
+                right: 16px;
+            }
+            .wa-float .wa-label {
+                font-size: 11px;
+            }
+            .wa-float .wa-label small {
+                display: none;
+            }
+            .wa-float .wa-icon-wrap {
+                width: 30px;
+                height: 30px;
+            }
+            .wa-float svg {
+                width: 22px;
+                height: 22px;
             }
             [dir="rtl"] .wa-float {
-                left: 18px
+                left: 16px;
             }
         }
 
@@ -1409,44 +1472,36 @@
 
         <section id="pricing" class="wrap reveal">
             <div class="eyebrow" data-i18n="pricing.eyebrow">05 — PRICING</div><h2 data-i18n="pricing.title">PICK A PLAN.<br>KEEP IT SIMPLE.</h2>
-            <p class="lead" data-i18n="pricing.lead">Pay monthly, save more yearly, or go lifetime and never pay for the build again.</p>
+            <p class="lead" data-i18n="pricing.lead">Pay monthly, or go lifetime and never pay for the build again.</p>
             <div class="price-toggle">
                 <button class="toggle-btn active" data-mode="monthly" data-i18n="pricing.toggle1">Monthly</button>
-                <button class="toggle-btn" data-mode="yearly" data-i18n="pricing.toggle2">Yearly</button>
                 <button class="toggle-btn" data-mode="lifetime" data-i18n="pricing.toggle3">Lifetime</button>
             </div>
             <div class="pricing-grid" data-mode-group="monthly">
-                <div class="plan"><h3 data-i18n="pricing.starter">Standard</h3><div class="price">40<span data-i18n="pricing.srMo"> SR/mo</span></div>
+                <div class="plan"><h3 data-i18n="pricing.starter">Standard</h3><div class="price">60<span data-i18n="pricing.srMo"> SR/mo</span></div>
                     <ul><li data-i18n="pricing.s1">Normal-quality website design</li><li data-i18n="pricing.s2">Unlimited edits (12-hour turnaround)</li><li data-i18n="pricing.s3">Domain included</li><li data-i18n="pricing.s4">Standard site support</li></ul>
                     <a class="btn outline" href="#contact" data-i18n="pricing.getStarter">Get Standard ↗</a></div>
-                <div class="plan pop"><span class="tag" data-i18n="pricing.popular">MOST POPULAR</span><h3 data-i18n="pricing.growth">Pro</h3><div class="price">60<span data-i18n="pricing.srMo"> SR/mo</span></div>
+                <div class="plan pop"><span class="tag" data-i18n="pricing.popular">MOST POPULAR</span><h3 data-i18n="pricing.growth">Pro</h3><div class="price">90<span data-i18n="pricing.srMo"> SR/mo</span></div>
                     <ul><li data-i18n="pricing.p1">High-quality website design</li><li data-i18n="pricing.p2">High-resolution layout & assets</li><li data-i18n="pricing.p3">Unlimited edits</li><li data-i18n="pricing.p4">High-quality media resources</li><li data-i18n="pricing.p5">Professional guidance included</li></ul>
                     <a class="btn" href="#contact" data-i18n="pricing.getGrowth">Get Pro ↗</a></div>
-                <div class="plan"><h3 data-i18n="pricing.signature">Pro Max</h3><div class="price">90<span data-i18n="pricing.srMo"> SR/mo</span></div>
+                <div class="plan"><h3 data-i18n="pricing.signature">Pro Max</h3><div class="price">135<span data-i18n="pricing.srMo"> SR/mo</span></div>
                     <ul><li data-i18n="pricing.x1">Pro Max quality web build</li><li data-i18n="pricing.x2">Unlimited edits</li><li data-i18n="pricing.x3">Premium domain extension (.sa / .com)</li><li data-i18n="pricing.x4">Menu edits, promo videos, shorts & posters</li><li data-i18n="pricing.x5">All extra services included</li></ul>
                     <a class="btn outline" href="#contact" data-i18n="pricing.getSignature">Get Pro Max ↗</a></div>
             </div>
-            <div class="pricing-grid" data-mode-group="yearly" style="display:none">
-                <div class="plan"><h3 data-i18n="pricing.starter">Standard</h3><div class="price">130<span data-i18n="pricing.srYr"> SR/yr</span></div>
-                    <ul><li data-i18n="pricing.s1">Normal-quality website design</li><li data-i18n="pricing.s2">Unlimited edits (12-hour turnaround)</li><li data-i18n="pricing.s3y">Domain included, no extra fee</li><li data-i18n="pricing.s4">Standard site support</li></ul>
-                    <a class="btn outline" href="#contact" data-i18n="pricing.getStarter">Get Standard ↗</a></div>
-                <div class="plan pop"><span class="tag" data-i18n="pricing.popular">MOST POPULAR</span><h3 data-i18n="pricing.growth">Pro</h3><div class="price">170<span data-i18n="pricing.srYr"> SR/yr</span></div>
-                    <ul><li data-i18n="pricing.p1">High-quality website design</li><li data-i18n="pricing.p2">High-resolution layout & assets</li><li data-i18n="pricing.p3">Unlimited edits</li><li data-i18n="pricing.p4">High-quality media resources</li><li data-i18n="pricing.p5">Professional guidance included</li></ul>
-                    <a class="btn" href="#contact" data-i18n="pricing.getGrowth">Get Pro ↗</a></div>
-                <div class="plan"><h3 data-i18n="pricing.signature">Pro Max</h3><div class="price">300<span data-i18n="pricing.srYr"> SR/yr</span></div>
-                    <ul><li data-i18n="pricing.x1">Pro Max quality web build</li><li data-i18n="pricing.x2">Unlimited edits</li><li data-i18n="pricing.x3p">Premium domain included (.sa / .com)</li><li data-i18n="pricing.x4">Menu edits, promo videos, shorts & posters</li><li data-i18n="pricing.x5">All extra services included</li></ul>
-                    <a class="btn outline" href="#contact" data-i18n="pricing.getSignature">Get Pro Max ↗</a></div>
-            </div>
             <div class="pricing-grid" data-mode-group="lifetime" style="display:none">
-                <div class="plan"><h3 data-i18n="pricing.starter">Standard</h3><div class="price">230<span data-i18n="pricing.srOnce"> SR once</span></div>
+                <div class="plan"><h3 data-i18n="pricing.starter">Standard</h3><div class="price">311<span data-i18n="pricing.srOnce"> SR once</span></div>
                     <ul><li data-i18n="pricing.s1">Normal-quality website design</li><li data-i18n="pricing.s2">Unlimited edits (12-hour turnaround)</li><li data-i18n="pricing.s5">Annual domain renewal covered by us, forever</li><li data-i18n="pricing.s4">Standard site support</li></ul>
                     <a class="btn outline" href="#contact" data-i18n="pricing.getStarter">Get Standard ↗</a></div>
-                <div class="plan pop"><span class="tag" data-i18n="pricing.popular">MOST POPULAR</span><h3 data-i18n="pricing.growth">Pro</h3><div class="price">300<span data-i18n="pricing.srOnce"> SR once</span></div>
+                <div class="plan pop"><span class="tag" data-i18n="pricing.popular">MOST POPULAR</span><h3 data-i18n="pricing.growth">Pro</h3><div class="price">405<span data-i18n="pricing.srOnce"> SR once</span></div>
                     <ul><li data-i18n="pricing.p1">High-quality website design</li><li data-i18n="pricing.p2">High-resolution layout & assets</li><li data-i18n="pricing.p3">Unlimited edits</li><li data-i18n="pricing.p6">Annual domain renewal covered by us, forever</li><li data-i18n="pricing.p5">Professional guidance included</li></ul>
                     <a class="btn" href="#contact" data-i18n="pricing.getGrowth">Get Pro ↗</a></div>
-                <div class="plan"><h3 data-i18n="pricing.signature">Pro Max</h3><div class="price">530<span data-i18n="pricing.srOnce"> SR once</span></div>
+                <div class="plan"><h3 data-i18n="pricing.signature">Pro Max</h3><div class="price">716<span data-i18n="pricing.srOnce"> SR once</span></div>
                     <ul><li data-i18n="pricing.x1">Pro Max quality web build</li><li data-i18n="pricing.x2">Unlimited edits</li><li data-i18n="pricing.x6">Premium domain, renewed by us every year, forever</li><li data-i18n="pricing.x4">Menu edits, promo videos, shorts & posters</li><li data-i18n="pricing.x5">All extra services included</li></ul>
                     <a class="btn outline" href="#contact" data-i18n="pricing.getSignature">Get Pro Max ↗</a></div>
+            </div>
+            <!-- Lifetime note: 24hr response for changes -->
+            <div class="lifetime-note" data-mode-group="lifetime" style="display:none">
+                <span>⚡ <span data-i18n="pricing.lifetimeNote">Any changes requested will be made within 24 hours of your request.</span></span>
             </div>
             <p class="lead" style="margin-top:26px;font-size:14px" data-i18n="pricing.custom">Also open to custom quotes for bigger projects — just tell us what you need.</p>
             <div class="trust-row">
@@ -1517,7 +1572,6 @@
                             </select></div>
                     </div>
 
-                    <!-- PROMO CODE FIELD — added here -->
                     <div class="field">
                         <label for="promoCode">PROMO CODE <span style="font-weight:400;font-size:10px;letter-spacing:0;opacity:.6">(optional)</span></label>
                         <input type="text" name="promo_code" id="promoCode" placeholder="Enter promo code if you have one" autocomplete="off">
@@ -1543,10 +1597,15 @@
 
     <footer class="wrap"><span data-i18n="footer.copy">© 2026 <strong>ARH Digital.</strong></span><span data-i18n="footer.tag">Made for businesses that refuse to blend in.</span></footer>
 
+    <!-- ===== ENHANCED WHATSAPP FLOAT ===== -->
     <a class="wa-float" href="https://wa.me/966582773696?text=Hi%20ARH%2C%20I%27d%20like%20to%20ask%20about%20a%20website." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
-        <span class="pulse"></span>
-        <svg viewBox="0 0 32 32" fill="white"><path d="M16.01 3C9.38 3 4 8.38 4 15.01c0 2.51.66 4.86 1.8 6.9L4 29l7.28-1.9a11.9 11.9 0 0 0 4.73.97h.01c6.63 0 12-5.38 12-12.01C28.02 8.38 22.65 3 16.01 3zm0 21.8h-.01a9.7 9.7 0 0 1-4.94-1.35l-.35-.21-3.53.93.94-3.44-.23-.35a9.7 9.7 0 0 1-1.49-5.17c0-5.37 4.37-9.74 9.74-9.74 2.6 0 5.05 1.02 6.89 2.86a9.68 9.68 0 0 1 2.85 6.9c0 5.37-4.38 9.57-9.87 9.57zm5.34-7.28c-.29-.15-1.73-.85-2-.95-.27-.1-.46-.15-.66.15-.2.29-.76.95-.93 1.15-.17.19-.34.22-.63.07-.29-.15-1.24-.46-2.36-1.46-.87-.78-1.46-1.74-1.63-2.03-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.49.1-.19.05-.36-.02-.51-.07-.15-.66-1.59-.91-2.18-.24-.57-.48-.5-.66-.51h-.56c-.19 0-.51.07-.78.36-.27.29-1.02 1-1.02 2.43s1.04 2.82 1.19 3.02c.15.19 2.05 3.13 4.96 4.39.69.3 1.23.48 1.65.61.69.22 1.32.19 1.82.11.55-.08 1.73-.71 1.98-1.39.24-.68.24-1.27.17-1.39-.07-.12-.26-.19-.55-.34z"/></svg>
+        <span class="wa-icon-wrap">
+            <span class="pulse"></span>
+            <svg viewBox="0 0 32 32"><path d="M16.01 3C9.38 3 4 8.38 4 15.01c0 2.51.66 4.86 1.8 6.9L4 29l7.28-1.9a11.9 11.9 0 0 0 4.73.97h.01c6.63 0 12-5.38 12-12.01C28.02 8.38 22.65 3 16.01 3zm0 21.8h-.01a9.7 9.7 0 0 1-4.94-1.35l-.35-.21-3.53.93.94-3.44-.23-.35a9.7 9.7 0 0 1-1.49-5.17c0-5.37 4.37-9.74 9.74-9.74 2.6 0 5.05 1.02 6.89 2.86a9.68 9.68 0 0 1 2.85 6.9c0 5.37-4.38 9.57-9.87 9.57zm5.34-7.28c-.29-.15-1.73-.85-2-.95-.27-.1-.46-.15-.66.15-.2.29-.76.95-.93 1.15-.17.19-.34.22-.63.07-.29-.15-1.24-.46-2.36-1.46-.87-.78-1.46-1.74-1.63-2.03-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.49.1-.19.05-.36-.02-.51-.07-.15-.66-1.59-.91-2.18-.24-.57-.48-.5-.66-.51h-.56c-.19 0-.51.07-.78.36-.27.29-1.02 1-1.02 2.43s1.04 2.82 1.19 3.02c.15.19 2.05 3.13 4.96 4.39.69.3 1.23.48 1.65.61.69.22 1.32.19 1.82.11.55-.08 1.73-.71 1.98-1.39.24-.68.24-1.27.17-1.39-.07-.12-.26-.19-.55-.34z"/></svg>
+        </span>
+        <span class="wa-label">Chat with us <small>WhatsApp · quick reply</small></span>
     </a>
+
     <script>
         const i18n = {
             en: {
@@ -1608,21 +1667,18 @@
                 "diff.q2by": "— WHAT WE BUILD FOR",
                 "pricing.eyebrow": "05 — PRICING",
                 "pricing.title": "PICK A PLAN.<br>KEEP IT SIMPLE.",
-                "pricing.lead": "Pay monthly, save more yearly, or go lifetime and never pay for the build again.",
+                "pricing.lead": "Pay monthly, or go lifetime and never pay for the build again.",
                 "pricing.toggle1": "Monthly",
-                "pricing.toggle2": "Yearly",
                 "pricing.toggle3": "Lifetime",
                 "pricing.popular": "MOST POPULAR",
                 "pricing.starter": "Standard",
                 "pricing.growth": "Pro",
                 "pricing.signature": "Pro Max",
                 "pricing.srMo": " SR/mo",
-                "pricing.srYr": " SR/yr",
                 "pricing.srOnce": " SR once",
                 "pricing.s1": "Normal-quality website design",
                 "pricing.s2": "Unlimited edits (12-hour turnaround)",
                 "pricing.s3": "Domain included",
-                "pricing.s3y": "Domain included, no extra fee",
                 "pricing.s4": "Standard site support",
                 "pricing.s5": "Annual domain renewal covered by us, forever",
                 "pricing.p1": "High-quality website design",
@@ -1634,7 +1690,6 @@
                 "pricing.x1": "Pro Max quality web build",
                 "pricing.x2": "Unlimited edits",
                 "pricing.x3": "Premium domain extension (.sa / .com)",
-                "pricing.x3p": "Premium domain included (.sa / .com)",
                 "pricing.x4": "Menu edits, promo videos, shorts & posters",
                 "pricing.x5": "All extra services included",
                 "pricing.x6": "Premium domain, renewed by us every year, forever",
@@ -1642,6 +1697,7 @@
                 "pricing.getGrowth": "Get Pro ↗",
                 "pricing.getSignature": "Get Pro Max ↗",
                 "pricing.custom": "Also open to custom quotes for bigger projects — just tell us what you need.",
+                "pricing.lifetimeNote": "Any changes requested will be made within 24 hours of your request.",
                 "trust.b1": "Free consultation",
                 "trust.b2": "Response within 24hrs",
                 "trust.b3": "7-day satisfaction guarantee",
@@ -1767,21 +1823,18 @@
                 "diff.q2by": "— ما نبنيه من أجله",
                 "pricing.eyebrow": "05 — الأسعار",
                 "pricing.title": "اختر باقة.<br>بكل بساطة.",
-                "pricing.lead": "ادفع شهريًا، أو وفّر أكثر بالدفع السنوي، أو اختر مدى الحياة ولا تدفع لبناء الموقع مرة أخرى أبدًا.",
+                "pricing.lead": "ادفع شهريًا، أو اختر مدى الحياة ولا تدفع لبناء الموقع مرة أخرى أبدًا.",
                 "pricing.toggle1": "شهري",
-                "pricing.toggle2": "سنوي",
                 "pricing.toggle3": "مدى الحياة",
                 "pricing.popular": "الأكثر طلبًا",
                 "pricing.starter": "الأساسية",
                 "pricing.growth": "برو",
                 "pricing.signature": "برو ماكس",
                 "pricing.srMo": " ريال/شهر",
-                "pricing.srYr": " ريال/سنة",
                 "pricing.srOnce": " ريال دفعة واحدة",
                 "pricing.s1": "تصميم موقع بجودة عادية",
                 "pricing.s2": "تعديلات غير محدودة (خلال 12 ساعة)",
                 "pricing.s3": "الدومين متضمن",
-                "pricing.s3y": "الدومين متضمن، بدون رسوم إضافية",
                 "pricing.s4": "دعم أساسي للموقع",
                 "pricing.s5": "تجديد الدومين السنوي على حسابنا، إلى الأبد",
                 "pricing.p1": "تصميم موقع بجودة عالية",
@@ -1793,7 +1846,6 @@
                 "pricing.x1": "بناء موقع بجودة برو ماكس",
                 "pricing.x2": "تعديلات غير محدودة",
                 "pricing.x3": "امتداد دومين مميز (.sa / .com)",
-                "pricing.x3p": "دومين مميز متضمن (.sa / .com)",
                 "pricing.x4": "تعديلات قائمة الطعام، فيديوهات ترويجية، شورتس وملصقات",
                 "pricing.x5": "جميع الخدمات الإضافية متضمنة",
                 "pricing.x6": "دومين مميز، نجدده لك كل سنة، إلى الأبد",
@@ -1801,6 +1853,7 @@
                 "pricing.getGrowth": "اختر برو ↗",
                 "pricing.getSignature": "اختر برو ماكس ↗",
                 "pricing.custom": "نرحّب أيضًا بطلبات الأسعار المخصصة للمشاريع الأكبر — فقط أخبرنا باحتياجك.",
+                "pricing.lifetimeNote": "سيتم تنفيذ أي تغييرات تطلبها في غضون 24 ساعة من طلبك.",
                 "trust.b1": "استشارة مجانية",
                 "trust.b2": "الرد خلال 24 ساعة",
                 "trust.b3": "ضمان الرضا لمدة 7 أيام",
@@ -1926,21 +1979,18 @@
                 "diff.q2by": "— CE POUR QUOI NOUS CONSTRUISONS",
                 "pricing.eyebrow": "05 — TARIFS",
                 "pricing.title": "CHOISISSEZ UNE FORMULE.<br>SIMPLEMENT.",
-                "pricing.lead": "Payez mensuellement, économisez plus à l'année, ou optez pour à vie et ne payez plus jamais la création.",
+                "pricing.lead": "Payez mensuellement, ou optez pour à vie et ne payez plus jamais la création.",
                 "pricing.toggle1": "Mensuel",
-                "pricing.toggle2": "Annuel",
                 "pricing.toggle3": "À vie",
                 "pricing.popular": "LE PLUS POPULAIRE",
                 "pricing.starter": "Standard",
                 "pricing.growth": "Pro",
                 "pricing.signature": "Pro Max",
                 "pricing.srMo": " SR/mois",
-                "pricing.srYr": " SR/an",
                 "pricing.srOnce": " SR une fois",
                 "pricing.s1": "Design de site de qualité standard",
                 "pricing.s2": "Modifications illimitées (sous 12h)",
                 "pricing.s3": "Domaine inclus",
-                "pricing.s3y": "Domaine inclus, sans frais supplémentaires",
                 "pricing.s4": "Support standard",
                 "pricing.s5": "Renouvellement annuel du domaine pris en charge, à vie",
                 "pricing.p1": "Design de site haute qualité",
@@ -1952,7 +2002,6 @@
                 "pricing.x1": "Site niveau Pro Max",
                 "pricing.x2": "Modifications illimitées",
                 "pricing.x3": "Extension de domaine premium (.sa / .com)",
-                "pricing.x3p": "Domaine premium inclus (.sa / .com)",
                 "pricing.x4": "Modifications de menu, vidéos promo, shorts & affiches",
                 "pricing.x5": "Tous les services additionnels inclus",
                 "pricing.x6": "Domaine premium, renouvelé par nous chaque année, à vie",
@@ -1960,6 +2009,7 @@
                 "pricing.getGrowth": "Choisir Pro ↗",
                 "pricing.getSignature": "Choisir Pro Max ↗",
                 "pricing.custom": "Nous étudions aussi les devis sur mesure pour les projets plus importants — dites-nous simplement ce dont vous avez besoin.",
+                "pricing.lifetimeNote": "Toute modification demandée sera effectuée dans les 24 heures suivant votre demande.",
                 "trust.b1": "Consultation gratuite",
                 "trust.b2": "Réponse sous 24h",
                 "trust.b3": "Garantie satisfait 7 jours",
@@ -2085,21 +2135,18 @@
                 "diff.q2by": "— हम किसके लिए बनाते हैं",
                 "pricing.eyebrow": "05 — मूल्य",
                 "pricing.title": "एक प्लान चुनें।<br>बिल्कुल आसान।",
-                "pricing.lead": "मंथली पेमेंट करें, यरली लेकर ज़्यादा बचाएं, या लाइफटाइम लेकर वेबसाइट बनवाने का पैसा दोबारा कभी न दें।",
+                "pricing.lead": "मंथली पेमेंट करें, या लाइफटाइम लेकर वेबसाइट बनवाने का पैसा दोबारा कभी न दें।",
                 "pricing.toggle1": "मंथली",
-                "pricing.toggle2": "यरली",
                 "pricing.toggle3": "लाइफटाइम",
                 "pricing.popular": "सबसे लोकप्रिय",
                 "pricing.starter": "स्टैंडर्ड",
                 "pricing.growth": "प्रो",
                 "pricing.signature": "प्रो मैक्स",
                 "pricing.srMo": " SR/माह",
-                "pricing.srYr": " SR/साल",
                 "pricing.srOnce": " SR एक बार",
                 "pricing.s1": "सामान्य क्वालिटी की वेबसाइट डिज़ाइन",
                 "pricing.s2": "असीमित बदलाव (12 घंटे में)",
                 "pricing.s3": "डोमेन शामिल",
-                "pricing.s3y": "डोमेन शामिल, कोई अतिरिक्त शुल्क नहीं",
                 "pricing.s4": "स्टैंडर्ड साइट सपोर्ट",
                 "pricing.s5": "डोमेन का सालाना रिन्यूअल हमारी तरफ़ से, हमेशा के लिए",
                 "pricing.p1": "हाई-क्वालिटी वेबसाइट डिज़ाइन",
@@ -2111,7 +2158,6 @@
                 "pricing.x1": "प्रो मैक्स क्वालिटी की वेब बिल्ड",
                 "pricing.x2": "असीमित बदलाव",
                 "pricing.x3": "प्रीमियम डोमेन एक्सटेंशन (.sa / .com)",
-                "pricing.x3p": "प्रीमियम डोमेन शामिल (.sa / .com)",
                 "pricing.x4": "मेन्यू बदलाव, प्रोमो वीडियो, शॉर्ट्स और पोस्टर्स",
                 "pricing.x5": "सभी अतिरिक्त सेवाएं शामिल",
                 "pricing.x6": "प्रीमियम डोमेन, हर साल हमारी तरफ़ से रिन्यू, हमेशा के लिए",
@@ -2119,6 +2165,7 @@
                 "pricing.getGrowth": "प्रो चुनें ↗",
                 "pricing.getSignature": "प्रो मैक्स चुनें ↗",
                 "pricing.custom": "बड़े प्रोजेक्ट के लिए कस्टम कोटेशन भी उपलब्ध है — बस बताएं आपको क्या चाहिए।",
+                "pricing.lifetimeNote": "आपके द्वारा अनुरोधित किसी भी बदलाव को 24 घंटे के भीतर कर दिया जाएगा।",
                 "trust.b1": "मुफ़्त सलाह",
                 "trust.b2": "24 घंटे में जवाब",
                 "trust.b3": "7 दिन की संतुष्टि गारंटी",
@@ -2293,8 +2340,24 @@
                 document.querySelectorAll('[data-mode-group]').forEach(g => {
                     g.style.display = g.dataset.modeGroup === mode ? 'grid' : 'none';
                 });
+                // Also toggle the lifetime note
+                const note = document.querySelector('.lifetime-note');
+                if (note) {
+                    note.style.display = mode === 'lifetime' ? 'block' : 'none';
+                }
             });
         });
+
+        // Initial state for lifetime note
+        const initialNote = document.querySelector('.lifetime-note');
+        if (initialNote) {
+            const activeMode = document.querySelector('.toggle-btn.active');
+            if (activeMode && activeMode.dataset.mode === 'lifetime') {
+                initialNote.style.display = 'block';
+            } else {
+                initialNote.style.display = 'none';
+            }
+        }
 
         const menuBtn = document.getElementById('menuBtn');
         const mobileNav = document.getElementById('mobileNav');
