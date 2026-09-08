@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>ARH — Websites that get remembered.</title>
-    <meta name="description" content="ARH is a digital studio creating bold websites for ambitious local businesses.">
+    <meta name="description" content="ARH is a digital studio creating bold websites for ambitious local businesses." />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&family=Hind:wght@400;500;600;700&display=swap');
         [dir="rtl"] body,
@@ -1543,18 +1543,31 @@
                     <div class="email-box" id="emailBox">✉ arhdesigning@gmail.com <span id="copyLabel" data-i18n="contact.copy">(click to copy)</span></div>
                     <p style="font-size:12px;color:var(--muted);margin-top:10px;font-weight:600" data-i18n="contact.response">Typical response within 24hrs</p>
                     <div class="contact-details">
-                        <div class="contact-row"><div class="icon">📞</div><div class="info"><span data-i18n="contact.saudi">SAUDI ARABIA</span><a href="tel:+966582773696">+966 58 277 3696</a></div></div>
-                        <div class="contact-row"><div class="icon">📍</div><div class="info"><span data-i18n="contact.basedin">BASED IN</span><span data-i18n="contact.location">Jeddah, Saudi Arabia</span></div></div>
+                        <!-- Replaced phone with WhatsApp/message only -->
+                        <div class="contact-row">
+                            <div class="icon">💬</div>
+                            <div class="info">
+                                <span data-i18n="contact.whatsapp">WHATSAPP</span>
+                                <a href="https://wa.me/918056210926" target="_blank" rel="noopener">+91 80562 10926</a>
+                            </div>
+                        </div>
+                        <div class="contact-row">
+                            <div class="icon">📍</div>
+                            <div class="info">
+                                <span data-i18n="contact.basedin">BASED IN</span>
+                                <span data-i18n="contact.location">Jeddah, Saudi Arabia</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
-                    <input type="hidden" name="access_key" value="32c44240-1fd3-4a64-abc8-762d6285df25">
-                    <input type="hidden" name="subject" value="New enquiry from ARH website">
+                    <input type="hidden" name="access_key" value="32c44240-1fd3-4a64-abc8-762d6285df25" />
+                    <input type="hidden" name="subject" value="New enquiry from ARH website" />
                     <div class="field-row">
-                        <div class="field"><label data-i18n="contact.name">NAME</label><input type="text" name="name" required></div>
-                        <div class="field"><label data-i18n="contact.phone">PHONE (OPTIONAL)</label><input type="tel" name="phone"></div>
+                        <div class="field"><label data-i18n="contact.name">NAME</label><input type="text" name="name" required /></div>
+                        <div class="field"><label data-i18n="contact.phone">PHONE (OPTIONAL)</label><input type="tel" name="phone" /></div>
                     </div>
-                    <div class="field"><label data-i18n="contact.email">EMAIL</label><input type="email" name="email" required></div>
+                    <div class="field"><label data-i18n="contact.email">EMAIL</label><input type="email" name="email" required /></div>
                     <div class="field-row">
                         <div class="field"><label data-i18n="contact.projectType">PROJECT TYPE</label>
                             <select name="project_type">
@@ -1574,15 +1587,15 @@
 
                     <div class="field">
                         <label for="promoCode">PROMO CODE <span style="font-weight:400;font-size:10px;letter-spacing:0;opacity:.6">(optional)</span></label>
-                        <input type="text" name="promo_code" id="promoCode" placeholder="Enter promo code if you have one" autocomplete="off">
+                        <input type="text" name="promo_code" id="promoCode" placeholder="Enter promo code if you have one" autocomplete="off" />
                         <div class="promo-status" id="promoStatus"></div>
                     </div>
 
                     <div class="field"><label data-i18n="contact.prefer">PREFERRED CONTACT METHOD</label>
                         <div class="radio-row">
-                            <label class="radio-pill"><input type="radio" name="preferred_contact" value="Email" checked><span data-i18n="contact.viaEmail">Email</span></label>
-                            <label class="radio-pill"><input type="radio" name="preferred_contact" value="Phone"><span data-i18n="contact.viaPhone">Phone call</span></label>
-                            <label class="radio-pill"><input type="radio" name="preferred_contact" value="WhatsApp"><span data-i18n="contact.viaWhatsapp">WhatsApp</span></label>
+                            <label class="radio-pill"><input type="radio" name="preferred_contact" value="Email" checked /><span data-i18n="contact.viaEmail">Email</span></label>
+                            <label class="radio-pill"><input type="radio" name="preferred_contact" value="WhatsApp" /><span data-i18n="contact.viaWhatsapp">WhatsApp</span></label>
+                            <!-- Removed "Phone call" option as per request -->
                         </div>
                     </div>
                     <div class="field"><label data-i18n="contact.need">WHAT DO YOU NEED?</label><textarea name="message" required placeholder="Tell us about your business and what you want your website to do..." data-i18n-placeholder="contact.placeholder"></textarea></div>
@@ -1597,8 +1610,8 @@
 
     <footer class="wrap"><span data-i18n="footer.copy">© 2026 <strong>ARH Digital.</strong></span><span data-i18n="footer.tag">Made for businesses that refuse to blend in.</span></footer>
 
-    <!-- ===== ENHANCED WHATSAPP FLOAT ===== -->
-    <a class="wa-float" href="https://wa.me/966582773696?text=Hi%20ARH%2C%20I%27d%20like%20to%20ask%20about%20a%20website." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <!-- ===== ENHANCED WHATSAPP FLOAT (updated number) ===== -->
+    <a class="wa-float" href="https://wa.me/918056210926?text=Hi%20ARH%2C%20I%27d%20like%20to%20ask%20about%20a%20website." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
         <span class="wa-icon-wrap">
             <span class="pulse"></span>
             <svg viewBox="0 0 32 32"><path d="M16.01 3C9.38 3 4 8.38 4 15.01c0 2.51.66 4.86 1.8 6.9L4 29l7.28-1.9a11.9 11.9 0 0 0 4.73.97h.01c6.63 0 12-5.38 12-12.01C28.02 8.38 22.65 3 16.01 3zm0 21.8h-.01a9.7 9.7 0 0 1-4.94-1.35l-.35-.21-3.53.93.94-3.44-.23-.35a9.7 9.7 0 0 1-1.49-5.17c0-5.37 4.37-9.74 9.74-9.74 2.6 0 5.05 1.02 6.89 2.86a9.68 9.68 0 0 1 2.85 6.9c0 5.37-4.38 9.57-9.87 9.57zm5.34-7.28c-.29-.15-1.73-.85-2-.95-.27-.1-.46-.15-.66.15-.2.29-.76.95-.93 1.15-.17.19-.34.22-.63.07-.29-.15-1.24-.46-2.36-1.46-.87-.78-1.46-1.74-1.63-2.03-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.49.1-.19.05-.36-.02-.51-.07-.15-.66-1.59-.91-2.18-.24-.57-.48-.5-.66-.51h-.56c-.19 0-.51.07-.78.36-.27.29-1.02 1-1.02 2.43s1.04 2.82 1.19 3.02c.15.19 2.05 3.13 4.96 4.39.69.3 1.23.48 1.65.61.69.22 1.32.19 1.82.11.55-.08 1.73-.71 1.98-1.39.24-.68.24-1.27.17-1.39-.07-.12-.26-.19-.55-.34z"/></svg>
@@ -1730,11 +1743,10 @@
                 "contact.eyebrow": "08 — GET IN TOUCH",
                 "contact.title": "LET'S BUILD SOMETHING<br>PEOPLE REMEMBER.",
                 "contact.h3": "Tell us about your business",
-                "contact.p": "Fill out the form and we'll get back to you within a day. Prefer email or a call? Reach us directly below.",
+                "contact.p": "Fill out the form and we'll get back to you within a day. Prefer email or WhatsApp? Reach us directly below.",
                 "contact.copy": "(click to copy)",
                 "contact.response": "Typical response within 24hrs",
-                "contact.saudi": "SAUDI ARABIA",
-                "contact.india": "INDIA",
+                "contact.whatsapp": "WHATSAPP",
                 "contact.basedin": "BASED IN",
                 "contact.location": "Jeddah, Saudi Arabia",
                 "contact.name": "NAME",
@@ -1747,7 +1759,6 @@
                 "contact.budget": "BUDGET RANGE",
                 "contact.prefer": "PREFERRED CONTACT METHOD",
                 "contact.viaEmail": "Email",
-                "contact.viaPhone": "Phone call",
                 "contact.viaWhatsapp": "WhatsApp",
                 "contact.opt.new": "New website",
                 "contact.opt.redesign": "Redesign existing site",
@@ -1886,11 +1897,10 @@
                 "contact.eyebrow": "08 — تواصل معنا",
                 "contact.title": "لنبني شيئًا<br>لا يُنسى.",
                 "contact.h3": "أخبرنا عن عملك",
-                "contact.p": "املأ النموذج وسنرد عليك خلال يوم واحد. تفضّل التواصل عبر البريد أو الهاتف؟ تواصل معنا مباشرة أدناه.",
+                "contact.p": "املأ النموذج وسنرد عليك خلال يوم واحد. تفضّل التواصل عبر البريد أو واتساب؟ تواصل معنا مباشرة أدناه.",
                 "contact.copy": "(اضغط للنسخ)",
                 "contact.response": "الرد المعتاد خلال 24 ساعة",
-                "contact.saudi": "السعودية",
-                "contact.india": "الهند",
+                "contact.whatsapp": "واتساب",
                 "contact.basedin": "مقرنا في",
                 "contact.location": "جدة، السعودية",
                 "contact.name": "الاسم",
@@ -1903,7 +1913,6 @@
                 "contact.budget": "نطاق الميزانية",
                 "contact.prefer": "طريقة التواصل المفضلة",
                 "contact.viaEmail": "البريد الإلكتروني",
-                "contact.viaPhone": "مكالمة هاتفية",
                 "contact.viaWhatsapp": "واتساب",
                 "contact.opt.new": "موقع جديد",
                 "contact.opt.redesign": "إعادة تصميم موقع حالي",
@@ -2042,11 +2051,10 @@
                 "contact.eyebrow": "08 — CONTACTEZ-NOUS",
                 "contact.title": "CONSTRUISONS QUELQUE CHOSE<br>DONT ON SE SOUVIENT.",
                 "contact.h3": "Parlez-nous de votre entreprise",
-                "contact.p": "Remplissez le formulaire et nous vous répondrons sous 24h. Vous préférez l'e-mail ou l'appel ? Contactez-nous directement ci-dessous.",
+                "contact.p": "Remplissez le formulaire et nous vous répondrons sous 24h. Vous préférez l'e-mail ou WhatsApp ? Contactez-nous directement ci-dessous.",
                 "contact.copy": "(cliquer pour copier)",
                 "contact.response": "Réponse habituelle sous 24h",
-                "contact.saudi": "ARABIE SAOUDITE",
-                "contact.india": "INDE",
+                "contact.whatsapp": "WHATSAPP",
                 "contact.basedin": "BASÉS À",
                 "contact.location": "Djeddah, Arabie Saoudite",
                 "contact.name": "NOM",
@@ -2059,7 +2067,6 @@
                 "contact.budget": "BUDGET",
                 "contact.prefer": "MOYEN DE CONTACT PRÉFÉRÉ",
                 "contact.viaEmail": "E-mail",
-                "contact.viaPhone": "Appel téléphonique",
                 "contact.viaWhatsapp": "WhatsApp",
                 "contact.opt.new": "Nouveau site",
                 "contact.opt.redesign": "Refonte d'un site existant",
@@ -2198,11 +2205,10 @@
                 "contact.eyebrow": "08 — संपर्क करें",
                 "contact.title": "चलिए कुछ ऐसा बनाते हैं<br>जो याद रह जाए।",
                 "contact.h3": "अपने बिज़नेस के बारे में बताएं",
-                "contact.p": "फ़ॉर्म भरें, हम एक दिन में जवाब देंगे। ईमेल या कॉल पसंद है? नीचे सीधे संपर्क करें।",
+                "contact.p": "फ़ॉर्म भरें, हम एक दिन में जवाब देंगे। ईमेल या व्हाट्सएप पसंद है? नीचे सीधे संपर्क करें।",
                 "contact.copy": "(कॉपी करने के लिए क्लिक करें)",
                 "contact.response": "आमतौर पर 24 घंटे में जवाब",
-                "contact.saudi": "सऊदी अरब",
-                "contact.india": "भारत",
+                "contact.whatsapp": "व्हाट्सएप",
                 "contact.basedin": "स्थित हैं",
                 "contact.location": "जेद्दाह, सऊदी अरब",
                 "contact.name": "नाम",
@@ -2215,7 +2221,6 @@
                 "contact.budget": "बजट रेंज",
                 "contact.prefer": "संपर्क का पसंदीदा तरीका",
                 "contact.viaEmail": "ईमेल",
-                "contact.viaPhone": "फ़ोन कॉल",
                 "contact.viaWhatsapp": "व्हाट्सएप",
                 "contact.opt.new": "नई वेबसाइट",
                 "contact.opt.redesign": "मौजूदा वेबसाइट का रीडिज़ाइन",
