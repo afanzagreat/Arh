@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://arh-digital.com/sitemap.xml
