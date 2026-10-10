@@ -26,6 +26,57 @@
 .hero-signal{position:absolute;right:27px;bottom:44px;display:flex;align-items:flex-end;gap:5px;height:72px;transform:rotate(-8deg)}.hero-signal span{width:8px;background:var(--ink);border:1px solid var(--ink);animation:signalBars 1.8s ease-in-out infinite alternate}.hero-signal span:nth-child(1){height:19px}.hero-signal span:nth-child(2){height:38px;animation-delay:.15s}.hero-signal span:nth-child(3){height:62px;animation-delay:.3s}.hero-signal span:nth-child(4){height:44px;animation-delay:.45s}.hero-signal span:nth-child(5){height:27px;animation-delay:.6s}@keyframes signalBars{to{transform:scaleY(.55);transform-origin:bottom}}.hero-stamp{position:absolute;left:27px;bottom:33px;border:2px solid var(--ink);border-radius:50%;padding:15px 11px;text-align:center;font:800 9px/1.05 "Space Grotesk";transform:rotate(-12deg);background:var(--yellow);box-shadow:4px 5px 0 var(--ink)}
 @media(max-width:900px){.signal-console{top:auto;right:16px;bottom:18px;width:205px;height:92px}.signal-field{height:46px}.hero-stamp{left:17px;bottom:22px}.hero-signal{right:17px;bottom:32px}}
 @media(prefers-reduced-motion:reduce){.track,.signal-wave,.hero-signal span{animation:none!important}.signal-console{display:none}}
+
+/* mobile-first refinement */
+@media(max-width:600px){
+  .wrap{width:calc(100% - 28px)}
+  nav{height:70px}
+  .announce{font-size:11px;padding:9px 12px}
+  section{padding:68px 0}
+  .hero{padding:54px 0 58px;gap:20px;min-height:auto}
+  .kicker{font-size:10px;margin-bottom:18px;padding:7px 11px}
+  h1{font-size:clamp(48px,15vw,72px);line-height:.9;letter-spacing:-3px}
+  h2{font-size:clamp(36px,11vw,52px);letter-spacing:-2px}
+  .hero p{font-size:16px;margin:20px 0;line-height:1.5}
+  .actions{gap:8px}.actions .btn{width:100%;padding:12px 16px}
+  .hero-art{height:300px;margin-top:4px}
+  .art-main{width:235px;height:285px;right:3%;top:0;padding:20px;border-radius:20px}
+  .art-main h2{font-size:36px;margin-top:45px}
+  .art-main small{font-size:10px}
+  .art-back{width:220px;height:260px;right:12%;top:28px;border-radius:20px}
+  .art-circle{width:82px;height:82px;font-size:11px;right:-2px;bottom:0}
+  .star{font-size:50px;left:4px;bottom:22px}
+  .track{font-size:13px;padding:14px 0}
+  .track b{margin:0 16px}
+  .section-break{width:calc(100% - 28px);padding:15px 0}
+  .lead{font-size:15px;margin-top:16px}
+  .grid-4{gap:10px;margin-top:30px}
+  .service{min-height:190px;padding:20px;border-radius:18px}
+  .service h3{font-size:26px;margin-top:58px}
+  .service p{font-size:13px}
+  .work-head{display:block}.grid-work{gap:10px;margin-top:30px}
+  .project{min-height:285px;padding:20px;border-radius:18px}
+  .project h3{font-size:42px;margin-top:48px}
+  .process-grid{gap:38px}.step{padding:19px 0;grid-template-columns:38px 1fr}.step h3{font-size:23px}
+  .quotes,.plans,.blog-grid{gap:10px;margin-top:30px}
+  .quote{padding:21px;border-radius:18px}.quote p{font-size:19px}.quote small{margin-top:15px}
+  .toggle{margin-top:24px;width:100%;justify-content:stretch}.toggle button{flex:1;padding:9px 8px;font-size:12px}
+  .plan{padding:22px;border-radius:18px}.plan.pop{transform:none}.price{font-size:42px;margin:10px 0}.plan li{padding:7px 0;font-size:13px}
+  .note{font-size:13px;margin-top:15px;padding:12px 14px}
+  .studio-feature,.faq-feature{padding:44px 18px;margin-top:0;margin-bottom:0;border-radius:20px}
+  .blog-card{padding:20px;border-radius:18px}.blog-card h3{font-size:21px}
+  .faq-list{margin-top:28px}.faq-q{font-size:17px;padding:18px 2px}.faq-a{font-size:14px;padding-bottom:18px}
+  .contact-grid{gap:28px;margin-top:30px}.contact-side h3{font-size:27px}.contact-side p{margin:10px 0 16px;font-size:14px}
+  .email-hero{margin:16px 0 18px;padding:14px 16px;border-radius:16px;width:100%;box-shadow:5px 6px 0 var(--ink)}
+  .email-hero a{font-size:clamp(19px,6vw,28px)}.copy-email-btn{padding:7px 11px;font-size:11px}
+  .insta-link{width:100%;margin-top:14px;padding:13px 50px 13px 16px;border-width:2px;border-radius:16px;box-shadow:5px 6px 0 var(--ink)}
+  .insta-link strong{font-size:24px}.insta-link b{font-size:13px}.insta-link em{right:16px;font-size:28px}
+  .crew{gap:6px;margin-top:28px;justify-content:center}.crew-win{width:92px;border-width:2px;border-radius:13px;box-shadow:4px 5px 0 var(--ink)}.crew-win:nth-child(2){width:108px}.crew-win:nth-child(3){width:84px}.crew-bar{padding:6px;gap:3px;border-bottom-width:2px}.crew-bar i{width:7px;height:7px;border-width:1px}.face{gap:6px;padding:18px 6px 21px}.crew-win:nth-child(2) .face{padding:30px 6px 36px}.eye{width:29px;height:29px;border-width:2px}.crew-win:nth-child(2) .eye{width:35px;height:35px}.pupil{width:11px;height:11px}
+  .contact-form{padding:19px;border-radius:18px}.field{margin-bottom:12px}.field input,.field select,.field textarea{padding:10px}.field textarea{min-height:105px}
+  .cta{padding:58px 0}.cta-box{padding:46px 20px;border-radius:22px;box-shadow:6px 7px 0 var(--ink)}.cta-box p{margin:15px auto 21px;font-size:14px}
+  footer{padding:24px 0;gap:10px;font-size:12px}.maker-credit{font-size:14px}
+  .orbit-tracker{width:64px;height:64px;right:12px;bottom:12px}.orbit-label{font-size:5px;top:9px}.orbit-core{gap:6px}.orbit-core i{width:9px;height:9px}
+}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"ARH Digital","url":"https://arh-digital.com/","logo":"https://arh-digital.com/favicon.svg","image":"https://arh-digital.com/favicon.svg","email":"mailto:Message@arhdesign.tech","areaServed":"Jeddah, Saudi Arabia","description":"Bold, fast websites for local businesses."}</script>
 </head>
