@@ -1,0 +1,67 @@
+/* Shared localization styles; loaded after each page's visual styles. */
+.language-select {
+  max-width: 118px;
+  min-height: 44px;
+  padding: 8px 10px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--cream);
+  color: var(--ink);
+  font: 700 13px "DM Sans", "Tajawal", "Hind", sans-serif;
+  cursor: pointer;
+}
+.language-select:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
+html:lang(ar) body, html:lang(ar) button, html:lang(ar) input,
+html:lang(ar) select, html:lang(ar) textarea { font-family: "Tajawal", sans-serif; }
+html:lang(hi) body, html:lang(hi) button, html:lang(hi) input,
+html:lang(hi) select, html:lang(hi) textarea { font-family: "Hind", sans-serif; }
+html:lang(ar) :is(h1,h2,h3,.quote p,.faq-q,.price,.eyebrow,.kicker,.track,.strip,.quote,.count,.count b,.offer-box h2,.hero h1,.case h2,.art-circle,.hero-stamp,.art-main small,.mobile-nav a),
+html:lang(hi) :is(h1,h2,h3,.quote p,.faq-q,.price,.eyebrow,.kicker,.track,.strip,.quote,.count,.count b,.offer-box h2,.hero h1,.case h2,.art-circle,.hero-stamp,.art-main small,.mobile-nav a) {
+  font-family: inherit;
+  letter-spacing: normal;
+  line-height: 1.25;
+}
+html:lang(ar) :is(h1,h2,h3), html:lang(hi) :is(h1,h2,h3) { overflow-wrap: anywhere; }
+html[dir=rtl] .faq-q { text-align: right; }
+html[dir=rtl] .plan li:before { margin-right: 0; margin-left: 9px; }
+html[dir=rtl] .case .quote { border-left: 0; border-right: 4px solid var(--orange); padding-left: 0; padding-right: 16px; }
+html[dir=rtl] .insta-link { padding-right: 20px; padding-left: 58px; }
+html[dir=rtl] .insta-link em { right: auto; left: 20px; }
+/* Coordinates, addresses and branded Latin wordmarks are not mirrored. */
+.logo, .signal-console, .email-hero a, .insta-link b, .url,
+input[type=email], .price { direction: ltr; unicode-bidi: isolate; }
+.marquee, .strip { direction: ltr; }
+html[dir=rtl] .marquee-group { direction: rtl; }
+.controls { flex-shrink: 0; }
+.links { gap: clamp(10px,1.5vw,25px); }
+nav, header.wrap { gap: 16px; }
+.controls .btn { white-space: nowrap; }
+html:not(:lang(en)) .art-main h2 { font-size: 48px; margin-top: 48px; }
+html:not(:lang(en)) .art-circle { font-size: 15px; }
+@media (max-width: 1100px) {
+  .links { display: none; }
+  .menu { display: block; border: 0; background: transparent; color: var(--ink); font-size: 25px; }
+  #mobileNav.open { display: flex; position: fixed; inset: 0; z-index: 30; background: var(--cream); padding: 100px 28px 28px; flex-direction: column; gap: 6px; }
+  #mobileNav a { padding: 16px 0; border-bottom: 1px solid var(--line); }
+  #mobileNav .close { position: absolute; right: 25px; top: 24px; border: 0; background: transparent; color: var(--ink); font-size: 28px; }
+}
+@media (max-width: 600px) {
+  nav, header.wrap { gap: 8px; }
+  .controls { gap: 6px; }
+  .language-select { max-width: 99px; min-height: 40px; padding: 7px; font-size: 12px; }
+  .controls > .btn { display: none; }
+  html:not(:lang(en)) .art-main h2 { font-size: 31px; margin-top: 26px; }
+  html:not(:lang(en)) .art-circle { font-size: 10px; }
+  html:lang(ar) .hero h1, html:lang(hi) .hero h1 { font-size: clamp(40px,12vw,60px); }
+  html[dir=rtl] .insta-link { padding-right: 16px; padding-left: 50px; }
+  html[dir=rtl] .insta-link em { left: 16px; }
+}
+@media (max-width: 1100px) {
+  .portfolio-menu-open #portfolioLinks {
+    display: flex; position: absolute; top: 86px; left: 0; right: 0;
+    z-index: 30; flex-direction: column; gap: 0;
+    padding: 16px 24px; background: var(--cream); border-bottom: 2px solid var(--ink);
+  }
+  .portfolio-menu-open #portfolioLinks a { padding: 14px 0; }
+}
+@media (max-width: 500px) { .portfolio-menu-open #portfolioLinks { top: 72px; } }
