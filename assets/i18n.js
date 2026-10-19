@@ -2,11 +2,13 @@
   'use strict';
   const locales = window.ARH_LOCALES || {};
   const supported = ['en', 'ar', 'fr', 'hi'];
-  let current = 'en';
-  try {
-    const saved = localStorage.getItem('arh-lang');
-    if (supported.includes(saved)) current = saved;
-  } catch (_) {}
+  // A shared URL must retain its rendered language, regardless of old preferences.
+  const root = document.documentElement;
+  let current = supported.includes(root.lang) ? root.lang : 'en';
+  function pagePath(language) {
+    const prefix = language === 'en' ? '/' : '/' + language + '/';
+    return prefix + (root.dataset.pageKind === 'works' ? 'works.html' : '');
+  }
   function t(key) {
     return locales[current]?.[key] ?? locales.en?.[key] ?? key;
   }
@@ -45,7 +47,14 @@
     t,
     setLanguage(language) {
       if (!supported.includes(language)) return false;
-      current = language;
+      try { localStorage.setItem('arh-lang', language); } catch (_) {}
+      if (language !== current) {
+        const destination = new URL(pagePath(language), location.origin);
+        destination.search = location.search;
+        destination.hash = location.hash;
+        location.assign(destination.href);
+        return true;
+      }
       apply();
       return true;
     },
