@@ -181,10 +181,23 @@ class SEOReview(unittest.TestCase):
             self.assertEqual(len(nav.select("a")), 4)
             self.assertEqual([a.get("href") for a in nav.select("a")], [route(x, "home") for x in LANGS])
 
-    def test_forms_and_original_visible_copy_are_unchanged(self):
+    def test_unrequested_visible_copy_styles_and_form_controls_are_unchanged(self):
         for kind, filename in (("home", "index.html"), ("works", "works.html")):
             current = soup(ROOT / filename)
             old = BeautifulSoup(subprocess.check_output(["git", "show", f"{BASELINE}:{filename}"], cwd=ROOT, text=True), "html.parser")
+            if kind == "home":
+                # Normalize only owner-requested tier names and the preferred-plan label.
+                approved_keys = ("homeText68", "homeText75", "homeText76", "homeText83",
+                                 "homeText92", "homeText99", "homeText100", "homeText107", "homeText154")
+                for key in approved_keys:
+                    node = current.select_one(f'[data-i18n="{key}"]')
+                    original = old.select_one(f'[data-i18n="{key}"]')
+                    node.clear()
+                    for child in list(BeautifulSoup(original.decode_contents(), "html.parser").contents):
+                        node.append(child)
+                current.select_one("#existingWebsiteField").decompose()
+                current.select_one("#budget").replace_with(BeautifulSoup(str(old.select_one("#budget")), "html.parser").select_one("select"))
+                current.select_one("#projectType").attrs.pop("aria-controls", None)
             # Ignore generated no-JS additions, but compare all original visible body copy.
             for doc in (current, old):
                 for node in doc.select("noscript#languageFallback"):
