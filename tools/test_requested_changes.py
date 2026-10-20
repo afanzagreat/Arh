@@ -32,8 +32,8 @@ CTA_KEYS = (
     "homeText91", "homeText99", "homeText107",
 )
 PLAN_VALUES = (
-    "monthly_essential", "monthly_pro_max", "monthly_custom",
-    "once_essential", "once_pro_max", "once_custom",
+    "monthly_essential", "monthly_pro", "monthly_custom",
+    "once_essential", "once_pro", "once_custom",
 )
 # These are the only old catalog entries deliberately removed.
 REMOVED_KEYS = {
@@ -42,12 +42,13 @@ REMOVED_KEYS = {
 }
 NEW_KEYS = {
     "existingSiteLabel", "existingSiteHint", "placeholder_existingWebsite",
-    "planMonthlyEssential", "planMonthlyProMax", "planMonthlyCustom",
-    "planOnceEssential", "planOnceProMax", "planOnceCustom",
+    "planMonthlyEssential", "planMonthlyPro", "planMonthlyCustom",
+    "planOnceEssential", "planOncePro", "planOnceCustom",
 }
 CHANGED_KEYS = {
     "homeText68", "homeText75", "homeText76", "homeText83",
     "homeText92", "homeText99", "homeText100", "homeText107", "homeText154",
+    "homeText77", "homeText78", "homeText85", "homeText93", "homeText101", "homeText102",
     *NEW_KEYS,
     *REMOVED_KEYS,
 }
@@ -107,8 +108,8 @@ class RequestedChangesRegression(unittest.TestCase):
             headings = doc.select(".plans .plan h3")
             self.assertEqual(len(headings), 6, path)
             self.assertEqual([h.get("data-i18n") for h in headings], list(PLAN_KEYS), path)
-            renamed = {"en": ("Pro Max", "Custom"), "ar": ("برو ماكس", "مخصص"),
-                       "fr": ("Pro Max", "Sur mesure"), "hi": ("प्रो मैक्स", "कस्टम")}
+            renamed = {"en": ("Pro", "Custom"), "ar": ("برو", "مخصص"),
+                       "fr": ("Pro", "Sur mesure"), "hi": ("प्रो", "कस्टम")}
             middle, top = renamed[locale]
             self.assertEqual([normalized_text(headings[i]) for i in (1, 4)], [middle, middle], path)
             self.assertEqual([normalized_text(headings[i]) for i in (2, 5)], [top, top], path)
@@ -118,13 +119,21 @@ class RequestedChangesRegression(unittest.TestCase):
                 path,
             )
 
-    def test_prices_and_features_are_identical_to_baseline(self):
+    def test_approved_prices_and_preserved_features(self):
         for path in HOME_PAGES:
             current, baseline = soup(read_current(path)), soup(git_baseline(path))
-            self.assertEqual(
-                [x.decode_contents() for x in current.select(".plans .price")],
-                [x.decode_contents() for x in baseline.select(".plans .price")], path,
-            )
+            prices = current.select(".plans .price")
+            self.assertEqual(len(prices), 6, path)
+            for i, amount in ((0, "26"), (1, "40"), (3, "99"), (4, "209")):
+                self.assertEqual(re.findall(r"\d+", prices[i].get_text()), [amount], (path, i))
+            for i in (2, 5):
+                self.assertTrue(prices[i].get_text(strip=True), (path, i))
+                self.assertNotRegex(prices[i].get_text(), r"[\d$€£₹]", (path, i))
+                self.assertIn("custom-quote", prices[i].get("class", []))
+                self.assertFalse(prices[i].select("small"))
+            for option in current.select('#budget option[value$="_custom"]'):
+                self.assertNotRegex(option.get_text(), r"[\d$€£₹]")
+            self.assertNotRegex(current.select_one("#pricing").get_text(), r"Pro Max|برو ماكس|प्रो मैक्स|133|173|293|\$53")
             self.assertEqual(
                 [[x.decode_contents() for x in p.select("li")] for p in current.select(".plans .plan")],
                 [[x.decode_contents() for x in p.select("li")] for p in baseline.select(".plans .plan")], path,
@@ -160,11 +169,11 @@ class RequestedChangesRegression(unittest.TestCase):
             options = budget.select("option")
             self.assertEqual([o.get("value") for o in options], expected_values, path)
             self.assertEqual([o.get("data-i18n") for o in options], [
-                "planMonthlyEssential", "planMonthlyProMax", "planMonthlyCustom",
-                "planOnceEssential", "planOnceProMax", "planOnceCustom", "option_unsure",
+                "planMonthlyEssential", "planMonthlyPro", "planMonthlyCustom",
+                "planOnceEssential", "planOncePro", "planOnceCustom", "option_unsure",
             ], path)
-            for key in ("homeText154", "planMonthlyEssential", "planMonthlyProMax",
-                        "planMonthlyCustom", "planOnceEssential", "planOnceProMax",
+            for key in ("homeText154", "planMonthlyEssential", "planMonthlyPro",
+                        "planMonthlyCustom", "planOnceEssential", "planOncePro",
                         "planOnceCustom", "option_unsure"):
                 self.assertIn(key, catalogs[locale], f"{locale}: {key}")
 
@@ -235,8 +244,21 @@ class RequestedChangesRegression(unittest.TestCase):
         self.assertEqual(read_current("assets/i18n.css"), git_baseline("assets/i18n.css"))
         for path in HOME_PAGES:
             now, old = soup(read_current(path)), soup(git_baseline(path))
+            quote = now.select_one("style#customPricingQuote")
+            self.assertIsNotNone(quote, path)
+            self.assertEqual(quote.string, ".price.custom-quote{font-size:22px;line-height:1.35;letter-spacing:0}")
+            quote.decompose()
             self.assertEqual([x.decode_contents() for x in now.select("style")],
                              [x.decode_contents() for x in old.select("style")], path)
+
+    def test_existing_site_field_and_behavior_preserved_from_previous_review(self):
+        for path in HOME_PAGES:
+            previous = soup(subprocess.check_output(["git", "show", f"3971a97:{path}"], cwd=ROOT, text=True))
+            current = soup(read_current(path))
+            self.assertEqual(str(current.select_one("#existingWebsiteField")),
+                             str(previous.select_one("#existingWebsiteField")), path)
+        previous_script = subprocess.check_output(["git", "show", "3971a97:assets/contact-form.js"], cwd=ROOT, text=True)
+        self.assertEqual(read_current("assets/contact-form.js"), previous_script)
 
     def test_metadata_and_jsonld_are_unchanged_on_all_eight_pages(self):
         for path in (*HOME_PAGES, *WORK_PAGES):
