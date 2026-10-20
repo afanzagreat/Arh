@@ -17,6 +17,10 @@ from pathlib import Path
 from typing import Iterable
 
 from bs4 import BeautifulSoup
+if __package__:
+    from .test_pointer_tracker import strip_tracker_css
+else:
+    from test_pointer_tracker import strip_tracker_css
 
 ROOT = Path(__file__).resolve().parents[1]
 BASELINE = "b66e3c8"
@@ -248,8 +252,10 @@ class RequestedChangesRegression(unittest.TestCase):
             self.assertIsNotNone(quote, path)
             self.assertEqual(quote.string, ".price.custom-quote{font-size:22px;line-height:1.35;letter-spacing:0}")
             quote.decompose()
+            old_styles = [x.decode_contents() for x in old.select("style")]
+            old_styles[0] = strip_tracker_css(old_styles[0])
             self.assertEqual([x.decode_contents() for x in now.select("style")],
-                             [x.decode_contents() for x in old.select("style")], path)
+                             old_styles, path)
 
     def test_existing_site_field_and_behavior_preserved_from_previous_review(self):
         for path in HOME_PAGES:

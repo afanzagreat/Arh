@@ -13,6 +13,10 @@ from urllib.parse import urlsplit
 from xml.etree import ElementTree as ET
 
 from bs4 import BeautifulSoup, Doctype
+if __package__:
+    from .test_pointer_tracker import remove_tracker_markup, strip_tracker_css
+else:
+    from test_pointer_tracker import remove_tracker_markup, strip_tracker_css
 
 ROOT = Path(__file__).resolve().parents[1]
 ORIGIN = "https://arhdesign.tech"
@@ -186,6 +190,8 @@ class SEOReview(unittest.TestCase):
             current = soup(ROOT / filename)
             old = BeautifulSoup(subprocess.check_output(["git", "show", f"{BASELINE}:{filename}"], cwd=ROOT, text=True), "html.parser")
             if kind == "home":
+                # The pointer console is the only newly approved body removal.
+                remove_tracker_markup(old)
                 # Normalize only owner-requested tier names and the preferred-plan label.
                 approved_keys = ("homeText68", "homeText75", "homeText76", "homeText83",
                                  "homeText92", "homeText99", "homeText100", "homeText107", "homeText154",
@@ -209,6 +215,7 @@ class SEOReview(unittest.TestCase):
             self.assertEqual(forms(current), forms(old), f"form changed in {filename}")
             if kind == "home":
                 old_styles = [x.string or "" for x in old.select("style")]
+                old_styles[0] = strip_tracker_css(old_styles[0])
                 quote_style = current.select_one("style#customPricingQuote")
                 self.assertIsNotNone(quote_style)
                 self.assertEqual(quote_style.string, ".price.custom-quote{font-size:22px;line-height:1.35;letter-spacing:0}")
