@@ -186,9 +186,14 @@ class SEOReview(unittest.TestCase):
             self.assertEqual([a.get("href") for a in nav.select("a")], [route(x, "home") for x in LANGS])
 
     def test_unrequested_visible_copy_styles_and_form_controls_are_unchanged(self):
+        if __package__:
+            from .test_header import normalize_header, prior_css
+        else:
+            from test_header import normalize_header, prior_css
         for kind, filename in (("home", "index.html"), ("works", "works.html")):
             current = soup(ROOT / filename)
             old = BeautifulSoup(subprocess.check_output(["git", "show", f"{BASELINE}:{filename}"], cwd=ROOT, text=True), "html.parser")
+            normalize_header(current, old)
             if kind == "home":
                 # The pointer console is the only newly approved body removal.
                 remove_tracker_markup(old)
@@ -223,7 +228,7 @@ class SEOReview(unittest.TestCase):
                 current_styles = [x.string or "" for x in current.select("style")]
                 self.assertTrue(set(old_styles).issubset(current_styles))
                 self.assertEqual([x for x in current_styles if x not in old_styles], [FALLBACK_STYLE])
-        self.assertEqual((ROOT / "assets/i18n.css").read_text(), subprocess.check_output(["git", "show", f"{BASELINE}:assets/i18n.css"], cwd=ROOT, text=True))
+        self.assertEqual(prior_css((ROOT / "assets/i18n.css").read_text()), subprocess.check_output(["git", "show", f"{BASELINE}:assets/i18n.css"], cwd=ROOT, text=True))
 
     def test_navigation_internal_paths_preserve_rendered_language(self):
         for lang, kind, path in self.pages:

@@ -102,6 +102,11 @@ class PointerTrackerRegression(unittest.TestCase):
         for path in HOME_PAGES:
             current = soup(read_current(path))
             old = remove_tracker_markup(soup(read_baseline(path)))
+            if __package__:
+                from .test_header import normalize_header
+            else:
+                from test_header import normalize_header
+            normalize_header(current, old)
             old_inline = old.select("script:not([src])")
             old_inline[-1].string = strip_tracker_handler(old_inline[-1].string or "")
             self.assertEqual(str(current.body), str(old.body), path)
@@ -152,7 +157,11 @@ class PointerTrackerRegression(unittest.TestCase):
                 )
                 self.assertEqual(str(current.select_one("form#contactForm")), str(old.select_one("form#contactForm")), path)
             else:
-                self.assertEqual(read_current(path), read_baseline(path), path)
+                if __package__:
+                    from .test_header import normalize_header
+                else:
+                    from test_header import normalize_header
+                self.assertEqual(str(normalize_header(current, old)), str(old), path)
 
     def test_baseline_console_css_is_the_only_inline_style_difference(self):
         for path in HOME_PAGES:

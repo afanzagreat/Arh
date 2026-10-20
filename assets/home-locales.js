@@ -9,7 +9,7 @@ window.ARH_LOCALES = {
     "faq": "FAQ",
     "contact": "Contact",
     "homeText2": "🌙",
-    "start": "Start a project ↗",
+    "start": "Get a quote ↗",
     "homeText3": "☰",
     "homeText4": "×",
     "homeText5": "X <em>00</em> · Y <em>00</em>",
@@ -230,7 +230,8 @@ window.ARH_LOCALES = {
     "extra203": "LOCAL SEO",
     "extra204": "TRUST",
     "extra205": "HOSPITALITY",
-    "extra206": "@arh_design2026"
+    "extra206": "@arh_design2026",
+    "instagramLabel": "ARH on Instagram (opens in a new tab)"
   },
   "ar": {
     "announce": "يبدأ كل موقع ويب بفترة مراجعة مدتها 7 أيام - شروط واضحة، بدون ضغوط.",
@@ -242,7 +243,7 @@ window.ARH_LOCALES = {
     "faq": "الأسئلة الشائعة",
     "contact": "تواصل",
     "homeText2": "🌙",
-    "start": "ابدأ مشروعاً ↗",
+    "start": "اطلب عرض سعر ↗",
     "homeText3": "☰",
     "homeText4": "×",
     "homeText5": "X <em>00</em> · Y <em>00</em>",
@@ -463,7 +464,8 @@ window.ARH_LOCALES = {
     "projectOption0": "موقع جديد",
     "projectOption1": "إعادة تصميم الموقع الحالي",
     "projectOption2": "المتجر/الحجز عبر الإنترنت",
-    "projectOption3": "شيء آخر"
+    "projectOption3": "شيء آخر",
+    "instagramLabel": "ARH على إنستغرام (يفتح في علامة تبويب جديدة)"
   },
   "fr": {
     "announce": "Chaque site Web commence par une période d'examen de 7 jours : des conditions claires, sans pression.",
@@ -475,7 +477,7 @@ window.ARH_LOCALES = {
     "faq": "Questions fréquentes",
     "contact": "Nous contacter",
     "homeText2": "🌙",
-    "start": "Démarrer un projet ↗",
+    "start": "Demander un devis ↗",
     "homeText3": "☰",
     "homeText4": "×",
     "homeText5": "X <em>00</em> · Y <em>00</em>",
@@ -696,7 +698,8 @@ window.ARH_LOCALES = {
     "projectOption0": "Nouveau site internet",
     "projectOption1": "Refonte du site existant",
     "projectOption2": "Boutique en ligne / réservation",
-    "projectOption3": "Quelque chose d'autre"
+    "projectOption3": "Quelque chose d'autre",
+    "instagramLabel": "ARH sur Instagram (nouvel onglet)"
   },
   "hi": {
     "announce": "प्रत्येक वेबसाइट 7-दिन की समीक्षा अवधि के साथ शुरू होती है - स्पष्ट शर्तें, कोई दबाव नहीं।",
@@ -708,7 +711,7 @@ window.ARH_LOCALES = {
     "faq": "अक्सर पूछे जाने वाले प्रश्न",
     "contact": "संपर्क",
     "homeText2": "🌙",
-    "start": "एक प्रोजेक्ट शुरू करें ↗",
+    "start": "कोटेशन पाएं ↗",
     "homeText3": "☰",
     "homeText4": "×",
     "homeText5": "X <em>00</em> · Y <em>00</em>",
@@ -929,6 +932,7 @@ window.ARH_LOCALES = {
     "projectOption0": "नई वेबसाइट",
     "projectOption1": "मौजूदा साइट को फिर से डिज़ाइन करें",
     "projectOption2": "ऑनलाइन स्टोर/बुकिंग",
-    "projectOption3": "कुछ और"
+    "projectOption3": "कुछ और",
+    "instagramLabel": "Instagram पर ARH (नए टैब में खुलेगा)"
   }
 };
