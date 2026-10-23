@@ -33,7 +33,8 @@ window.ARH_LOCALES = {
     "previewTitle": "Shabibi Juice website preview",
     "previewNote": "If the preview is blocked, <a href=\"https://www.shabibi-juice.store\" target=\"_blank\" rel=\"noopener\">open the live site directly ↗</a>",
     "strip": "RECENT WORK <span>✦</span> SHABIBI JUICE <span>✦</span> BUILT IN JEDDAH <span>✦</span>",
-    "instagramLabel": "ARH on Instagram (opens in a new tab)"
+    "instagramLabel": "ARH on Instagram (opens in a new tab)",
+    "privacyLink": "Privacy Policy"
   },
   "ar": {
     "services": "الخدمات",
@@ -69,7 +70,8 @@ window.ARH_LOCALES = {
     "previewTitle": "معاينة موقع شبيبي جوس",
     "previewNote": "إذا تعذّرت المعاينة، <a href=\"https://www.shabibi-juice.store\" target=\"_blank\" rel=\"noopener\">افتح الموقع مباشرة ↗</a>",
     "strip": "أحدث الأعمال <span>✦</span> شبيبي جوس <span>✦</span> صُنع في جدة <span>✦</span>",
-    "instagramLabel": "ARH على إنستغرام (يفتح في علامة تبويب جديدة)"
+    "instagramLabel": "ARH على إنستغرام (يفتح في علامة تبويب جديدة)",
+    "privacyLink": "سياسة الخصوصية"
   },
   "fr": {
     "services": "Services",
@@ -105,7 +107,8 @@ window.ARH_LOCALES = {
     "previewTitle": "Aperçu du site Shabibi Juice",
     "previewNote": "Si l’aperçu est bloqué, <a href=\"https://www.shabibi-juice.store\" target=\"_blank\" rel=\"noopener\">ouvrez le site directement ↗</a>",
     "strip": "RÉALISATIONS RÉCENTES <span>✦</span> SHABIBI JUICE <span>✦</span> CRÉÉ À DJEDDAH <span>✦</span>",
-    "instagramLabel": "ARH sur Instagram (nouvel onglet)"
+    "instagramLabel": "ARH sur Instagram (nouvel onglet)",
+    "privacyLink": "Politique de confidentialité"
   },
   "hi": {
     "services": "सेवाएं",
@@ -141,6 +144,7 @@ window.ARH_LOCALES = {
     "previewTitle": "शबीबी जूस वेबसाइट का पूर्वावलोकन",
     "previewNote": "अगर पूर्वावलोकन नहीं खुलता, तो <a href=\"https://www.shabibi-juice.store\" target=\"_blank\" rel=\"noopener\">सीधे लाइव वेबसाइट खोलें ↗</a>",
     "strip": "हाल का काम <span>✦</span> शबीबी जूस <span>✦</span> जेद्दा में बना <span>✦</span>",
-    "instagramLabel": "Instagram पर ARH (नए टैब में खुलेगा)"
+    "instagramLabel": "Instagram पर ARH (नए टैब में खुलेगा)",
+    "privacyLink": "गोपनीयता नीति"
   }
 };

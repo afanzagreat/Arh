@@ -237,7 +237,7 @@ class RequestedChangesRegression(unittest.TestCase):
         for locale in LOCALES:
             old_keys, new_keys = set(old[locale]), set(new[locale])
             self.assertEqual(old_keys - new_keys, REMOVED_KEYS, locale)
-            self.assertEqual(new_keys - old_keys, NEW_KEYS | {"instagramLabel"}, locale)
+            self.assertEqual(new_keys - old_keys, NEW_KEYS | {"instagramLabel", "privacyLink"}, locale)
             for key in old_keys & new_keys:
                 if key not in CHANGED_KEYS | {"start"}:
                     self.assertEqual(new[locale][key], old[locale][key], f"{locale}.{key}")

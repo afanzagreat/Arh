@@ -83,3 +83,6 @@ html:not(:lang(en)) .art-circle { font-size: 15px; }
   #mobileNav .nav-contact .nav-instagram,
   .portfolio-menu-open #portfolioLinks .nav-contact .nav-instagram { padding: 0; }
 }
+/* Footer privacy-policy link. */
+.privacy-link { text-decoration: underline; text-underline-offset: 3px; }
+.privacy-link:hover { color: var(--orange); }

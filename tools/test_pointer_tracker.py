@@ -49,6 +49,16 @@ def soup(text: str) -> BeautifulSoup:
     return BeautifulSoup(text, "html.parser")
 
 
+def drop_analytics_and_privacy(document):
+    """Ignore only the approved Google Analytics snippet and footer privacy link."""
+    if __package__:
+        from .test_header import drop_analytics_and_privacy as drop
+    else:
+        from test_header import drop_analytics_and_privacy as drop
+    return drop(document)
+
+
+
 def remove_tracker_markup(document: BeautifulSoup) -> BeautifulSoup:
     """Remove only the baseline console node, mutating and returning document."""
     for node in document.select(".signal-console"):
@@ -113,7 +123,7 @@ class PointerTrackerRegression(unittest.TestCase):
 
     def test_inline_scripts_preserve_app_logic_except_final_tracker_handler(self):
         for path in HOME_PAGES:
-            current = soup(read_current(path))
+            current = drop_analytics_and_privacy(soup(read_current(path)))
             old = soup(read_baseline(path))
             now_inline = [x.string or "" for x in current.select("script:not([src])")]
             old_inline = [x.string or "" for x in old.select("script:not([src])")]
@@ -137,7 +147,7 @@ class PointerTrackerRegression(unittest.TestCase):
 
     def test_metadata_contact_assets_and_work_pages_are_unchanged(self):
         for path in HOME_PAGES + WORK_PAGES:
-            current = soup(read_current(path))
+            current = drop_analytics_and_privacy(soup(read_current(path)))
             old = soup(read_baseline(path))
             self.assertEqual(
                 [str(x) for x in current.select("head meta, head link")],

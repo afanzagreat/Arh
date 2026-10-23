@@ -12,8 +12,16 @@ CSS_MARKER = '\n/* Keep the compact Instagram icon beside Contact in both naviga
 LABELS = {'en': 'Get a quote ↗', 'ar': 'اطلب عرض سعر ↗', 'fr': 'Demander un devis ↗', 'hi': 'कोटेशन पाएं ↗'}
 
 
+def drop_analytics_and_privacy(current):
+    """Undo only the approved Google Analytics snippet and footer privacy link."""
+    for node in current.select('script[src^="https://www.googletagmanager.com/"], script#arhAnalytics, a.privacy-link'):
+        node.decompose()
+    return current
+
+
 def normalize_header(current, old):
     """Undo only the approved header changes for historical preservation tests."""
+    drop_analytics_and_privacy(current)
     for icon in current.select('.nav-instagram'):
         icon.decompose()
     for pair in current.select('.nav-contact'):
@@ -63,6 +71,7 @@ class HeaderRegression(unittest.TestCase):
                 self.assertEqual(current[lang].pop('start'), LABELS[lang])
                 old[lang].pop('start')
                 self.assertTrue(current[lang].pop('instagramLabel'))
+                self.assertTrue(current[lang].pop('privacyLink'))
             self.assertEqual(current, old)
         self.assertEqual(prior_css((ROOT / 'assets/i18n.css').read_text()), baseline('assets/i18n.css'))
 

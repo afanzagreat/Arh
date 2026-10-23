@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Static SEO and localization regression tests for the eight generated pages."""
+"""Static SEO and localization regression tests for the twelve generated pages."""
 from __future__ import annotations
 
 import hashlib
@@ -21,7 +21,7 @@ else:
 ROOT = Path(__file__).resolve().parents[1]
 ORIGIN = "https://arhdesign.tech"
 LANGS = ("en", "ar", "fr", "hi")
-KINDS = ("home", "works")
+KINDS = ("home", "works", "privacy")
 OG_LOCALES = {"en": "en_US", "ar": "ar_SA", "fr": "fr_FR", "hi": "hi_IN"}
 BASELINE = "812edc8"
 ALLOWED_CATALOG_METADATA = {"pageTitle", "ogTitle", "twitterTitle", "ogLocale"}
@@ -29,7 +29,7 @@ FALLBACK_STYLE = "html:not(.arh-js-ready) .reveal{opacity:1;transform:none}"
 
 
 def route(lang: str, kind: str) -> str:
-    return ("/" if lang == "en" else f"/{lang}/") + ("works.html" if kind == "works" else "")
+    return ("/" if lang == "en" else f"/{lang}/") + {"home": "", "works": "works.html", "privacy": "privacy.html"}[kind]
 
 
 def file_for(lang: str, kind: str) -> Path:
@@ -38,7 +38,7 @@ def file_for(lang: str, kind: str) -> Path:
 
 
 def read_catalog(kind: str, ref: str | None = None) -> dict:
-    name = "home-locales.js" if kind == "home" else "works-locales.js"
+    name = f"{kind}-locales.js"
     if ref:
         raw = subprocess.check_output(["git", "show", f"{ref}:assets/{name}"], cwd=ROOT, text=True)
     else:
@@ -143,13 +143,13 @@ class SEOReview(unittest.TestCase):
                             target_soup = soup(target)
                             self.assertIsNotNone(target_soup.find(id=fragment), f"missing fragment #{fragment}")
 
-    def test_sitemap_is_exactly_the_eight_canonical_urls(self):
+    def test_sitemap_is_exactly_the_twelve_canonical_urls(self):
         root = ET.parse(ROOT / "sitemap.xml").getroot()
         ns = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
         urls = [x.text for x in root.findall("sm:url/sm:loc", ns)]
         expected = [ORIGIN + route(lang, kind) for kind in KINDS for lang in LANGS]
         self.assertEqual(urls, expected)
-        self.assertEqual(len(urls), 8)
+        self.assertEqual(len(urls), 12)
 
     def test_jsonld_is_truthful_and_page_specific(self):
         forbidden = {"aggregateRating", "review", "ratingValue", "bestRating", "worstRating"}
@@ -193,7 +193,7 @@ class SEOReview(unittest.TestCase):
         for kind, filename in (("home", "index.html"), ("works", "works.html")):
             current = soup(ROOT / filename)
             old = BeautifulSoup(subprocess.check_output(["git", "show", f"{BASELINE}:{filename}"], cwd=ROOT, text=True), "html.parser")
-            normalize_header(current, old)
+            normalize_header(current, old)  # also ignores the approved GA snippet and footer privacy link
             if kind == "home":
                 # The pointer console is the only newly approved body removal.
                 remove_tracker_markup(old)
@@ -246,7 +246,7 @@ class SEOReview(unittest.TestCase):
                 self.assertFalse(p.startswith(("/ar/", "/fr/", "/hi/")) and not p.startswith(f"/{lang}/"), href)
 
     def test_builder_is_idempotent(self):
-        tracked = ["index.html", "works.html", "sitemap.xml", "assets/home-locales.js", "assets/works-locales.js"]
+        tracked = ["index.html", "works.html", "privacy.html", "sitemap.xml", "assets/home-locales.js", "assets/works-locales.js", "assets/privacy-locales.js"]
         def digest():
             h = hashlib.sha256()
             for name in tracked:

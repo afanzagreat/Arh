@@ -7,7 +7,7 @@
   let current = supported.includes(root.lang) ? root.lang : 'en';
   function pagePath(language) {
     const prefix = language === 'en' ? '/' : '/' + language + '/';
-    return prefix + (root.dataset.pageKind === 'works' ? 'works.html' : '');
+    return prefix + ({ works: 'works.html', privacy: 'privacy.html' }[root.dataset.pageKind] || '');
   }
   function t(key) {
     return locales[current]?.[key] ?? locales.en?.[key] ?? key;
