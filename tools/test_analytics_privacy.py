@@ -113,6 +113,27 @@ class AnalyticsAndPrivacy(unittest.TestCase):
             self.assertIn(price, home)
         self.assertNotIn("signal-console", home)
 
+    def test_llms_txt_is_accurate_and_links_resolve(self):
+        text = (ROOT / "llms.txt").read_text()
+        lines = text.splitlines()
+        self.assertTrue(lines[0].startswith("# ARH Digital"))
+        self.assertTrue(any(x.startswith("> ") for x in lines[:4]))
+        for section in ("## Services", "## Pricing", "## Languages", "## Key pages", "## Contact"):
+            self.assertIn(section, lines)
+        for fact in ("$26", "$99", "$40", "$209", "Custom", "Message@arhdesign.tech", "Jeddah",
+                     "https://www.instagram.com/arh_design2026"):
+            self.assertIn(fact, text)
+        # Every first-party link must point at a file that exists in this repo.
+        for url in re.findall(r"\]\((https://arhdesign\.tech[^)\s]*)\)", text):
+            path = urlsplit(url).path
+            target = ROOT / (path.lstrip("/") + ("index.html" if path.endswith("/") else ""))
+            self.assertTrue(target.is_file(), url)
+        # Pricing must match the home page (single source of truth).
+        home = (ROOT / "index.html").read_text()
+        for price in re.findall(r"\$\d+", text):
+            self.assertIn(price, home)
+        self.assertNotIn("G-XGKTMX6X5N", text)
+
     def test_privacy_pages_are_in_robots_open_sitemap(self):
         sitemap = (ROOT / "sitemap.xml").read_text()
         for lang in LANGS:
