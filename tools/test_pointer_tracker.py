@@ -19,6 +19,10 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup
 
+if __package__:
+    from .contrast_fix import contrast_baseline
+else:
+    from contrast_fix import contrast_baseline
 ROOT = Path(__file__).resolve().parents[1]
 BASELINE = "caceded"
 HOME_PAGES = ("index.html", "ar/index.html", "fr/index.html", "hi/index.html")
@@ -40,8 +44,8 @@ def read_current(path: str) -> str:
 
 
 def read_baseline(path: str) -> str:
-    return subprocess.check_output(
-        ["git", "show", f"{BASELINE}:{path}"], cwd=ROOT, text=True
+    return contrast_baseline(
+        subprocess.check_output(["git", "show", f"{BASELINE}:{path}"], cwd=ROOT, text=True), path
     )
 
 

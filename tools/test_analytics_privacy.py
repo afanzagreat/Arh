@@ -10,6 +10,10 @@ from urllib.parse import urlsplit
 
 from bs4 import BeautifulSoup
 
+if __package__:
+    from .contrast_fix import contrast_baseline
+else:
+    from contrast_fix import contrast_baseline
 ROOT = Path(__file__).resolve().parents[1]
 GA_ID = "G-XGKTMX6X5N"
 LANGS = ("en", "ar", "fr", "hi")
@@ -101,7 +105,7 @@ class AnalyticsAndPrivacy(unittest.TestCase):
             now = soup(path)
             for node in now.select('script#arhAnalytics, script[src*="googletagmanager"], a.privacy-link'):
                 node.decompose()
-            old = BeautifulSoup(subprocess.check_output(["git", "show", f"{BASE}:{path}"], cwd=ROOT, text=True),
+            old = BeautifulSoup(contrast_baseline(subprocess.check_output(["git", "show", f"{BASE}:{path}"], cwd=ROOT, text=True), path),
                                 "html.parser")
             self.assertEqual(str(now), str(old), path)
         for path in ("index.html", "works.html"):

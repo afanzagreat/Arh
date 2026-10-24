@@ -22,6 +22,10 @@ if __package__:
 else:
     from test_pointer_tracker import strip_tracker_css
 
+if __package__:
+    from .contrast_fix import contrast_baseline
+else:
+    from contrast_fix import contrast_baseline
 ROOT = Path(__file__).resolve().parents[1]
 BASELINE = "b66e3c8"
 LOCALES = ("en", "ar", "fr", "hi")
@@ -59,8 +63,8 @@ CHANGED_KEYS = {
 
 
 def git_baseline(path: str) -> str:
-    return subprocess.check_output(
-        ["git", "show", f"{BASELINE}:{path}"], cwd=ROOT, text=True
+    return contrast_baseline(
+        subprocess.check_output(["git", "show", f"{BASELINE}:{path}"], cwd=ROOT, text=True), path
     )
 
 

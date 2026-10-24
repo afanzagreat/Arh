@@ -6,6 +6,10 @@ import unittest
 from pathlib import Path
 from bs4 import BeautifulSoup
 
+if __package__:
+    from .contrast_fix import contrast_baseline
+else:
+    from contrast_fix import contrast_baseline
 ROOT = Path(__file__).resolve().parents[1]
 BASELINE = '86b8347'
 CSS_MARKER = '\n/* Keep the compact Instagram icon beside Contact in both navigation layouts. */'
@@ -36,7 +40,7 @@ def prior_css(css):
 
 
 def baseline(path):
-    return subprocess.check_output(['git', 'show', f'{BASELINE}:{path}'], cwd=ROOT, text=True)
+    return contrast_baseline(subprocess.check_output(['git', 'show', f'{BASELINE}:{path}'], cwd=ROOT, text=True), path)
 
 
 class HeaderRegression(unittest.TestCase):

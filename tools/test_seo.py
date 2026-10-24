@@ -18,6 +18,10 @@ if __package__:
 else:
     from test_pointer_tracker import remove_tracker_markup, strip_tracker_css
 
+if __package__:
+    from .contrast_fix import contrast_baseline
+else:
+    from contrast_fix import contrast_baseline
 ROOT = Path(__file__).resolve().parents[1]
 ORIGIN = "https://arhdesign.tech"
 LANGS = ("en", "ar", "fr", "hi")
@@ -192,7 +196,7 @@ class SEOReview(unittest.TestCase):
             from test_header import normalize_header, prior_css
         for kind, filename in (("home", "index.html"), ("works", "works.html")):
             current = soup(ROOT / filename)
-            old = BeautifulSoup(subprocess.check_output(["git", "show", f"{BASELINE}:{filename}"], cwd=ROOT, text=True), "html.parser")
+            old = BeautifulSoup(contrast_baseline(subprocess.check_output(["git", "show", f"{BASELINE}:{filename}"], cwd=ROOT, text=True), filename), "html.parser")
             normalize_header(current, old)  # also ignores the approved GA snippet and footer privacy link
             if kind == "home":
                 # The pointer console is the only newly approved body removal.
@@ -228,7 +232,7 @@ class SEOReview(unittest.TestCase):
                 current_styles = [x.string or "" for x in current.select("style")]
                 self.assertTrue(set(old_styles).issubset(current_styles))
                 self.assertEqual([x for x in current_styles if x not in old_styles], [FALLBACK_STYLE])
-        self.assertEqual(prior_css((ROOT / "assets/i18n.css").read_text()), subprocess.check_output(["git", "show", f"{BASELINE}:assets/i18n.css"], cwd=ROOT, text=True))
+        self.assertEqual(prior_css((ROOT / "assets/i18n.css").read_text()), contrast_baseline(subprocess.check_output(["git", "show", f"{BASELINE}:assets/i18n.css"], cwd=ROOT, text=True), "assets/i18n.css"))
 
     def test_navigation_internal_paths_preserve_rendered_language(self):
         for lang, kind, path in self.pages:
