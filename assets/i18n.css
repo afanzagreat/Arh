@@ -83,6 +83,19 @@ html:not(:lang(en)) .art-circle { font-size: 15px; }
   #mobileNav .nav-contact .nav-instagram,
   .portfolio-menu-open #portfolioLinks .nav-contact .nav-instagram { padding: 0; }
 }
+/* A slow, gently uneven edge keeps the shared theme reveal understated. */
+@media (prefers-reduced-motion: no-preference) {
+  html[data-theme-reveal="true"]::view-transition-group(root) { animation-duration: 780ms; }
+  html[data-theme-reveal="true"]::view-transition-old(root) { animation: none; }
+  html[data-theme-reveal="true"]::view-transition-new(root) {
+    animation: arh-theme-reveal 780ms cubic-bezier(.22,.72,.2,1) both;
+    clip-path: polygon(var(--theme-wipe-start));
+  }
+  @keyframes arh-theme-reveal {
+    from { clip-path: polygon(var(--theme-wipe-start)); }
+    to { clip-path: polygon(var(--theme-wipe-end)); }
+  }
+}
 /* Footer privacy-policy link. */
 .privacy-link { text-decoration: underline; text-underline-offset: 3px; }
 .privacy-link:hover { color: var(--orange-text); }
