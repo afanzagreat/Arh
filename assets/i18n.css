@@ -83,19 +83,68 @@ html:not(:lang(en)) .art-circle { font-size: 15px; }
   #mobileNav .nav-contact .nav-instagram,
   .portfolio-menu-open #portfolioLinks .nav-contact .nav-instagram { padding: 0; }
 }
-/* A slow, gently uneven edge keeps the shared theme reveal understated. */
+/* Capture settled colors, then reveal the new theme with one continuous edge. */
 @media (prefers-reduced-motion: no-preference) {
-  html[data-theme-reveal="true"]::view-transition-group(root) { animation-duration: 780ms; }
-  html[data-theme-reveal="true"]::view-transition-old(root) { animation: none; }
+  html[data-theme-reveal="true"] *,
+  html[data-theme-reveal="true"] *::before,
+  html[data-theme-reveal="true"] *::after { transition: none !important; }
+  html[data-theme-reveal="true"]::view-transition-group(root) { animation-duration: 1600ms; }
+  html[data-theme-reveal="true"]::view-transition-image-pair(root) { isolation: isolate; }
+  html[data-theme-reveal="true"]::view-transition-old(root),
+  html[data-theme-reveal="true"]::view-transition-new(root) { mix-blend-mode: normal; }
+  html[data-theme-reveal="true"]::view-transition-old(root) { animation: none; z-index: 1; }
   html[data-theme-reveal="true"]::view-transition-new(root) {
-    animation: arh-theme-reveal 780ms cubic-bezier(.22,.72,.2,1) both;
-    clip-path: polygon(var(--theme-wipe-start));
+    z-index: 2;
+    animation: arh-theme-reveal 1600ms cubic-bezier(.4,0,.2,1) both;
   }
   @keyframes arh-theme-reveal {
-    from { clip-path: polygon(var(--theme-wipe-start)); }
-    to { clip-path: polygon(var(--theme-wipe-end)); }
+    from { clip-path: circle(0px at var(--theme-reveal-x) var(--theme-reveal-y)); }
+    to { clip-path: circle(var(--theme-reveal-radius) at var(--theme-reveal-x) var(--theme-reveal-y)); }
   }
 }
 /* Footer privacy-policy link. */
 .privacy-link { text-decoration: underline; text-underline-offset: 3px; }
 .privacy-link:hover { color: var(--orange-text); }
+
+/* Dark theme: keep brand-colored surfaces readable instead of inheriting pale ink. */
+html[data-theme="dark"] { color-scheme: dark; --theme-focus: #ffd84d; }
+html[data-theme="dark"] :is(.announce,.service,.art-main,.art-circle,.hero-stamp,.quote:nth-child(2),.plan.pop,.note,.email-hero,.insta-link,.cta-box,.offer-box) {
+  --ink: #111827;
+  --cream: #fffaf0;
+  --muted: #344054;
+  --line: rgba(17,24,39,.4);
+  --theme-focus: #111827;
+  color: var(--ink);
+  color-scheme: light;
+}
+html[data-theme="dark"] .project:first-child { background: var(--card); --orange-text-lg: #ff6b35; }
+html[data-theme="dark"] :is(.marquee,.strip) { background: #0b0c10; color: #f5f2ea; border-color: var(--line); }
+html[data-theme="dark"] .studio-feature { background: color-mix(in srgb,var(--yellow) 8%,var(--cream)); }
+html[data-theme="dark"] .studio-feature .eyebrow { color: var(--orange-text); }
+html[data-theme="dark"] .project:nth-child(2) p { opacity: 1; }
+html[data-theme="dark"] :is(.process .lead,.step p,.faq-feature .faq-a) { color: #fff; }
+html[data-theme="dark"] :is(.process .eyebrow,.step > span,.faq-feature .eyebrow) { color: #fff1b8; }
+html[data-theme="dark"] .crew-win { --ink: #111827; }
+html[data-theme="dark"] .pupil { background: #111827; }
+html[data-theme="dark"] .frame-body { background: var(--card); }
+/* Third-party portfolio artwork keeps its own intended palette; do not invert it. */
+html[data-theme="dark"] .frame-body iframe { color-scheme: light; }
+html[data-theme="dark"] :is(.language-select,.field select) option { background: #14151a; color: #f5f2ea; }
+html[data-theme="dark"] :is(.field input,.field textarea)::placeholder { color: #a8adba; opacity: 1; }
+html[data-theme="dark"] :is(.field input,.field select,.field textarea):disabled { background: var(--card); color: #a8adba; border-color: #667085; opacity: 1; }
+html[data-theme="dark"] :is(.field input,.field select,.field textarea):user-invalid { border-color: #ff9c85; }
+html[data-theme="dark"] .btn:disabled { background: #30333d; color: #c4c8d2; border-color: #667085; opacity: 1; cursor: not-allowed; }
+html[data-theme="dark"] :is(a,button,input,select,textarea,[tabindex]):focus-visible { outline: 3px solid var(--theme-focus); outline-offset: 3px; }
+html[data-theme="dark"] ::selection { background: #ffd84d; color: #111827; }
+
+/* Reduced motion applies to every template, including body color transitions. */
+@media (prefers-reduced-motion: reduce) {
+  html, html body, html body * { scroll-behavior: auto !important; }
+  html body, html body *, html body *::before, html body *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  html::view-transition-group(root),
+  html::view-transition-old(root),
+  html::view-transition-new(root) { animation: none !important; }
+}

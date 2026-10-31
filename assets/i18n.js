@@ -65,54 +65,59 @@
       window.ARHI18n.setLanguage(event.target.value);
     });
     apply();
+    document.querySelectorAll('button#themeBtn, button#theme').forEach(button => {
+      // The inline handler bootstraps the saved theme before this shared controller loads.
+      // Retire only that handler; leave other click listeners and analytics untouched.
+      button.onclick = null;
+      button.setAttribute('aria-pressed', String(root.dataset.theme === 'dark'));
+    });
   }
   let themeSwitching = false;
   document.addEventListener?.('click', event => {
     const button = event.target instanceof Element
       ? event.target.closest('button#themeBtn, button#theme')
       : null;
-    if (!button || !event.isTrusted || typeof document.startViewTransition !== 'function' ||
-        window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    event.preventDefault();
-    event.stopImmediatePropagation();
+    if (!button) return;
     if (themeSwitching) return;
+
+    const dark = root.dataset.theme !== 'dark';
+    let updated = false;
+    const updateTheme = () => {
+      root.dataset.theme = dark ? 'dark' : '';
+      button.textContent = dark ? '☀️' : '🌙';
+      button.setAttribute('aria-pressed', String(dark));
+      try { localStorage.setItem('arh-theme', dark ? 'dark' : 'light'); } catch (_) {}
+      updated = true;
+    };
+    if (!event.isTrusted || typeof document.startViewTransition !== 'function' ||
+        window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
+      updateTheme();
+      return;
+    }
 
     const width = window.innerWidth;
     const height = window.innerHeight;
     const rect = button.getBoundingClientRect();
     const x = Math.min(width, Math.max(0, event.detail === 0 ? rect.left + rect.width / 2 : event.clientX));
     const y = Math.min(height, Math.max(0, event.detail === 0 ? rect.top + rect.height / 2 : event.clientY));
-    const radius = Math.hypot(Math.max(x, width - x), Math.max(y, height - y)) * 1.035 + 32;
-    const pointCount = 48;
-    const start = Array(pointCount).fill(`${Math.round(x)}px ${Math.round(y)}px`).join(', ');
-    const end = Array.from({ length: pointCount }, (_, index) => {
-      const angle = (index / pointCount) * Math.PI * 2;
-      const ripple = 1 + 0.012 * Math.sin(angle * 3 + 0.7) + 0.006 * Math.sin(angle * 7 - 0.4);
-      const distance = radius * ripple;
-      return `${Math.round(x + Math.cos(angle) * distance)}px ${Math.round(y + Math.sin(angle) * distance)}px`;
-    }).join(', ');
-    root.style.setProperty('--theme-wipe-start', start);
-    root.style.setProperty('--theme-wipe-end', end);
+    const radius = Math.ceil(Math.hypot(Math.max(x, width - x), Math.max(y, height - y))) + 2;
+    root.style.setProperty('--theme-reveal-x', `${x}px`);
+    root.style.setProperty('--theme-reveal-y', `${y}px`);
+    root.style.setProperty('--theme-reveal-radius', `${radius}px`);
     root.dataset.themeReveal = 'true';
     themeSwitching = true;
 
-    let updated = false;
-    const updateTheme = () => {
-      const dark = root.dataset.theme !== 'dark';
-      root.dataset.theme = dark ? 'dark' : '';
-      button.textContent = dark ? '☀️' : '🌙';
-      try { localStorage.setItem('arh-theme', dark ? 'dark' : 'light'); } catch (_) {}
-      updated = true;
-    };
     const cleanup = () => {
       delete root.dataset.themeReveal;
-      root.style.removeProperty('--theme-wipe-start');
-      root.style.removeProperty('--theme-wipe-end');
+      root.style.removeProperty('--theme-reveal-x');
+      root.style.removeProperty('--theme-reveal-y');
+      root.style.removeProperty('--theme-reveal-radius');
       themeSwitching = false;
     };
     try {
       const transition = document.startViewTransition(updateTheme);
-      transition.finished.catch(() => {}).finally(cleanup);
+      transition.ready?.catch(() => {});
+      transition.finished.catch(() => { if (!updated) updateTheme(); }).finally(cleanup);
     } catch (_) {
       if (!updated) updateTheme();
       cleanup();
