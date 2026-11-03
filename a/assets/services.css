@@ -1,0 +1,34 @@
+/* ARH Design: Services page. A checklist where the template way gets crossed out. */
+main{position:relative}
+.mk{background:var(--accent);color:var(--mark-fg);padding:.02em .14em .04em;display:inline-block;line-height:1}
+.s-hero{padding:clamp(40px,9vh,110px) var(--pad) clamp(20px,4vh,50px)}
+.s-title{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(5rem,min(27vw,34vh),26rem);line-height:.86}
+.s-title span{color:var(--accent-text)}
+.s-note{font-family:var(--hand);font-size:clamp(1.5rem,3vw,2.3rem);margin-top:clamp(10px,2vh,24px);transform:rotate(-2deg);transform-origin:left;display:inline-block}
+.s-list{list-style:none;padding:clamp(30px,6vh,70px) var(--pad) clamp(40px,8vh,100px)}
+.sv{display:grid;grid-template-columns:clamp(70px,11vw,150px) minmax(0,1fr);gap:clamp(12px,3vw,44px);padding:clamp(24px,5vh,58px) 0;border-top:1px solid var(--rule)}
+.sv:last-child{border-bottom:1px solid var(--rule)}
+.sv-num{position:relative;display:grid;place-items:center;align-self:start;aspect-ratio:3/2;font-family:var(--hand);font-size:clamp(1.6rem,3.4vw,3rem);font-weight:600}
+.sv-num .ring{position:absolute;inset:0;width:100%;height:100%;overflow:visible;fill:none;stroke:var(--accent-text);stroke-width:3;stroke-linecap:round;transform:rotate(-6deg)}
+.sv-num .ring ellipse{stroke-dasharray:1;stroke-dashoffset:0}
+.sv-name{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(2.6rem,8vw,7.4rem);line-height:.96;display:inline-block;padding:0 .06em;transition:background .25s,color .25s,transform .5s var(--ease)}
+.sv:hover .sv-name{background:var(--accent);color:var(--mark-fg);transform:translateX(16px)}
+.sv-cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,4vw,60px);margin-top:clamp(14px,2.6vh,28px);align-items:start}
+.lbl{display:block;font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;opacity:.7;margin-bottom:.5em}
+.sv-old{font-size:clamp(1rem,1.5vw,1.3rem)}
+.sv-old .txt{position:relative;display:inline-block;transition:opacity .8s ease 1s}
+.strike{position:absolute;left:-.3em;right:-.3em;top:52%;height:.28em;margin-top:-.14em;background:var(--accent);transform:scaleX(1) rotate(-1.6deg);transform-origin:left center;border-radius:2px}
+.sv-new{font-family:var(--hand);font-size:clamp(1.5rem,2.6vw,2.3rem);line-height:1.1;color:var(--accent-text);transform:rotate(-1deg)}
+.sv-new .lbl{color:var(--fg)}
+/* scroll sequence (JS adds .js + .on) */
+.js .sv .strike{transform:scaleX(0) rotate(-1.6deg);transition:transform .9s cubic-bezier(.77,0,.175,1) .5s}
+.js .sv .sv-new{opacity:0;transform:translateY(14px) rotate(-1deg);transition:opacity .7s ease 1.3s,transform .8s var(--ease) 1.3s}
+.js .sv .ring ellipse{stroke-dashoffset:1;transition:stroke-dashoffset 1s ease .1s}
+.js .sv.on .strike{transform:scaleX(1) rotate(-1.6deg)}
+.js .sv.on .sv-old .txt{opacity:.55}
+.js .sv.on .sv-new{opacity:1;transform:rotate(-1deg)}
+.js .sv.on .ring ellipse{stroke-dashoffset:0}
+.rm .sv .strike,.rm .sv .sv-new,.rm .sv .ring ellipse,.rm .sv .txt{transition:none!important}
+.s-cta{padding:clamp(60px,12vh,150px) var(--pad) clamp(70px,13vh,160px);display:flex;flex-direction:column;align-items:flex-start;gap:clamp(24px,5vh,50px)}
+.s-big{font-family:var(--display);text-transform:uppercase;font-size:clamp(3.4rem,13vw,13rem);line-height:.92}
+@media (max-width:760px){.sv{grid-template-columns:1fr}.sv-num{width:84px}.sv-cols{grid-template-columns:1fr}}

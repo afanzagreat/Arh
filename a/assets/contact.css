@@ -1,0 +1,43 @@
+/* ARH Design: Contact page. A sentence you fill in, not a form. */
+main{position:relative}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.k-hero{padding:clamp(40px,8vh,100px) var(--pad) clamp(10px,2vh,30px)}
+.k-title{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(5rem,min(27vw,34vh),26rem);line-height:.86}
+.k-title span{color:var(--accent-text)}
+.k-note{font-family:var(--hand);font-size:clamp(1.5rem,3vw,2.3rem);margin-top:clamp(10px,2vh,24px);display:inline-block;transform:rotate(-2deg);transform-origin:left}
+.k-form{padding:clamp(24px,5vh,60px) var(--pad) clamp(60px,12vh,150px)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.k-line{display:flex;flex-wrap:wrap;align-items:baseline;gap:.2em .5em;font-family:var(--display);text-transform:uppercase;font-size:clamp(1.9rem,5.2vw,4.8rem);line-height:1.12;margin:0 0 clamp(18px,4vh,40px);border:0;padding:0;min-width:0}
+.k-line>span,.k-line>legend{white-space:nowrap}
+.k-line legend{float:left;padding:0;margin-right:.5em}
+.fill{flex:1 1 9ch;min-width:9ch;display:block}
+.fill.wide{flex:1 1 100%}
+.fill input,.fill textarea{width:100%;font:inherit;text-transform:inherit;color:var(--accent-text);background:transparent;border:0;border-bottom:4px solid var(--fg);border-radius:0;padding:0 .05em;outline:none;resize:none;line-height:1.12;transition:border-color .25s,background .25s}
+.fill input::placeholder,.fill textarea::placeholder{color:var(--fg);opacity:.28}
+.fill input:focus,.fill textarea:focus{border-bottom-color:var(--accent);background:var(--faint)}
+.fill textarea{display:block;font-family:var(--hand);text-transform:none;font-size:.62em;line-height:1.2;border:4px solid var(--fg);padding:.3em .45em;margin-top:.2em}
+.fill textarea:focus{border-color:var(--accent)}
+.fill input:invalid:not(:placeholder-shown):not(:focus){border-bottom-color:var(--accent)}
+/* need: square toggles, never pills */
+.need{align-items:center}
+.chip{display:inline-block;cursor:pointer}
+.chip input{position:absolute;opacity:0;width:1px;height:1px}
+.chip span{display:inline-block;border:3px solid var(--fg);padding:.12em .4em;font-size:.62em;line-height:1.1;transition:background .2s,color .2s,transform .35s var(--ease),box-shadow .2s;box-shadow:5px 5px 0 var(--shadow)}
+.chip:hover span{transform:translate(-2px,-2px) rotate(-1.5deg)}
+.chip input:checked+span{background:var(--accent);color:var(--mark-fg);border-color:var(--accent);transform:rotate(-2deg)}
+.chip input:focus-visible+span{outline:3px solid var(--fg);outline-offset:4px}
+.k-send{display:flex;flex-wrap:wrap;align-items:center;gap:clamp(18px,3vw,40px);margin-top:clamp(24px,5vh,56px)}
+.k-send .btn{font-family:var(--body);text-transform:none;border:2.5px solid var(--shadow);cursor:pointer}
+.k-alt{font-family:var(--mono);font-size:.85rem;letter-spacing:.06em;text-transform:uppercase}
+.k-alt a{border-bottom:2px solid var(--accent);text-decoration:none}
+.k-status{min-height:1.6em;margin-top:18px;font-family:var(--mono);font-size:.9rem;letter-spacing:.04em}
+.k-status.err{color:var(--accent-text)}
+.k-status a{border-bottom:2px solid var(--accent)}
+.k-form.busy .btn{opacity:.6;pointer-events:none}
+/* sent */
+.k-done{padding:clamp(60px,14vh,170px) var(--pad);min-height:50vh;outline:none}
+.k-done[hidden]{display:none}
+.k-sent{font-family:var(--display);text-transform:uppercase;font-size:clamp(7rem,28vw,28rem);line-height:.86}
+.k-sent span{color:var(--accent-text)}
+.k-thanks{font-family:var(--hand);font-size:clamp(2rem,5vw,4rem);transform:rotate(-2deg);display:inline-block;margin-top:.3em}
+@media (max-width:760px){.k-line>span{white-space:normal}}

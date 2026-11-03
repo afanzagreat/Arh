@@ -1,0 +1,41 @@
+/* ARH Design: About page. A name tag, one big belief, one handwritten note. */
+main{position:relative}
+.mk{background:var(--accent);color:var(--mark-fg);padding:.02em .14em .04em;display:inline;line-height:1.2;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.a-lbl{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;opacity:.75;margin-bottom:clamp(14px,3vh,28px)}
+.a-hero{padding:clamp(40px,8vh,100px) var(--pad) clamp(40px,8vh,100px);display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(24px,6vw,100px);align-items:center}
+/* the name tag */
+.tag{display:flex;flex-direction:column;width:clamp(220px,28vw,380px);border:3px solid #000F08;background:#FFFAF0;color:#000F08;box-shadow:10px 10px 0 var(--accent);transform:rotate(-4deg);transition:transform .6s var(--ease)}
+.tag:hover{transform:rotate(2deg) scale(1.03)}
+.tag-top{background:var(--accent);color:var(--mark-fg);font-family:var(--display);text-transform:uppercase;font-size:clamp(2.2rem,4.6vw,4rem);line-height:1;text-align:center;padding:.28em 0 .22em;letter-spacing:.04em}
+.tag-mid{font-family:var(--mono);text-transform:uppercase;font-size:.8rem;letter-spacing:.12em;text-align:center;padding:.9em 0 0}
+.tag-name{font-family:var(--display);text-transform:uppercase;font-size:clamp(3.6rem,8vw,7rem);line-height:1;text-align:center;padding:.12em .1em .18em;color:var(--accent-text)}
+.a-line{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(2.4rem,6.4vw,6.4rem);line-height:1.14}
+/* belief: words light up as you scroll */
+.a-belief{padding:clamp(50px,10vh,130px) var(--pad);border-top:1px solid var(--rule)}
+.a-big{font-family:var(--display);text-transform:uppercase;font-size:clamp(2.4rem,7.2vw,7.2rem);line-height:1.02}
+.a-big .w{opacity:1;transition:opacity .6s ease}
+.js .a-big .w{opacity:.14}
+.js .a-big .w.on{opacity:1}
+/* note */
+.a-note{padding:clamp(50px,10vh,130px) var(--pad);border-top:1px solid var(--rule)}
+.note-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,6vw,100px);align-items:start}
+.pull{font-family:var(--display);text-transform:uppercase;font-size:clamp(2.8rem,6.4vw,6.6rem);line-height:1.02}
+.pull span{color:var(--accent-text)}
+.note-txt p{font-family:var(--body);font-size:clamp(1.15rem,1.7vw,1.6rem);line-height:1.5;margin-bottom:1em;max-width:34ch}
+.note-txt .end{font-weight:700;margin-top:1.4em}
+.sig{font-family:var(--hand);font-size:clamp(2.4rem,4.5vw,4rem);color:var(--accent-text);display:inline-block;transform:rotate(-4deg)}
+/* facts */
+.a-facts{padding:clamp(50px,10vh,130px) var(--pad);border-top:1px solid var(--rule)}
+.a-facts dl{margin-top:clamp(20px,4vh,48px)}
+.a-facts dl>div{display:grid;grid-template-columns:minmax(110px,.4fr) 1fr;gap:1rem;padding:clamp(14px,2.4vh,24px) 0;border-top:1px solid var(--rule)}
+.a-facts dl>div:last-child{border-bottom:1px solid var(--rule)}
+.a-facts dt{font-family:var(--mono);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;align-self:center;opacity:.75}
+.a-facts dd{font-family:var(--display);text-transform:uppercase;font-size:clamp(1.6rem,3.6vw,3.2rem);line-height:1.05}
+.a-facts dd a{text-decoration:none;border-bottom:3px solid var(--accent)}
+.a-facts dd a:hover,.a-facts dd a:focus-visible{background:var(--accent);color:var(--mark-fg)}
+.a-cta{padding:clamp(60px,12vh,150px) var(--pad) clamp(70px,13vh,160px);display:flex;flex-direction:column;align-items:flex-start;gap:clamp(24px,5vh,50px);border-top:1px solid var(--rule)}
+.a-bigcta{font-family:var(--display);text-transform:uppercase;font-size:clamp(3rem,10vw,10rem);line-height:1.02}
+@media (max-width:760px){.a-hero,.note-wrap{grid-template-columns:1fr}.tag{width:min(260px,70vw)}
+html[data-theme="light"] .tag{box-shadow:10px 10px 0 #151515}
+.a-facts dd{overflow-wrap:anywhere}
+@media (max-width:760px){.a-facts dd{font-size:clamp(1.4rem,6.4vw,2rem)}}
