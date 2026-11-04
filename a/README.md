@@ -43,3 +43,4 @@ All colours live in the two token blocks at the top of `assets/site.css` (dark a
 - v4d: pen only via ghost (2 clicks, home page); ink wipes on scroll. Page reveal from centre on non-menu links (sessionStorage flag arh-reveal). Dark menu is red. New menu badge (seal + ring text, centre word changes on link hover). About: stamp removed, note rewritten, name tag is paper in both themes.
 - v4e (phone pass): contact form text fits at 390px, services reveal faster, case-study hero uses srcset (phone loads the 85 KB image), bigger tap targets in footer/email links, home links to Services page. Unused fruit image removed.
 - v4f: ghost removed on phones/touch. Prices page (prices/index.html, USD; toggle is pure CSS radios; plan links prefill the contact form via ?plan=). Services redesigned: each service has a live demo. Menu has 6 links.
+- v4g: contact form now uses Web3Forms (access key in contact/index.html). FormSubmit removed.

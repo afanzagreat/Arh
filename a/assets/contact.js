@@ -1,4 +1,4 @@
-/* ARH Design: Contact page. Sends through FormSubmit (free). Falls back to the visitor's email app. */
+/* ARH Design: Contact page. Sends through Web3Forms (free). Falls back to the visitor's email app. */
 (function(){
   var f=document.getElementById('kform'); if(!f) return;
   var st=document.getElementById('kstatus'), done=document.getElementById('kdone');
@@ -18,9 +18,10 @@
     if(!f.reportValidity()) return;
     var fd=new FormData(f), d={};
     fd.forEach(function(v,k){d[k]=v;});
-    if(d._honey) return;
+    if(fd.get('botcheck')) return;
+    delete d.botcheck;
     f.classList.add('busy'); st.className='k-status'; st.textContent='Sending...';
-    fetch('https://formsubmit.co/ajax/'+EMAIL,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(d)})
+    fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(d)})
       .then(function(r){return r.json().then(function(j){return {ok:r.ok,j:j};});})
       .then(function(x){
         if(x.ok&&(x.j.success===true||x.j.success==='true')){
