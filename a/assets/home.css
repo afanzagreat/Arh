@@ -37,8 +37,8 @@
 
 /* ---------- hero ---------- */
 main{position:relative}
-.hero{min-height:calc(100svh - 36px - 94px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:1vh var(--pad) clamp(28px,5vh,70px)}
-.hl{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(3.35rem,min(12.6vw,14.6vh),12rem);line-height:.96;letter-spacing:.005em}
+.hero{position:relative;min-height:calc(100svh - 36px - 94px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:1vh var(--pad) calc(clamp(14px,2.4vh,32px) + 104px)}
+.hl{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(3.35rem,min(12.6vw,12vh),12rem);line-height:.96;letter-spacing:.005em}
 .hl .ln{display:block}
 .mark{position:relative;display:inline-block;--mk:0;z-index:0;color:var(--mark-fg)}
 .mark::before{content:"";position:absolute;left:-.03em;right:-.03em;top:.1em;bottom:.02em;background:var(--accent);transform-origin:left center;transform:scaleX(var(--mk));z-index:-1}
@@ -118,3 +118,31 @@ html:not(.js) .mark::before,.ready .mark::before{transform:scaleX(1)!important;a
 @media (max-width:720px){
   .svc-list li,.steps li{grid-template-columns:1fr}
 }
+
+/* section tabs: the rest of the site, peeking up from the bottom of the first screen */
+.h-tabs{position:absolute;left:var(--pad);right:var(--pad);bottom:0;display:flex;align-items:flex-end;gap:6px;text-align:left}
+.tab{flex:1 1 0;min-width:0;display:flex;flex-direction:column;justify-content:flex-start;padding:9px 14px 8px;border:3px solid var(--fg);border-bottom:0;text-decoration:none;position:relative;transition:transform .35s var(--ease),background .25s,color .25s;transform-origin:bottom center;background:var(--accent);color:var(--mark-fg)}
+.tab:nth-child(even){background:var(--fg);color:var(--bg)}
+.tab:nth-child(1){min-height:88px}.tab:nth-child(2){min-height:76px}.tab:nth-child(3){min-height:94px}.tab:nth-child(4){min-height:80px}.tab:nth-child(5){min-height:90px}
+.tn{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;opacity:.8}
+.tt{font-family:var(--display);text-transform:uppercase;font-size:clamp(1.25rem,2.1vw,2rem);line-height:1}
+.tx{display:block;margin-top:6px;opacity:.85;font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;line-height:1.35}
+.tab:hover,.tab:focus-visible{transform:translateY(-10px);outline:none}
+.tab:hover .tx,.tab:focus-visible .tx{opacity:1}
+.tab:nth-child(odd):hover{background:var(--fg);color:var(--bg)}
+.tab:nth-child(even):hover{background:var(--accent);color:var(--mark-fg)}
+.tab:focus-visible{box-shadow:0 0 0 3px var(--bg),0 0 0 6px var(--fg)}
+.ready .tab{animation:tabNudge .8s var(--ease) both}
+.ready .tab:nth-child(1){animation-delay:.2s}.ready .tab:nth-child(2){animation-delay:.32s}.ready .tab:nth-child(3){animation-delay:.44s}.ready .tab:nth-child(4){animation-delay:.56s}.ready .tab:nth-child(5){animation-delay:.68s}
+@keyframes tabNudge{0%{transform:translateY(34px)}55%{transform:translateY(-12px)}100%{transform:none}}
+@media (max-width:760px){
+  .h-tabs{left:0;right:0;padding:0 var(--pad);overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .h-tabs::-webkit-scrollbar{display:none}
+  .tab{flex:0 0 40vw;scroll-snap-align:start;min-height:84px!important;padding:10px 12px}
+  .tx{font-size:.68rem}
+  .tt{font-size:1.5rem}
+}
+@media (prefers-reduced-motion:reduce){.ready .tab{animation:none}.tab{transition:none}}
+@media (min-width:761px){.hero{min-height:calc(100svh - 146px)}}
+.h-tabs{scroll-padding-left:var(--pad)}
+@media (max-height:740px) and (min-width:761px){.hl{font-size:clamp(3rem,min(11vw,10.6vh),12rem)}.hero{min-height:calc(100svh - 146px)}.tab:nth-child(n){min-height:78px}}

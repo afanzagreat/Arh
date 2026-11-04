@@ -61,10 +61,27 @@
   <section class="p-sets" aria-label="Plans">
     <input class="mode" type="radio" name="mode" id="modeM" checked>
     <input class="mode" type="radio" name="mode" id="modeO">
-    <div class="p-toggle" role="group" aria-label="Billing">
-      <label for="modeM" class="tg">Monthly</label>
-      <label for="modeO" class="tg">One-time</label>
+    <div class="p-bar">
+      <div class="p-toggle" role="group" aria-label="Billing">
+        <label for="modeM" class="tg">Monthly</label>
+        <label for="modeO" class="tg">One-time</label>
+      </div>
+      <div class="p-info">
+        <button type="button" class="i-btn" id="infoBtn" aria-expanded="false" aria-controls="infoTip">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path class="i-ring" d="M24 4 C35 3.5 44.5 12 44 24 C43.5 36 35 44.5 23 44 C11 43.5 3.5 35 4.2 23.5 C4.8 12 13 4.5 25 4.4"/><circle class="i-dot" cx="24" cy="14.5" r="2.8"/><path class="i-stem" d="M24 21 L24 35.5"/></svg>
+          <span class="i-lbl">Small print</span>
+        </button>
+        <div class="tip" id="infoTip" role="region" aria-label="The small print" hidden>
+          <p class="tip-h">The small print <em>(it's short)</em></p>
+          <ul>
+            <li>Domain renewal is included only while your support plan is active.</li>
+            <li>Premium domains and bigger redesigns are quoted separately.</li>
+            <li>Every project starts with a 7-day review period.</li>
+          </ul>
+        </div>
+      </div>
     </div>
+    <p class="p-swipe" aria-hidden="true">swipe for more &rarr;</p>
     <div class="set set-m">
       <article class="plan" style="--r:-2deg">
         <div class="tag" aria-label="Essential: $35 / month"><div class="tag-in"><span class="amt">$35</span><span class="unit">/ month</span></div></div>
@@ -126,15 +143,6 @@
     <p class="p-cur">All prices are in US dollars.</p>
   </section>
 
-  <section class="p-fine" aria-labelledby="fineH">
-    <h2 class="sec" id="fineH">The small print<span>.</span></h2>
-    <p class="p-fine-sub">It's short. We promise.</p>
-    <ul>
-      <li>Domain renewal is included only while your support plan is active.</li>
-      <li>Premium domains and bigger redesigns are quoted separately.</li>
-      <li>Every project starts with a 7-day review period.</li>
-    </ul>
-  </section>
 
   <section class="p-cta">
     <p class="p-big">Not sure which one? <span class="mk">Just ask.</span></p>

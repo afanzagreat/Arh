@@ -44,3 +44,7 @@ All colours live in the two token blocks at the top of `assets/site.css` (dark a
 - v4e (phone pass): contact form text fits at 390px, services reveal faster, case-study hero uses srcset (phone loads the 85 KB image), bigger tap targets in footer/email links, home links to Services page. Unused fruit image removed.
 - v4f: ghost removed on phones/touch. Prices page (prices/index.html, USD; toggle is pure CSS radios; plan links prefill the contact form via ?plan=). Services redesigned: each service has a live demo. Menu has 6 links.
 - v4g: contact form now uses Web3Forms (access key in contact/index.html). FormSubmit removed.
+- v4h: home hero now has section tabs (Work/Services/Prices/About/Contact) at the bottom of the first screen; horizontally scrollable on phones.
+- v4i: Prices plans side by side on desktop, swipe row on phones; page shortened.
+- v4j: Prices small print is now a hand-drawn (i) next to the billing toggle with a small sticky-note popup (hover, focus, tap; Esc closes).
+- v4k: About page redesigned (editorial layout, receipts, steps, promises, note, facts). Anton only on the name tag.
