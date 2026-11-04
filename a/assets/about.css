@@ -35,7 +35,7 @@ main{position:relative}
 .a-facts dd a:hover,.a-facts dd a:focus-visible{background:var(--accent);color:var(--mark-fg)}
 .a-cta{padding:clamp(60px,12vh,150px) var(--pad) clamp(70px,13vh,160px);display:flex;flex-direction:column;align-items:flex-start;gap:clamp(24px,5vh,50px);border-top:1px solid var(--rule)}
 .a-bigcta{font-family:var(--display);text-transform:uppercase;font-size:clamp(3rem,10vw,10rem);line-height:1.02}
-@media (max-width:760px){.a-hero,.note-wrap{grid-template-columns:1fr}.tag{width:min(260px,70vw)}
+@media (max-width:760px){.a-hero,.note-wrap{grid-template-columns:1fr}.tag{width:min(260px,70vw);margin:6px 0 18px 8px}
 html[data-theme="light"] .tag{box-shadow:10px 10px 0 #151515}
 .a-facts dd{overflow-wrap:anywhere}
 @media (max-width:760px){.a-facts dd{font-size:clamp(1.4rem,6.4vw,2rem)}}

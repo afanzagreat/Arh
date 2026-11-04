@@ -106,7 +106,7 @@ html:not([data-theme="light"]) .ic-moon{display:none}
 #menu.on{visibility:visible}
 #menu ul{list-style:none}
 .m-line{display:block;overflow:hidden;padding:.02em 0}
-.m-link{display:inline-block;font-family:var(--display);font-size:clamp(2.7rem,min(22vw,12.4vh),10.5rem);line-height:.98;text-transform:uppercase;text-decoration:none;white-space:nowrap;transition:color .2s}
+.m-link{display:inline-block;font-family:var(--display);font-size:clamp(2.4rem,min(20vw,10.4vh),9.4rem);line-height:.98;text-transform:uppercase;text-decoration:none;white-space:nowrap;transition:color .2s}
 .m-link:hover,.m-link:focus-visible{color:var(--menu-hover);outline:none}
 .m-link .in{display:inline-block}
 .m-foot{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:clamp(20px,4vw,48px);font-family:var(--mono);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;opacity:.8}
@@ -206,3 +206,14 @@ html.reveal::view-transition-old(root),html.reveal::view-transition-new(root){an
 /* marker mode */
 .pen-done{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:29;font-family:var(--mono);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--on-accent);border:2px solid var(--fg);padding:.7em 1.2em;cursor:pointer}
 .pen-done[hidden]{display:none}
+
+.svc-more{margin-top:clamp(18px,3vh,32px);font-family:var(--mono);font-size:.85rem;letter-spacing:.08em;text-transform:uppercase}
+.svc-more a{text-decoration:none;border-bottom:3px solid var(--accent);padding:.5em 0;display:inline-block}
+.svc-more a:hover,.svc-more a:focus-visible{background:var(--accent);color:var(--mark-fg)}
+@media (max-width:760px){
+  footer a,a[href^="mailto:"]:not(.btn){display:inline-block;padding:.75em .2em}
+  .lbl,.a-lbl,.k-alt{font-size:.82rem}
+  .btn{min-height:52px}
+}
+
+@media (max-width:760px),(pointer:coarse){.ghost,#ghost{display:none!important}}

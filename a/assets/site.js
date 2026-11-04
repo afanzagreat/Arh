@@ -133,7 +133,7 @@
 
   /* ---------------- menu badge: centre word changes with the hovered link ---------------- */
   var badge=document.querySelector('.badge'), bword=badge&&badge.querySelector('.word');
-  var WORDS={home:'HELLO',work:'LOOK',services:'MAKE',about:'HI',contact:'SAY HI'};
+  var WORDS={home:'HELLO',work:'LOOK',services:'MAKE',about:'HI',contact:'SAY HI',prices:'PRICE'};
   function setWord(w){ if(!bword||bword.textContent===w) return; bword.textContent=w; bword.style.fontSize=(w.length<=4?40:w.length<=5?32:26)+'px'; badge.classList.remove('pop'); void badge.getBoundingClientRect(); badge.classList.add('pop'); }
   linksEl.forEach(function(a){
     var w=WORDS[(a.getAttribute('data-text')||'').toLowerCase()]||'ARH';
@@ -180,6 +180,7 @@
 
   /* ---------------- the ghost (easter egg) ---------------- */
   var gh=document.getElementById('ghost');
+  if(gh&&(matchMedia('(pointer:coarse)').matches||innerWidth<=760)){gh.remove();gh=null;}
   if(gh&&!RM){
     var bub=document.getElementById('ghBub'), pl1=document.getElementById('pl1'), pl2=document.getElementById('pl2');
     var hits=0, busy=false, caught=0, hideT=0, bubT=0;

@@ -3,8 +3,14 @@
   var f=document.getElementById('kform'); if(!f) return;
   var st=document.getElementById('kstatus'), done=document.getElementById('kdone');
   var EMAIL='founder@arhdesign.tech';
+  var plan=new URLSearchParams(location.search).get('plan');
+  if(plan){
+    var hid=document.createElement('input'); hid.type='hidden'; hid.name='plan'; hid.value=plan.slice(0,80); f.appendChild(hid);
+    var pn=document.createElement('p'); pn.className='k-plan'; pn.appendChild(document.createTextNode('Asking about: ')); var bb=document.createElement('b'); bb.textContent=plan.slice(0,80); pn.appendChild(bb);
+    var send=f.querySelector('.k-send'); f.insertBefore(pn,send);
+  }
   function mailto(d){
-    var body='Name: '+d.name+'\nBusiness: '+d.business+'\nNeed: '+(d.need||'')+'\nCurrent site: '+(d.site||'')+'\nEmail: '+d.email+'\n\n'+d.message;
+    var body=(d.plan?'Plan: '+d.plan+'\n':'')+'Name: '+d.name+'\nBusiness: '+d.business+'\nNeed: '+(d.need||'')+'\nCurrent site: '+(d.site||'')+'\nEmail: '+d.email+'\n\n'+d.message;
     return 'mailto:'+EMAIL+'?subject='+encodeURIComponent('New project enquiry')+'&body='+encodeURIComponent(body);
   }
   f.addEventListener('submit',function(e){
