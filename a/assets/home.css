@@ -54,6 +54,8 @@ html:not(.js) .mark::before,.ready .mark::before{transform:scaleX(1)!important;a
 .caret{display:inline-block;width:.55ch;height:1.05em;background:var(--fg);margin-left:2px;vertical-align:-.15em;animation:blink 1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
 .sub{margin-top:14px;max-width:34ch;font-size:clamp(1.05rem,1.7vw,1.35rem)}
+.sub-res{max-width:26ch;font-size:clamp(1.3rem,2.3vw,1.9rem);font-weight:700;line-height:1.28;letter-spacing:-.01em}
+.res{background:var(--accent);color:var(--mark-fg);padding:.02em .16em .05em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .cta-row{position:relative;margin-top:clamp(20px,3.4vh,44px);display:flex;align-items:center;justify-content:center}
 .note{position:absolute;left:calc(100% + 18px);top:-34px;width:max-content;font-family:var(--hand);font-weight:600;font-size:clamp(1.35rem,2vw,1.9rem);line-height:1;transform:rotate(-5deg);pointer-events:none;text-align:left}
 .note svg{display:block;width:78px;height:54px;margin:2px 0 0 -6px;overflow:visible}
@@ -146,3 +148,15 @@ html:not(.js) .mark::before,.ready .mark::before{transform:scaleX(1)!important;a
 @media (min-width:761px){.hero{min-height:calc(100svh - 146px)}}
 .h-tabs{scroll-padding-left:var(--pad)}
 @media (max-height:740px) and (min-width:761px){.hl{font-size:clamp(3rem,min(11vw,10.6vh),12rem)}.hero{min-height:calc(100svh - 146px)}.tab:nth-child(n){min-height:78px}}
+
+/* phones: no tall pinned TEMPLATE wall. Short and to the point instead. */
+@media (max-width:760px){
+  .wall{height:auto}
+  .wall-stick{position:static;height:auto;overflow:visible;flex-direction:column;align-items:flex-start;justify-content:flex-start;padding:clamp(36px,7vh,56px) var(--pad)}
+  .whint,.wrows{display:none}
+  .wall-static{display:block;margin:0 0 .5rem;font-size:1.15rem;line-height:1.4;max-width:24ch}
+  .yours{position:static!important;transform:none!important;opacity:1!important;margin:0!important;font-size:clamp(5rem,28vw,8rem)}
+  .wnote{position:static!important;transform:rotate(-3deg)!important;opacity:1!important;margin:.5rem 0 0!important;font-size:1.7rem}
+}
+@media (max-height:800px) and (min-width:761px){.hl{font-size:clamp(3rem,min(11vw,10.2vh),12rem)}.sub-res{font-size:clamp(1.15rem,1.9vw,1.45rem)}.sub{margin-top:10px}.cta-row{margin-top:18px}}
+@media (max-width:760px){.wall-static{order:-1}.wall-stick{padding-bottom:clamp(20px,4vh,32px)}}

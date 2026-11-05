@@ -147,16 +147,15 @@
   var dot=document.getElementById('curDot'), lab=document.getElementById('curLabel');
   if(dot&&FINE&&!RM){
     html.classList.add('has-cursor');
-    var tx=-100,ty=-100,cx=-100,cy=-100;
-    addEventListener('mousemove',function(e){tx=e.clientX;ty=e.clientY;},{passive:true});
-    (function loop(){ cx+=(tx-cx)*.28; cy+=(ty-cy)*.28; dot.style.transform='translate('+cx+'px,'+cy+'px)'; requestAnimationFrame(loop); })();
+    addEventListener('mousemove',function(e){ dot.style.transform='translate('+e.clientX+'px,'+e.clientY+'px)'; },{passive:true});
+    document.documentElement.addEventListener('mouseleave',function(){ dot.classList.remove('big','cta'); html.classList.remove('cur-on'); });
     document.addEventListener('mouseover',function(e){
       var t=e.target.closest&&e.target.closest('a,button,[data-cursor]');
       dot.classList.toggle('cta',!!(t&&t.classList.contains('btn')));
       if(t){
         lab.textContent=t.getAttribute('data-cursor')||(t.id==='menuBtn'?(isOpen?'Close':'Menu'):(t.id==='themeBtn'?'Theme':(t.classList.contains('m-link')?'Open':'Go')));
-        dot.classList.add('big');
-      }else dot.classList.remove('big');
+        dot.classList.add('big'); html.classList.add('cur-on');
+      }else{ dot.classList.remove('big'); html.classList.remove('cur-on'); }
     });
   }
 

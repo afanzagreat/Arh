@@ -48,3 +48,8 @@ All colours live in the two token blocks at the top of `assets/site.css` (dark a
 - v4i: Prices plans side by side on desktop, swipe row on phones; page shortened.
 - v4j: Prices small print is now a hand-drawn (i) next to the billing toggle with a small sticky-note popup (hover, focus, tap; Esc closes).
 - v4k: About page redesigned (editorial layout, receipts, steps, promises, note, facts). Anton only on the name tag.
+- v4l: About envelope note, centred CTA, removed 'how a project goes' and 'short version'. Cursor: no idle dot, hover badges only, no lag. Home: result-focused subline (calls, bookings, enquiries); TEMPLATE wall compact on phones.
+- v4m: About: small envelope top-right pops the note; treasure hunt of hidden features; first-person copy. Promises moved to Services as a torn 'deal sheet' with a self-drawing signature.
+- v4n: About: removed 'Things I hid', restored 'The short version', added a lazy cat (halftone-dot, click to poke) sitting on the facts box.
+- v4o: cat removed; short version is now a 'Studio Facts' nutrition label.
+- v4p: short version re-staged: centred under its label, note attached beside/under the Studio Facts label (label unchanged).

@@ -153,7 +153,7 @@ html:not([data-theme="light"]) .ic-moon{display:none}
 .cur-dot{position:fixed;left:0;top:0;z-index:500;pointer-events:none;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:var(--fg);display:none;align-items:center;justify-content:center;overflow:hidden;transition:width .25s var(--ease),height .25s var(--ease),margin .25s var(--ease),background .2s}
 .cur-dot span{font-family:var(--body);font-weight:700;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--on-accent);opacity:0;transition:opacity .15s}
 .has-cursor .cur-dot{display:flex}
-.has-cursor,.has-cursor a,.has-cursor button{cursor:none}
+.has-cursor.cur-on,.has-cursor.cur-on a,.has-cursor.cur-on button{cursor:none}
 .cur-dot.big{width:86px;height:86px;margin:-43px 0 0 -43px;background:var(--accent)}
 .cur-dot.big span{opacity:1}
 .cur-dot .ring,.cur-dot .arw{position:absolute;opacity:0;transition:opacity .2s,transform .35s var(--ease)}
@@ -217,3 +217,7 @@ html.reveal::view-transition-old(root),html.reveal::view-transition-new(root){an
 }
 
 @media (max-width:760px),(pointer:coarse){.ghost,#ghost{display:none!important}}
+
+/* cursor badge only shows over links and buttons; the normal pointer is untouched everywhere else */
+.has-cursor .cur-dot{opacity:0;transition:opacity .15s,width .35s var(--ease),height .35s var(--ease),margin .35s var(--ease),background .2s}
+.has-cursor .cur-dot.big,.has-cursor .cur-dot.cta{opacity:1}

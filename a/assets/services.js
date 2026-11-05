@@ -1,6 +1,6 @@
 /* ARH Design: Services. Rows mark themselves up on scroll; the compare slider is native range input. */
 (function(){
-  var secs=[].slice.call(document.querySelectorAll('.sx'));
+  var secs=[].slice.call(document.querySelectorAll('.sx,.sx-deal'));
   var cmp=document.getElementById('cmp');
   if(cmp){var r=cmp.querySelector('input');r.addEventListener('input',function(){cmp.style.setProperty('--pos',r.value+'%');});}
   if(!secs.length) return;
