@@ -37,30 +37,28 @@
   }
 
 
-  /* ---------- live demo: authentic Shabibi and ARH pages, plus a contact CTA ---------- */
+  /* ---------- live demo: actual scrollable websites, plus a contact CTA ---------- */
   (function initDemo(){
     var screen=document.getElementById('dfScreen'); if(!screen) return;
     var D=[
-      {url:'shabibi-juice.store',href:'https://shabibi-juice.store/',src:'assets/img/shabibi-homepage-preview.webp',alt:'Screenshot of the live Shabibi Juice homepage',label:'Open the live Shabibi Juice website in a new tab'},
-      {url:'arhdesign.tech/a/',href:'https://arhdesign.tech/a/',src:'assets/img/arh-former-homepage-preview.webp',alt:'Screenshot of the former ARH homepage at arhdesign.tech/a/',label:'Open the former ARH homepage in a new tab'},
+      {url:'shabibi-juice.store',src:'https://www.shabibi-juice.store/',title:'Live website preview: Shabibi Juice'},
+      {url:'arhdesign.tech/a/',src:'https://arhdesign.tech/a/',title:'Live website preview: former ARH homepage'},
       {url:'arhdesign.tech/contact',cta:true}
     ];
-    var els={url:document.getElementById('dfUrl'),preview:document.getElementById('dfPreview'),previewLink:document.getElementById('dfPreviewLink'),cta:document.getElementById('dfCta')};
-    if(!els.url||!els.preview||!els.previewLink||!els.cta) return;
-    var chips=[].slice.call(document.querySelectorAll('.demo-chips button')), cur=0, timer=0, auto=!RM;
+    var els={url:document.getElementById('dfUrl'),frame:document.getElementById('dfLiveFrame'),cta:document.getElementById('dfCta')};
+    if(!els.url||!els.frame||!els.cta) return;
+    var chips=[].slice.call(document.querySelectorAll('.demo-chips button')), cur=0;
     function show(i){
       cur=i; var d=D[i];
       screen.classList.remove('swap'); void screen.offsetWidth;
       screen.setAttribute('data-t',i);
       els.url.textContent=d.url;
-      if(d.cta){els.previewLink.hidden=true;els.cta.hidden=false;}
-      else{els.cta.hidden=true;els.previewLink.hidden=false;els.preview.src=d.src;els.preview.alt=d.alt;els.previewLink.href=d.href;els.previewLink.setAttribute('aria-label',d.label);}
+      if(d.cta){els.frame.hidden=true;els.cta.hidden=false;}
+      else{els.cta.hidden=true;els.frame.hidden=false;if(els.frame.getAttribute('src')!==d.src) els.frame.src=d.src;els.frame.title=d.title;}
       if(!RM) screen.classList.add('swap');
       chips.forEach(function(c,k){c.setAttribute('aria-pressed',k===i?'true':'false');});
     }
-    function loop(){ clearInterval(timer); if(auto) timer=setInterval(function(){ if(!document.hidden) show((cur+1)%D.length); },2600); }
-    chips.forEach(function(c){ c.addEventListener('click',function(){ auto=false; clearInterval(timer); show(+c.getAttribute('data-i')); }); });
-    setTimeout(loop,1800);
+    chips.forEach(function(c){ c.addEventListener('click',function(){ show(+c.getAttribute('data-i')); }); });
   })();
 
   /* ---------- loader: numbers jumble, then lock into ARH DESIGN ---------- */
