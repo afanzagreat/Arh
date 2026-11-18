@@ -6,7 +6,7 @@
   const root = document.documentElement;
   let current = supported.includes(root.lang) ? root.lang : 'en';
   function pagePath(language) {
-    const prefix = language === 'en' ? '/' : '/' + language + '/';
+    const prefix = language === 'en' ? '/a/' : '/a/' + language + '/a/';
     return prefix + ({ works: 'works.html', privacy: 'privacy.html' }[root.dataset.pageKind] || '');
   }
   function t(key) {
