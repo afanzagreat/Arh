@@ -37,14 +37,13 @@
   }
 
 
-  /* ---------- live demo: one mock site, four different businesses ---------- */
+  /* ---------- live demo: Shabibi, the former homepage, and your website ---------- */
   (function initDemo(){
     var screen=document.getElementById('dfScreen'); if(!screen) return;
     var D=[
-      {url:'danasbakery.com',eye:'Fresh bread \u00b7 Since 4am',name:"Dana's Bakery",line:'Bread, baked before you wake.',book:'Order a cake'},
-      {url:'lunahairstudio.com',eye:'Cuts \u00b7 Colour \u00b7 Care',name:'Luna Hair Studio',line:'Hair that feels like you.',book:'Book a cut'},
-      {url:'ironwoodgym.com',eye:'Strength \u00b7 Conditioning',name:'Ironwood Gym',line:'Show up. We handle the rest.',book:'Book a trial'},
-      {url:'hartandvale.law',eye:'Family \u00b7 Property \u00b7 Business',name:'Hart & Vale Law',line:'Clear advice. No jargon.',book:'Book a consult'}
+      {url:'shabibi-juice.store',eye:'Fresh juice \u00b7 Jeddah',name:'Shabibi Juice',line:'Freshness, served different.',book:'Explore the menu'},
+      {url:'arhdesign.tech/a/',eye:'Web design \u00b7 Jeddah',name:'ARH Digital',line:'Make your business impossible to miss.',book:'Explore our work'},
+      {url:'yourbusiness.com',eye:'Built around your business',name:'Your Website',line:'More calls. More bookings.',book:'Start a project'}
     ];
     var els={url:document.getElementById('dfUrl'),eye:document.getElementById('dfEye'),name:document.getElementById('dfName'),line:document.getElementById('dfLine'),book:document.getElementById('dfBook')};
     var chips=[].slice.call(document.querySelectorAll('.demo-chips button')), cur=0, timer=0, auto=!RM;
