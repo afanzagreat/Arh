@@ -129,23 +129,10 @@
     upd(); setInterval(upd,20000);
   }catch(e){}
 
-  /* ---------- scroll-driven: template wall + how-it-works line ---------- */
-  var wall=document.getElementById('wall'), hiw=document.querySelector('.hiw'), line=document.querySelector('.hiw-line');
-  var rows=[].slice.call(wall.querySelectorAll('.wrow')), yours=wall.querySelector('.yours'), note=wall.querySelector('.wnote'), hint=wall.querySelector('.whint');
-  function sm(a,b,x){x=(x-a)/(b-a);x=Math.max(0,Math.min(1,x));return x*x*(3-2*x);}
+  /* ---------- scroll-driven: how-it-works line ---------- */
+  var hiw=document.querySelector('.hiw'), line=document.querySelector('.hiw-line');
   ARH.onScroll=function(){
     if(RM) return;
-    var r=wall.getBoundingClientRect(), total=r.height-innerHeight, p=Math.max(0,Math.min(1,-r.top/total)), w=innerWidth;
-    rows.forEach(function(row,i){
-      var dir=(i%2)?1:-1, sp=.6+i*.11, base=((i%2)?-1:1)*w*.09*i-w*.12;
-      row.style.transform='translate3d('+(base+dir*p*w*sp).toFixed(1)+'px,0,0)';
-      row.style.opacity=(1-sm(.5,.66,p)*.93).toFixed(3);
-    });
-    var t=sm(.56,.8,p);
-    yours.style.opacity=t.toFixed(3);
-    yours.style.transform='translate(-50%,-50%) scale('+(.7+.3*t).toFixed(3)+') rotate('+(-4*(1-t)).toFixed(2)+'deg)';
-    note.style.opacity=sm(.76,.92,p).toFixed(3);
-    hint.style.opacity=(1-sm(.04,.22,p)).toFixed(3);
     if(hiw&&line){
       var hr=hiw.getBoundingClientRect();
       var lp=Math.max(0,Math.min(1,(innerHeight*.8-hr.top)/(hr.height*.9)));
