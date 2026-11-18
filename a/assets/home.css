@@ -3,7 +3,7 @@
    =================================================================== */
 
 /* ---------- loader: framed screen, counter, numbers lock into ARH DESIGN ---------- */
-#loader{display:none;position:fixed;inset:0;z-index:450;background:var(--bg);color:var(--fg);transition:transform .95s cubic-bezier(.76,0,.24,1);animation:ldFailsafe .01s linear 9s forwards}
+#loader{display:none;position:fixed;inset:0;z-index:450;background:var(--bg);color:var(--fg);transition:transform .65s cubic-bezier(.76,0,.24,1);animation:ldFailsafe .01s linear 9s forwards}
 .show-loader #loader{display:block}
 .show-loader body{overflow:hidden}
 #loader.lift{transform:translateY(-101%)}
@@ -160,3 +160,100 @@ html:not(.js) .mark::before,.ready .mark::before{transform:scaleX(1)!important;a
 }
 @media (max-height:800px) and (min-width:761px){.hl{font-size:clamp(3rem,min(11vw,10.2vh),12rem)}.sub-res{font-size:clamp(1.15rem,1.9vw,1.45rem)}.sub{margin-top:10px}.cta-row{margin-top:18px}}
 @media (max-width:760px){.wall-static{order:-1}.wall-stick{padding-bottom:clamp(20px,4vh,32px)}}
+
+/* result line: a small paper banner with chips that stamp in. Prominent without big type. */
+.result{display:inline-block;max-width:min(36em,92vw);margin-top:16px;padding:12px 18px 13px;background:#FFFAF0;color:#000F08;border:3px solid #000F08;box-shadow:6px 6px 0 var(--accent);transform:rotate(-1deg);font-weight:700;font-size:clamp(1.02rem,1.5vw,1.28rem);line-height:1.75;text-align:center}
+html[data-theme="light"] .result{box-shadow:6px 6px 0 #151515}
+.rt{display:inline-block;background:var(--accent);color:var(--mark-fg);padding:0 .4em;line-height:1.3;border:2px solid #000F08;transform:rotate(-2deg)}
+.rt:nth-of-type(2){transform:rotate(1.5deg)}
+.rt::after{content:"\2197";margin-left:.2em;font-size:.85em}
+.ready .rt{animation:stampIn .55s var(--ease) both}
+.ready .rt:nth-of-type(1){animation-delay:1s}.ready .rt:nth-of-type(2){animation-delay:1.25s}.ready .rt:nth-of-type(3){animation-delay:1.5s}
+@keyframes stampIn{0%{opacity:0;transform:scale(1.9) rotate(-10deg)}60%{opacity:1;transform:scale(.94) rotate(-2deg)}100%{opacity:1}}
+@media (prefers-reduced-motion:reduce){.ready .rt{animation:none}}
+@media (max-height:800px) and (min-width:761px){.result{margin-top:10px;padding:8px 14px 9px;font-size:1rem;line-height:1.65}}
+
+.result{text-wrap:balance;max-width:min(27em,92vw)}
+
+/* hero result line (the earlier, plain version), with a marker that swipes in */
+.sub-res{max-width:26ch;font-size:clamp(1.3rem,2.3vw,1.9rem);font-weight:700;line-height:1.3;letter-spacing:-.01em}
+.res{background:linear-gradient(var(--accent),var(--accent)) 0 100%/100% 100% no-repeat;color:var(--mark-fg);padding:.02em .16em .05em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.ready .res{animation:resSwipe .9s cubic-bezier(.6,0,.3,1) .9s both}
+@keyframes resSwipe{from{background-size:0% 100%;color:var(--fg)}60%{color:var(--fg)}to{background-size:100% 100%;color:var(--mark-fg)}}
+@media (prefers-reduced-motion:reduce){.ready .res{animation:none}}
+
+/* hook: outcome first, audience second, proof third. Readable in one glance. */
+.hl{font-size:clamp(3rem,min(11.8vw,13vh),12rem)}
+.sub-res{max-width:40ch;font-size:clamp(1.15rem,1.9vw,1.5rem);line-height:1.35}
+.aud{border-bottom:3px dashed var(--accent-text);white-space:nowrap}
+.proof-row{list-style:none;margin:clamp(14px,2.4vh,24px) 0 0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px;font-family:var(--mono);font-size:clamp(.72rem,1vw,.86rem);letter-spacing:.06em;text-transform:uppercase}
+.proof-row li{display:inline-flex;align-items:center;gap:.6em}
+.proof-row li+li::before{content:"";width:7px;height:7px;background:var(--accent);transform:rotate(45deg);flex:none}
+.proof-row a{color:var(--fg);font-weight:700;text-decoration:none;border-bottom:2px solid var(--accent)}
+.proof-row a:hover,.proof-row a:focus-visible{background:var(--accent);color:var(--mark-fg);outline:none}
+@media (max-width:760px){.proof-row{flex-direction:column;align-items:center;gap:6px}.proof-row li+li::before{display:none}}
+@media (max-height:800px) and (min-width:761px){.sub-res{font-size:clamp(1.05rem,1.6vw,1.3rem)}.proof-row{margin-top:10px}}
+.caret[hidden]{display:none}
+@media (max-width:760px){.cta-row .note{display:none}}
+
+/* ===== hero v2: copy on the left, a live mock site on the right ===== */
+.hero.hero2{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:clamp(24px,4.5vw,80px);align-items:center;text-align:left;justify-items:stretch;padding:1vh var(--pad) calc(clamp(14px,2.4vh,32px) + 104px)}
+.hero2 .hero-copy{display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+.hero2 .eyebrow{font-family:var(--mono);font-size:clamp(.72rem,1vw,.86rem);letter-spacing:.1em;text-transform:uppercase;margin:0 0 clamp(12px,2vh,22px);opacity:.8}
+.hero2 .hl{font-size:clamp(2.8rem,min(6.4vw,11.8vh),8.4rem);line-height:.96;text-align:left}
+.hero2 .sub-res{max-width:30ch;margin-top:clamp(14px,2.4vh,26px);font-size:clamp(1.1rem,1.7vw,1.4rem);font-weight:500;line-height:1.4;letter-spacing:0}
+.hero2 .cta-row{justify-content:flex-start;gap:14px 26px;flex-wrap:wrap;margin-top:clamp(16px,3vh,32px)}
+.hero2 .hero-link{font-family:var(--mono);font-weight:700;font-size:.86rem;letter-spacing:.06em;text-transform:uppercase;color:var(--fg);text-decoration:none;border-bottom:2px solid var(--accent);padding:.5em 0}
+.hero2 .hero-link:hover,.hero2 .hero-link:focus-visible{background:var(--accent);color:var(--mark-fg);outline:none}
+.hero2 .hero-fine{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;margin:12px 0 0;opacity:.75}
+/* the demo */
+.demo{min-width:0;justify-self:center;width:min(100%,560px)}
+.demo-frame{border:3px solid var(--fg);background:#FFFAF0;box-shadow:12px 12px 0 var(--accent);transform:rotate(1.4deg);overflow:hidden}
+html[data-theme="light"] .demo-frame{box-shadow:12px 12px 0 #151515}
+.df-bar{display:flex;align-items:center;gap:6px;padding:9px 12px;background:#000F08;color:#FFFAF0;border-bottom:3px solid var(--fg)}
+.df-bar i{width:10px;height:10px;border-radius:50%;background:#FFFAF0;opacity:.5}
+.df-bar i:first-child{background:var(--accent);opacity:1}
+.df-url{margin-left:10px;font-family:var(--mono);font-size:.78rem;letter-spacing:.04em;background:rgba(255,250,240,.14);padding:.2em .8em;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.df-screen{--sbg:#FFE9D2;--sink:#3B1D0E;--sac:#D9481C;position:relative;background:var(--sbg);color:var(--sink);padding:clamp(18px,2.6vw,34px);min-height:clamp(230px,26vw,330px);display:flex;flex-direction:column;justify-content:center;overflow:hidden;transition:background .5s,color .5s}
+.df-screen[data-t="1"]{--sbg:#E9DEFF;--sink:#231942;--sac:#7C3AED}
+.df-screen[data-t="2"]{--sbg:#0B0B0B;--sink:#F4F4F0;--sac:#C6FF3D}
+.df-screen[data-t="3"]{--sbg:#10243E;--sink:#F7F1E3;--sac:#C9A24B}
+.df-eye{font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;margin:0 0 .6em;opacity:.85}
+.df-name{font-family:'Caveat',cursive;font-weight:600;font-size:clamp(2.6rem,5.2vw,4.4rem);line-height:.95;margin:0;color:var(--sink)}
+.df-screen[data-t="1"] .df-name{font-family:var(--body);font-weight:700;letter-spacing:-.03em;font-size:clamp(2.1rem,4.2vw,3.5rem)}
+.df-screen[data-t="2"] .df-name{font-family:var(--display);text-transform:uppercase;letter-spacing:.01em;font-size:clamp(2.6rem,5.4vw,4.6rem)}
+.df-screen[data-t="3"] .df-name{font-family:Georgia,'Times New Roman',serif;font-weight:700;letter-spacing:-.01em;font-size:clamp(2rem,4vw,3.3rem)}
+.df-line{margin:.7em 0 1.1em;font-size:clamp(1rem,1.5vw,1.2rem);max-width:24ch;line-height:1.35}
+.df-btns{display:flex;flex-wrap:wrap;gap:8px}
+.df-btns span{font-weight:700;font-size:.92rem;padding:.55em 1em;border:2px solid var(--sink);color:var(--sink)}
+.df-btns .b2{background:var(--sac);color:var(--sbg);border-color:var(--sac)}
+.df-screen[data-t="2"] .df-btns .b2{color:#0B0B0B}
+.df-shape{position:absolute;right:-8%;bottom:-18%;width:46%;aspect-ratio:1;background:var(--sac);opacity:.9;border-radius:50% 50% 8% 50%}
+.df-screen[data-t="1"] .df-shape{border-radius:50%;right:-6%;top:-12%;bottom:auto}
+.df-screen[data-t="2"] .df-shape{border-radius:0;transform:rotate(18deg)}
+.df-screen[data-t="3"] .df-shape{border-radius:0;width:34%;right:6%;bottom:-6%;aspect-ratio:.7;opacity:.5}
+.df-screen.swap{animation:dfSwap .55s var(--ease)}
+@keyframes dfSwap{from{opacity:0;transform:translateX(22px)}to{opacity:1;transform:none}}
+.demo-chips{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 0 4px}
+.demo-chips button{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;background:transparent;color:var(--fg);border:2px solid var(--fg);padding:.5em .9em;cursor:pointer;transition:background .2s,color .2s,transform .3s var(--ease)}
+.demo-chips button:hover{transform:translateY(-2px)}
+.demo-chips button[aria-pressed="true"]{background:var(--accent);color:var(--mark-fg);border-color:var(--accent)}
+.demo-chips button:focus-visible{outline:3px solid var(--fg);outline-offset:3px}
+.demo-cap{font-family:var(--hand);font-size:1.3rem;margin:10px 0 0 6px;opacity:.85;transform:rotate(-1.5deg);display:inline-block}
+/* tablets and phones: stack */
+@media (max-width:980px){
+  .hero.hero2{grid-template-columns:1fr;gap:26px;align-content:start;padding-top:clamp(16px,3vh,32px)}
+  .hero2 .hl{font-size:clamp(2.6rem,12.2vw,5.6rem)}
+  .demo{width:min(100%,460px);justify-self:start}
+  .demo-frame{transform:rotate(1deg)}
+  .df-screen{min-height:200px;padding:16px}
+  .df-name{font-size:clamp(2.2rem,9vw,3.2rem)!important}
+}
+@media (max-width:980px) and (max-height:900px){.hero2 .hero-fine{display:none}}
+@media (max-height:800px) and (min-width:981px){.hero2 .hl{font-size:clamp(2.6rem,min(5.6vw,10.4vh),7rem)}.df-screen{min-height:210px}}
+@media (prefers-reduced-motion:reduce){.df-screen.swap{animation:none}}
+/* demo polish */
+.df-screen>*:not(.df-shape){position:relative;z-index:1}
+.df-shape{z-index:0}
+.hero.hero2 .cta-row{flex-direction:row;align-items:center;justify-content:flex-start}
+@media (max-width:980px){.df-shape{width:34%;right:-9%;bottom:-24%}.df-screen[data-t="1"] .df-shape{top:-20%;right:-8%}.df-screen[data-t="3"] .df-shape{width:26%;right:4%}}

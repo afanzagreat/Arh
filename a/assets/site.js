@@ -150,7 +150,7 @@
     addEventListener('mousemove',function(e){ dot.style.transform='translate('+e.clientX+'px,'+e.clientY+'px)'; },{passive:true});
     document.documentElement.addEventListener('mouseleave',function(){ dot.classList.remove('big','cta'); html.classList.remove('cur-on'); });
     document.addEventListener('mouseover',function(e){
-      var t=e.target.closest&&e.target.closest('a,button,[data-cursor]');
+      var t=e.target.closest&&e.target.closest('a,button,[data-cursor]'); if(t&&t.closest('[data-nocursor]')) t=null;
       dot.classList.toggle('cta',!!(t&&t.classList.contains('btn')));
       if(t){
         lab.textContent=t.getAttribute('data-cursor')||(t.id==='menuBtn'?(isOpen?'Close':'Menu'):(t.id==='themeBtn'?'Theme':(t.classList.contains('m-link')?'Open':'Go')));

@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ARH Design | Custom websites that bring in more enquiries</title>
-<meta name="description" content="ARH Design builds custom websites designed to bring in more calls, bookings and enquiries. Never templates.">
+<title>ARH Design | More calls. More bookings. Not a template.</title>
+<meta name="description" content="Custom websites for small businesses, built to bring in more calls, bookings and enquiries. From $35 a month. Never templates.">
 <meta name="theme-color" content="#000F08">
 <script>
 (function(){
@@ -16,6 +16,9 @@
 </script>
 <link rel="stylesheet" href="assets/site.css">
 <link rel="stylesheet" href="assets/home.css">
+<link rel="stylesheet" href="assets/services.css">
+<link rel="stylesheet" href="assets/prices.css">
+<link rel="stylesheet" href="assets/home-extra.css">
 </head>
 <body data-page="home">
 <a class="skip" href="#main">Skip to content</a>
@@ -68,24 +71,43 @@
 </nav>
 
 <main id="main">
-  <section class="hero">
-    <h1 class="hl">
-      <span class="ln">Your website</span>
-      <span class="ln">shouldn't look</span>
-      <span class="ln">like <span class="mark">everyone's.</span></span>
-    </h1>
-    <p class="typeline" data-r aria-label="Hello, your business. ARH makes it yours."><span aria-hidden="true"><span class="br">Hello, {{ </span><span id="ty">your business</span><span class="br"> }}</span><span class="caret" id="caret" hidden></span></span></p>
-    <p class="sub sub-res" data-r>Custom websites that bring in more <span class="res">calls, bookings and enquiries.</span></p>
-    <div class="cta-row" data-r>
-      <a class="btn" href="contact/index.html" data-cursor="GO">Start a project</a>
-      <div class="note" aria-hidden="true">
-        no templates,<br>promise
-        <svg viewBox="0 0 78 54"><path id="arrow" d="M72 4 C 62 24, 42 42, 12 46 M12 46 L 27 36 M12 46 L 26 57"/></svg>
+  <section class="hero hero2">
+    <div class="hero-copy">
+      <p class="eyebrow" data-r>Web design studio &middot; Worldwide</p>
+      <h1 class="hl">
+        <span class="ln">More calls.</span>
+        <span class="ln">More bookings.</span>
+        <span class="ln"><span class="mark">Not a template.</span></span>
+      </h1>
+      <p class="sub sub-res" data-r>Custom websites for small businesses, drawn from scratch and live in 2&ndash;4 weeks.</p>
+      <div class="cta-row" data-r>
+        <a class="btn" href="contact/index.html" data-cursor="GO">Start a project</a>
+        <a class="hero-link" href="#prices" data-cursor="Prices">From $35 a month &darr;</a>
       </div>
+      <p class="hero-fine" data-r>Reply within 1 business day.</p>
     </div>
-      <nav class="h-tabs" aria-label="Explore the site" data-r>
+    <div class="demo" data-r>
+      <div class="demo-frame" aria-hidden="true">
+        <div class="df-bar"><i></i><i></i><i></i><span class="df-url" id="dfUrl">danasbakery.com</span></div>
+        <div class="df-screen" id="dfScreen" data-t="0">
+          <p class="df-eye" id="dfEye">Fresh bread &middot; Since 4am</p>
+          <h2 class="df-name" id="dfName">Dana's Bakery</h2>
+          <p class="df-line" id="dfLine">Bread, baked before you wake.</p>
+          <div class="df-btns"><span class="b1">Call</span><span class="b2" id="dfBook">Order a cake</span><span class="b3">Enquire</span></div>
+          <i class="df-shape" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="demo-chips" data-nocursor role="group" aria-label="See an example design">
+        <button type="button" data-i="0" aria-pressed="true">Bakery</button>
+        <button type="button" data-i="1" aria-pressed="false">Salon</button>
+        <button type="button" data-i="2" aria-pressed="false">Gym</button>
+        <button type="button" data-i="3" aria-pressed="false">Law firm</button>
+      </div>
+      <p class="demo-cap">Example designs. Not clients.</p>
+    </div>
+    <nav class="h-tabs" aria-label="Explore the site" data-r>
       <a class="tab" href="work/index.html" data-cursor="Open"><span class="tn">01</span><span class="tt">Work</span><span class="tx">Real projects. One so far.</span></a>
-      <a class="tab" href="services/index.html" data-cursor="Open"><span class="tn">02</span><span class="tt">Services</span><span class="tx">Five things. Five toys.</span></a>
+      <a class="tab" href="services/index.html" data-cursor="Open"><span class="tn">02</span><span class="tt">Services</span><span class="tx">Three things. Three toys.</span></a>
       <a class="tab" href="prices/index.html" data-cursor="Open"><span class="tn">03</span><span class="tt">Prices</span><span class="tx">From $35 a month.</span></a>
       <a class="tab" href="about/index.html" data-cursor="Open"><span class="tn">04</span><span class="tt">About</span><span class="tx">Meet Afan.</span></a>
       <a class="tab" href="contact/index.html" data-cursor="Open"><span class="tn">05</span><span class="tt">Contact</span><span class="tx">Say hi. Tell us everything.</span></a>
@@ -110,28 +132,138 @@
     </div>
   </section>
 
-  <section class="svc" id="services" aria-labelledby="svcH">
-    <h2 class="sec" id="svcH" data-s>What we do<span>.</span></h2>
-    <!-- DRAFT - confirm: all five service lines below -->
-    <ul class="svc-list">
-      <li data-s><h3>Custom design</h3><p>Layouts made for your brand, not picked from a theme.</p></li>
-      <li data-s><h3>Clean build</h3><p>Fast, tidy code with no page-builder bloat.</p></li>
-      <li data-s><h3>Phone first</h3><p>Looks right on the screen your customers actually use.</p></li>
-      <li data-s><h3>Motion with a reason</h3><p>Animation that helps, never just decoration.</p></li>
-      <li data-s><h3>Launch and care</h3><p>We put it live, then stay around.</p></li>
-    </ul>
-    <p class="svc-more"><a href="services/index.html" data-cursor="Open">See what we cross out &rarr;</a></p>
+  <section class="hx hx-prices" id="prices" aria-labelledby="priceH">
+    <div class="hx-head" data-s><p class="hx-lbl">01 &middot; Prices</p><h2 id="priceH">Clear prices. Monthly or once.</h2><p class="hx-sub">no mystery. no &ldquo;contact us for a quote&rdquo; games.</p></div>
+    <section class="p-sets" aria-label="Plans">
+    <input class="mode" type="radio" name="mode" id="modeM" checked>
+    <input class="mode" type="radio" name="mode" id="modeO">
+    <div class="p-bar">
+      <div class="p-toggle" role="group" aria-label="Billing">
+        <label for="modeM" class="tg">Monthly</label>
+        <label for="modeO" class="tg">One-time</label>
+      </div>
+    </div>
+    <p class="p-swipe" aria-hidden="true">swipe for more &rarr;</p>
+    <div class="set set-m">
+      <article class="plan" style="--r:-2deg">
+        <div class="tag" aria-label="Essential: $35 / month"><div class="tag-in"><span class="amt">$35</span><span class="unit">/ month</span></div></div>
+        <div class="plan-body">
+          <h2 class="plan-name">Essential</h2>
+          <p class="plan-blurb">A solid starter site that keeps looking after itself.</p>
+          <ul class="plan-list"><li>Up to 5 pages</li><li>2 rounds of revisions</li><li>Email support for technical issues and minor updates</li><li>Basic SEO foundations</li><li>No minimum commitment</li></ul>
+          <div class="plan-actions"><a class="btn" href="contact/index.html?plan=Essential%20(monthly)" data-cursor="Pick">Pick Essential</a><button class="det" type="button" data-plan="Essential" data-mode="monthly" aria-haspopup="dialog"><svg viewBox="0 0 48 48" aria-hidden="true"><path class="i-ring" d="M24 4 C35 3.5 44.5 12 44 24 C43.5 36 35 44.5 23 44 C11 43.5 3.5 35 4.2 23.5 C4.8 12 13 4.5 25 4.4"/><circle class="i-dot" cx="24" cy="14.5" r="2.8"/><path class="i-stem" d="M24 21 L24 35.5"/></svg><span>See more</span></button></div>
+        </div>
+      </article>
+      <article class="plan" style="--r:1.5deg">
+        <div class="tag" aria-label="Pro: $49 / month"><div class="tag-in"><span class="amt">$49</span><span class="unit">/ month</span></div></div>
+        <div class="plan-body">
+          <h2 class="plan-name">Pro</h2>
+          <p class="plan-blurb">More design detail, more thought about getting you customers.</p>
+          <ul class="plan-list"><li>Up to 10 pages</li><li>4 rounds of revisions</li><li>Priority email support and technical help</li><li>Content structured to convert</li><li>No minimum commitment</li></ul>
+          <div class="plan-actions"><a class="btn" href="contact/index.html?plan=Pro%20(monthly)" data-cursor="Pick">Pick Pro</a><button class="det" type="button" data-plan="Pro" data-mode="monthly" aria-haspopup="dialog"><svg viewBox="0 0 48 48" aria-hidden="true"><path class="i-ring" d="M24 4 C35 3.5 44.5 12 44 24 C43.5 36 35 44.5 23 44 C11 43.5 3.5 35 4.2 23.5 C4.8 12 13 4.5 25 4.4"/><circle class="i-dot" cx="24" cy="14.5" r="2.8"/><path class="i-stem" d="M24 21 L24 35.5"/></svg><span>See more</span></button></div>
+        </div>
+      </article>
+      <article class="plan" style="--r:-1deg">
+        <div class="tag" aria-label="Custom: custom quote"><div class="tag-in"><span class="amt talk">Let's talk</span></div></div>
+        <div class="plan-body">
+          <h2 class="plan-name">Custom</h2>
+          <p class="plan-blurb">For bigger ideas. We scope it together, then quote it clearly.</p>
+          <ul class="plan-list"><li>Advanced website direction</li><li>Content and campaign support, quoted clearly</li><li>Premium domain options discussed first</li><li>Priority support</li></ul>
+          <div class="plan-actions"><a class="btn" href="contact/index.html?plan=Custom%20(monthly)" data-cursor="Pick">Ask for a quote</a><button class="det" type="button" data-plan="Custom" data-mode="monthly" aria-haspopup="dialog"><svg viewBox="0 0 48 48" aria-hidden="true"><path class="i-ring" d="M24 4 C35 3.5 44.5 12 44 24 C43.5 36 35 44.5 23 44 C11 43.5 3.5 35 4.2 23.5 C4.8 12 13 4.5 25 4.4"/><circle class="i-dot" cx="24" cy="14.5" r="2.8"/><path class="i-stem" d="M24 21 L24 35.5"/></svg><span>See more</span></button></div>
+        </div>
+      </article>
+    </div>
+    <div class="set set-o">
+      <article class="plan" style="--r:-2deg">
+        <div class="tag" aria-label="Essential: $129 once"><div class="tag-in"><span class="amt">$129</span><span class="unit">once</span></div></div>
+        <div class="plan-body">
+          <h2 class="plan-name">Essential</h2>
+          <p class="plan-blurb">A solid starter site, paid once.</p>
+          <ul class="plan-list"><li>Professional starter website</li><li>Revision rounds agreed in your quote</li><li>Domain terms confirmed before launch</li><li>Handover after launch</li></ul>
+          <div class="plan-actions"><a class="btn" href="contact/index.html?plan=Essential%20(one-time)" data-cursor="Pick">Pick Essential</a><button class="det" type="button" data-plan="Essential" data-mode="one-time" aria-haspopup="dialog"><svg viewBox="0 0 48 48" aria-hidden="true"><path class="i-ring" d="M24 4 C35 3.5 44.5 12 44 24 C43.5 36 35 44.5 23 44 C11 43.5 3.5 35 4.2 23.5 C4.8 12 13 4.5 25 4.4"/><circle class="i-dot" cx="24" cy="14.5" r="2.8"/><path class="i-stem" d="M24 21 L24 35.5"/></svg><span>See more</span></button></div>
+        </div>
+      </article>
+      <article class="plan" style="--r:1.5deg">
+        <div class="tag" aria-label="Pro: $269 once"><div class="tag-in"><span class="amt">$269</span><span class="unit">once</span></div></div>
+        <div class="plan-body">
+          <h2 class="plan-name">Pro</h2>
+          <p class="plan-blurb">More design detail, more thought about getting you customers.</p>
+          <ul class="plan-list"><li>Higher-detail website direction</li><li>Revision rounds agreed in your quote</li><li>Content structured to convert</li><li>Clear handover and support terms</li></ul>
+          <div class="plan-actions"><a class="btn" href="contact/index.html?plan=Pro%20(one-time)" data-cursor="Pick">Pick Pro</a><button class="det" type="button" data-plan="Pro" data-mode="one-time" aria-haspopup="dialog"><svg viewBox="0 0 48 48" aria-hidden="true"><path class="i-ring" d="M24 4 C35 3.5 44.5 12 44 24 C43.5 36 35 44.5 23 44 C11 43.5 3.5 35 4.2 23.5 C4.8 12 13 4.5 25 4.4"/><circle class="i-dot" cx="24" cy="14.5" r="2.8"/><path class="i-stem" d="M24 21 L24 35.5"/></svg><span>See more</span></button></div>
+        </div>
+      </article>
+      <article class="plan" style="--r:-1deg">
+        <div class="tag" aria-label="Custom: custom quote"><div class="tag-in"><span class="amt talk">Let's talk</span></div></div>
+        <div class="plan-body">
+          <h2 class="plan-name">Custom</h2>
+          <p class="plan-blurb">For bigger ideas. We scope it together, then quote it clearly.</p>
+          <ul class="plan-list"><li>Advanced website direction</li><li>Media and campaign work scoped first</li><li>Premium domain options discussed first</li><li>Clear handover and support terms</li></ul>
+          <div class="plan-actions"><a class="btn" href="contact/index.html?plan=Custom%20(one-time)" data-cursor="Pick">Ask for a quote</a><button class="det" type="button" data-plan="Custom" data-mode="one-time" aria-haspopup="dialog"><svg viewBox="0 0 48 48" aria-hidden="true"><path class="i-ring" d="M24 4 C35 3.5 44.5 12 44 24 C43.5 36 35 44.5 23 44 C11 43.5 3.5 35 4.2 23.5 C4.8 12 13 4.5 25 4.4"/><circle class="i-dot" cx="24" cy="14.5" r="2.8"/><path class="i-stem" d="M24 21 L24 35.5"/></svg><span>See more</span></button></div>
+        </div>
+      </article>
+    </div>
+    <p class="p-cur">All prices are in US dollars. <a class="hx-link" href="prices/index.html" data-cursor="Open">See everything each plan includes &rarr;</a></p>
   </section>
 
-  <section class="hiw" id="how" aria-labelledby="hiwH">
-    <h2 class="sec" id="hiwH" data-s>How it works<span>.</span></h2>
-    <div class="hiw-wrap">
-      <i class="hiw-line" aria-hidden="true"></i>
-      <ol class="steps">
-        <li data-s><h3>First,</h3><p><b>we listen.</b> Tell us what makes your business yours.</p></li>
-        <li data-s><h3>Then,</h3><p><b>we design.</b> You see a real design, not a questionnaire.</p></li>
-        <li data-s><h3>Finally,</h3><p><b>we launch.</b> Your site goes live, fast and ready for visitors.</p></li>
-      </ol>
+  <section class="hx hx-work" id="work" aria-labelledby="workH">
+    <div class="hx-head" data-s><p class="hx-lbl">02 &middot; The work</p><h2 id="workH">Shabibi Juice trusted us first.</h2></div>
+    <div class="hx-work-grid">
+      <div class="hx-work-copy" data-s>
+        <p>A juice bar in Jeddah handed a brand-new studio its whole online home. We built a responsive website, and it's live. Go and look.</p>
+        <p class="hx-meta"><span>Juice bar</span><span>Jeddah</span><span>Responsive website</span></p>
+        <div class="hx-links"><a class="btn" href="https://www.shabibi-juice.store/" target="_blank" rel="noopener" data-cursor="Visit">Visit the live site</a><a class="hx-link" href="work/shabibi-juice/index.html" data-cursor="Open">Read the case study &rarr;</a></div>
+      </div>
+      <a class="hx-tile" href="work/shabibi-juice/index.html" data-cursor="Open" aria-label="Shabibi Juice case study" data-s>
+        <img src="assets/img/shabibi-logo.webp" alt="Shabibi Juice logo" width="260" height="260" loading="lazy" decoding="async">
+        <span class="hx-live">LIVE</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="hx hx-diff" id="difference" aria-labelledby="diffH">
+    <div class="hx-head" data-s><p class="hx-lbl">03 &middot; See the difference</p><h2 id="diffH">Template. Or yours.</h2><p class="hx-sub">drag the slider. one of these is a template.</p></div>
+    <div class="sx-demo">
+      <span class="sx-try">Try it: drag</span>
+      <div class="cmp" id="cmp" style="--pos:30%">
+        <div class="cmp-a" aria-hidden="true">
+          <i class="t-bar"></i><b class="t-h">Welcome to our website</b>
+          <div class="t-ico"><i></i><i></i><i></i></div>
+          <div class="t-cards"><i></i><i></i><i></i></div>
+        </div>
+        <div class="cmp-b" aria-hidden="true"><span class="b-small">your business</span><b class="b-big">YOURS<em>.</em></b><span class="b-hand">no templates, promise</span></div>
+        <i class="cmp-line" aria-hidden="true"></i>
+        <input type="range" min="0" max="100" value="30" aria-label="Drag to compare a template with a custom design">
+        <span class="cmp-l l1" aria-hidden="true">Template</span><span class="cmp-l l2" aria-hidden="true">Custom</span>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+  </section>
+
+
+  <section class="sx-deal" aria-labelledby="dealH">
+    <div class="deal">
+      <div class="deal-paper">
+        <p class="deal-top"><span>ARH Design</span><span>Promise sheet</span></p>
+        <h2 id="dealH">The deal<span>.</span></h2>
+        <p class="deal-sub">In writing. With a signature.</p>
+        <ol class="deal-list">
+          <li><i aria-hidden="true"></i><span>Our prices are public. <a href="prices/index.html">See them.</a> Custom projects are scoped with you first, then quoted clearly.</span></li>
+          <li><i aria-hidden="true"></i><span>After delivery, you get 7 days to review your site and report bugs or ask for minor changes.</span></li>
+          <li><i aria-hidden="true"></i><span>Domain terms and extra costs are talked through first, before you commit.</span></li>
+          <li><i aria-hidden="true"></i><span>No made-up testimonials or numbers on this site. If we don't have a real result, we won't invent one.</span></li>
+          <li><i aria-hidden="true"></i><span>You talk to the person building it. Write to us and <span class="mk">Afan</span> reads it.</span></li>
+        </ol>
+        <div class="deal-sign">
+          <span class="dx" aria-hidden="true">&times;</span>
+          <svg class="sg" viewBox="0 0 240 90" aria-hidden="true"><path pathLength="1" d="M8 66 C 18 30, 28 14, 38 44 C 42 58, 52 62, 60 40 C 64 28, 70 26, 72 40 C 74 56, 66 66, 78 56 C 90 46, 96 50, 98 60 C 100 48, 108 40, 116 52 C 120 60, 126 56, 134 44 C 140 36, 146 38, 144 50 C 142 62, 152 62, 164 48 C 176 34, 188 40, 180 56 C 176 66, 196 60, 232 40"/></svg>
+          <span class="who">Afan, founder</span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -146,6 +278,8 @@
     <p class="mailrow" data-s><a href="mailto:founder@arhdesign.tech">founder@arhdesign.tech</a></p>
   </section>
 </main>
+
+<dialog class="terms" id="terms" aria-labelledby="termsTitle"><div class="t-wrap"><header class="t-head"><div><p class="t-kicker" id="termsKicker"></p><h2 id="termsTitle"></h2></div><button type="button" class="t-close" id="termsClose" aria-label="Close details">Close <span aria-hidden="true">&times;</span></button></header><div class="t-body" id="termsBody"></div><footer class="t-foot"><a class="btn" id="termsPick" href="contact/index.html">Pick this plan</a><p class="t-q">Questions? <a href="mailto:founder@arhdesign.tech">founder@arhdesign.tech</a>. We reply within one business day.</p></footer></div></dialog>
 
 <footer class="foot">
   <div class="f-top">
@@ -171,5 +305,7 @@
 <script src="assets/footer-dots.js"></script>
 <script src="assets/doodle.js"></script>
 <script src="assets/home.js"></script>
+<script src="assets/services.js"></script>
+<script src="assets/prices.js"></script>
 </body>
 </html>

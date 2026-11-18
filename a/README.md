@@ -53,3 +53,12 @@ All colours live in the two token blocks at the top of `assets/site.css` (dark a
 - v4n: About: removed 'Things I hid', restored 'The short version', added a lazy cat (halftone-dot, click to poke) sitting on the facts box.
 - v4o: cat removed; short version is now a 'Studio Facts' nutrition label.
 - v4p: short version re-staged: centred under its label, note attached beside/under the Studio Facts label (label unchanged).
+- v4q: Services is 3 services (+ How fast dials: reply 1 business day, build 2-4 weeks; The deal). Home list trimmed to 3. Prices: per-plan 'Full details' drawer with a CONFIG block at the top of assets/prices.js (fill the [BRACKETED] blanks).
+- v4r: Prices drawer filled with real terms (monthly + one-time); plan cards list pages/revisions/support. Services has 3 dials (reply 1 business day, build 2-4 weeks, 7-day review after delivery). Remaining blanks: one-time page counts.
+- v4s: Services 'How fast' laid out as first/then/finally with dashed arrows; Afan highlighted. Home result line is now a paper banner with stamped chips (calls, bookings, enquiries).
+- v4t: Home rebuilt longer: hero (earlier result line + marker swipe), TEMPLATE wall, See the difference slider, Work (Shabibi), Prices (toggle + 3 tags), How fast dials, The deal sheet, hello, contact. Removed What we do and How it works. Extra stylesheet: assets/home-extra.css; home also loads services.css, prices.css, services.js.
+- v4u: Home order: hero, wall, 01 Prices, 02 The work, 03 See the difference, How fast, The deal, hello, contact.
+- v4v: Home prices: See more button beside each Pick button opens the same details drawer as the Prices page (home loads prices.js and has the dialog).
+- v4w: Removed 'How fast' from the home page (still on Services).
+- v5: Home hook rebuilt for the 3-second test: 'MORE CUSTOMERS. ZERO TEMPLATES.' headline, audience-word subline (cycles), proof row (from $35/month, reply in 1 business day, live in 2-4 weeks), 'start here' cue, faster loader (hero fully visible ~2s on first visit).
+- v6: Hero rebuilt as 'More calls. More bookings. Not a template.' + a live mock-site demo (bakery, salon, gym, law firm examples, auto-cycling, clickable chips). Cursor badge skips elements inside [data-nocursor].

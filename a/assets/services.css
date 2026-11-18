@@ -130,3 +130,67 @@ html[data-theme="light"] .deal{filter:drop-shadow(10px 10px 0 #151515)}
 .js .sx-deal.on li:nth-child(4),.js .sx-deal.on li:nth-child(4) i::after{transition-delay:2.1s}
 .js .sx-deal.on li:nth-child(5),.js .sx-deal.on li:nth-child(5) i::after{transition-delay:2.7s}
 @media (prefers-reduced-motion:reduce){.js .deal-list li,.js .deal-list i::after,.js .sg path{transition:none}}
+
+/* how fast: two stopwatch dials */
+.sx-time{padding:clamp(40px,9vh,110px) var(--pad);border-top:1px solid var(--rule)}
+.tm-head{margin-bottom:clamp(24px,5vh,56px)}
+.tm-lbl{font-family:var(--mono);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;margin:0 0 .4em;opacity:.75}
+.tm-head h2{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(3.4rem,8vw,7rem);line-height:.92;margin:0}
+.tm-head h2 span{color:var(--accent-text)}
+.dial{position:relative;margin:0}
+.dial svg{display:block;width:min(100%,280px);height:auto;overflow:visible}
+.d-track{fill:none;stroke:var(--fg);stroke-width:7;opacity:.2}
+.d-arc,.d-seg{fill:none;stroke:var(--accent);stroke-width:9;stroke-linecap:butt;transform:rotate(-90deg);transform-origin:80px 80px}
+.d-arc{stroke-dasharray:100 100}
+.d-seg{stroke-dasharray:23 77}
+.d-seg.s1{stroke-dashoffset:0;stroke:var(--fg);opacity:.35}
+.d-seg.s2{stroke-dashoffset:-25}.d-seg.s3{stroke-dashoffset:-50}.d-seg.s4{stroke-dashoffset:-75}
+.d-hand line{stroke:var(--fg);stroke-width:4;stroke-linecap:round}
+.d-hand circle{fill:var(--bg);stroke:var(--fg);stroke-width:4}
+.d-hand{transform-origin:80px 80px}
+.d-pin{fill:var(--fg)}
+.d-mid{position:absolute;left:0;top:0;width:min(100%,280px);aspect-ratio:1;display:grid;place-content:center;text-align:center;pointer-events:none}
+.d-mid b{font-family:var(--display);font-weight:400;font-size:clamp(3rem,6vw,4.6rem);line-height:.9;display:block;margin-top:34%}
+.d-mid span{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;opacity:.8}
+.dial figcaption{margin-top:18px;font-size:clamp(1rem,1.5vw,1.2rem);line-height:1.5;max-width:30ch}
+.dial figcaption strong{display:block;font-weight:700}
+.js .d-arc{stroke-dashoffset:100;transition:stroke-dashoffset 1.6s cubic-bezier(.6,0,.3,1) .3s}
+.js .d-seg:not(.s1){opacity:0;transition:opacity .4s}
+.js .d-hand.h1{transform:rotate(0deg);transition:transform 1.6s cubic-bezier(.6,0,.3,1) .3s}
+.js .d-hand.h2{transform:rotate(90deg);transition:transform 1.6s cubic-bezier(.6,0,.3,1) .3s}
+.js .sx-time.on .d-arc{stroke-dashoffset:0}
+.js .sx-time.on .d-hand.h1{transform:rotate(360deg)}
+.js .sx-time.on .d-hand.h2{transform:rotate(360deg)}
+.js .sx-time.on .d-seg:not(.s1){opacity:1}
+.js .sx-time.on .s2{transition-delay:.5s}.js .sx-time.on .s3{transition-delay:1s}.js .sx-time.on .s4{transition-delay:1.5s}
+.d-hand.h2{transform:rotate(360deg)}
+@media (max-width:900px){.tm-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.tm-grid{grid-template-columns:1fr}.dial svg{width:min(100%,230px)}.d-mid{width:min(100%,230px)}}
+@media (prefers-reduced-motion:reduce){.js .d-arc,.js .d-hand,.js .d-seg{transition:none}}
+
+.d-days{fill:none;stroke:var(--accent);stroke-width:9;stroke-dasharray:12.4 1.886;transform:rotate(-90deg);transform-origin:80px 80px}
+.d-hand.h3{transform:rotate(360deg)}
+.js .d-days{opacity:0;transition:opacity .8s ease .3s}
+.js .d-hand.h3{transform:rotate(0deg);transition:transform 1.6s cubic-bezier(.6,0,.3,1) .3s}
+.js .sx-time.on .d-days{opacity:1}
+.js .sx-time.on .d-hand.h3{transform:rotate(360deg)}
+@media (prefers-reduced-motion:reduce){.js .d-days,.js .d-hand.h3{transition:none}}
+
+/* how fast: a left-to-right sequence */
+.tm-grid{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr);align-items:start;gap:clamp(6px,1.6vw,26px);max-width:1280px;margin:0 auto}
+.dial{text-align:center;justify-self:center;width:100%}
+.dial svg{margin:0 auto;width:min(100%,250px)}
+.d-mid{left:50%;transform:translateX(-50%);width:min(100%,250px)}
+.d-tag{display:block;font-family:var(--hand);font-size:clamp(1.6rem,2.6vw,2.2rem);color:var(--accent-text);transform:rotate(-3deg);margin-bottom:.1em}
+.dial figcaption{margin:18px auto 0;max-width:28ch}
+.tm-arrow{align-self:start;margin-top:clamp(96px,11vw,150px);width:clamp(56px,7vw,100px)}
+.tm-arrow svg{display:block;width:100%;height:auto;fill:none;stroke:var(--fg);stroke-width:2.6;stroke-dasharray:3 7;stroke-linecap:round;stroke-linejoin:round;opacity:.7}
+.mk{background:var(--accent);color:var(--mark-fg);padding:.02em .22em .05em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+@media (max-width:900px){
+  .tm-grid{grid-template-columns:1fr;gap:34px;max-width:420px}
+  .tm-arrow{display:none}
+}
+.dial{margin-top:clamp(2.2rem,3vw,2.8rem)}
+.d-tag{position:absolute;left:0;right:0;top:calc(-1 * clamp(2.2rem,3vw,2.8rem));margin:0}
+.tm-arrow{margin-top:calc(clamp(96px,11vw,150px) + clamp(2.2rem,3vw,2.8rem) - 22px)}
+@media (max-width:900px){.dial{margin-top:2.6rem}}

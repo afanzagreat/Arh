@@ -15,39 +15,51 @@
     var tl=gsap.timeline({delay:delay||0,defaults:{ease:'power4.out'}});
     tl.to('.mark',{'--mk':1,duration:.6,ease:'power3.inOut'})
       .fromTo('[data-r]',{opacity:0,y:16},{opacity:1,y:0,duration:.55,stagger:.07,clearProps:'transform'},'-=.35')
-      .to('#arrow',{strokeDashoffset:0,duration:.8,ease:'power2.inOut'},'-=.2')
       .add(function(){startTyping(false);},'-=.5');
   }
 
-  /* ---------- typing line ---------- */
-  var words=['bakery','law firm','gym','florist','startup','caf\u00e9'];
+  /* ---------- audience word: readable at once, then it cycles ---------- */
+  var words=['bakeries','law firms','gyms','florists','startups','caf\u00e9s','salons','clinics','restaurants'];
   function startTyping(staticMode){
     var ty=document.getElementById('ty'), caret=document.getElementById('caret');
-    if(staticMode){ ty.textContent='your business'; return; }
-    caret.hidden=false; ty.textContent='';
-    var wi=0,ci=0,del=false;
-    function tick(){
-      var w=words[wi];
-      if(!del){
-        ci++; ty.textContent=w.slice(0,ci);
-        if(ci===w.length){del=true; return setTimeout(tick,950);}
-        return setTimeout(tick,75);
-      }else{
-        ci--; ty.textContent=w.slice(0,ci);
-        if(ci===0){del=false; wi++;
-          if(wi===words.length){ setTimeout(finalize,250); return; }
-          return setTimeout(tick,200);}
-        return setTimeout(tick,38);
+    if(!ty||staticMode) return;
+    var wi=0;
+    function swap(){
+      var next=words[wi++%words.length], cur=ty.textContent, ci=cur.length;
+      caret.hidden=false;
+      (function erase(){ if(ci>0){ ci--; ty.textContent=cur.slice(0,ci); setTimeout(erase,26);} else type(0); })();
+      function type(k){
+        if(k<=next.length){ ty.textContent=next.slice(0,k); setTimeout(function(){type(k+1);},52); }
+        else{ caret.hidden=true; setTimeout(swap,2200); }
       }
     }
-    function finalize(){
-      var full='ARH makes it yours.', k=0;
-      ty.parentNode.querySelectorAll('.br').forEach(function(b){b.style.display='none';});
-      ty.textContent='';
-      (function t(){ k++; ty.textContent=full.slice(0,k); if(k<full.length) setTimeout(t,55); else setTimeout(function(){caret.hidden=true;},1200); })();
-    }
-    tick();
+    setTimeout(swap,2600);
   }
+
+
+  /* ---------- live demo: one mock site, four different businesses ---------- */
+  (function initDemo(){
+    var screen=document.getElementById('dfScreen'); if(!screen) return;
+    var D=[
+      {url:'danasbakery.com',eye:'Fresh bread \u00b7 Since 4am',name:"Dana's Bakery",line:'Bread, baked before you wake.',book:'Order a cake'},
+      {url:'lunahairstudio.com',eye:'Cuts \u00b7 Colour \u00b7 Care',name:'Luna Hair Studio',line:'Hair that feels like you.',book:'Book a cut'},
+      {url:'ironwoodgym.com',eye:'Strength \u00b7 Conditioning',name:'Ironwood Gym',line:'Show up. We handle the rest.',book:'Book a trial'},
+      {url:'hartandvale.law',eye:'Family \u00b7 Property \u00b7 Business',name:'Hart & Vale Law',line:'Clear advice. No jargon.',book:'Book a consult'}
+    ];
+    var els={url:document.getElementById('dfUrl'),eye:document.getElementById('dfEye'),name:document.getElementById('dfName'),line:document.getElementById('dfLine'),book:document.getElementById('dfBook')};
+    var chips=[].slice.call(document.querySelectorAll('.demo-chips button')), cur=0, timer=0, auto=!RM;
+    function show(i){
+      cur=i; var d=D[i];
+      screen.classList.remove('swap'); void screen.offsetWidth;
+      screen.setAttribute('data-t',i);
+      els.url.textContent=d.url; els.eye.innerHTML=d.eye.replace('\u00b7','&middot;'); els.name.textContent=d.name; els.line.textContent=d.line; els.book.textContent=d.book;
+      if(!RM) screen.classList.add('swap');
+      chips.forEach(function(c,k){c.setAttribute('aria-pressed',k===i?'true':'false');});
+    }
+    function loop(){ clearInterval(timer); if(auto) timer=setInterval(function(){ if(!document.hidden) show((cur+1)%D.length); },2600); }
+    chips.forEach(function(c){ c.addEventListener('click',function(){ auto=false; clearInterval(timer); show(+c.getAttribute('data-i')); }); });
+    setTimeout(loop,1800);
+  })();
 
   /* ---------- loader: numbers jumble, then lock into ARH DESIGN ---------- */
   var L=document.getElementById('loader');
@@ -72,7 +84,7 @@
     var probe=document.createElement('span');probe.className='cur';probe.style.cssText='position:absolute;visibility:hidden;left:0;top:0;transform:none';probe.textContent='0';W.appendChild(probe);
     var dw=probe.getBoundingClientRect().width||1; W.removeChild(probe);
     slots.forEach(function(s){var w=s.el.getBoundingClientRect().width; s.cur.style.setProperty('--sx',Math.min(1,w/dw).toFixed(3));});
-    var start=performance.now(), lockBase=620, lockStep=175, lastLock=lockBase+(slots.length-1)*lockStep, endAt=lastLock+170;
+    var start=performance.now(), lockBase=300, lockStep=55, lastLock=lockBase+(slots.length-1)*lockStep, endAt=lastLock+170;
     var lifted=false, over=false;
     var skip=document.getElementById('ldSkip'); skip.focus({preventScroll:true});
     function setProgress(p){
@@ -85,7 +97,7 @@
       L.style.transitionDuration=fast?'.5s':'';
       L.classList.add('lift');
       revealHero(fast?.05:.15);
-      setTimeout(finishLoader,fast?520:1000);
+      setTimeout(finishLoader,fast?520:720);
     }
     skip.addEventListener('click',function(){over=true;lift(true);});
     function frame(now){
@@ -103,7 +115,7 @@
         if(now-s.last>iv){s.last=now;s.cur.textContent=rnd();}
       });
       var p=Math.min(1,t/endAt); setProgress(1-Math.pow(1-p,1.6));
-      if(t>endAt+420){ lift(false); return; }
+      if(t>endAt+100){ lift(false); return; }
       requestAnimationFrame(frame);
     }
     requestAnimationFrame(frame);
