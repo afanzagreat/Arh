@@ -37,21 +37,24 @@
   }
 
 
-  /* ---------- live demo: Shabibi, the former homepage, and your website ---------- */
+  /* ---------- live demo: authentic Shabibi and ARH pages, plus a contact CTA ---------- */
   (function initDemo(){
     var screen=document.getElementById('dfScreen'); if(!screen) return;
     var D=[
-      {url:'shabibi-juice.store',eye:'Fresh juice \u00b7 Jeddah',name:'Shabibi Juice',line:'Freshness, served different.',book:'Explore the menu'},
-      {url:'arhdesign.tech/a/',eye:'Web design \u00b7 Jeddah',name:'ARH Digital',line:'Make your business impossible to miss.',book:'Explore our work'},
-      {url:'yourbusiness.com',eye:'Built around your business',name:'Your Website',line:'More calls. More bookings.',book:'Start a project'}
+      {url:'shabibi-juice.store',href:'https://shabibi-juice.store/',src:'assets/img/shabibi-homepage-preview.webp',alt:'Screenshot of the live Shabibi Juice homepage',label:'Open the live Shabibi Juice website in a new tab'},
+      {url:'arhdesign.tech/a/',href:'https://arhdesign.tech/a/',src:'assets/img/arh-former-homepage-preview.webp',alt:'Screenshot of the former ARH homepage at arhdesign.tech/a/',label:'Open the former ARH homepage in a new tab'},
+      {url:'arhdesign.tech/contact',cta:true}
     ];
-    var els={url:document.getElementById('dfUrl'),eye:document.getElementById('dfEye'),name:document.getElementById('dfName'),line:document.getElementById('dfLine'),book:document.getElementById('dfBook')};
+    var els={url:document.getElementById('dfUrl'),preview:document.getElementById('dfPreview'),previewLink:document.getElementById('dfPreviewLink'),cta:document.getElementById('dfCta')};
+    if(!els.url||!els.preview||!els.previewLink||!els.cta) return;
     var chips=[].slice.call(document.querySelectorAll('.demo-chips button')), cur=0, timer=0, auto=!RM;
     function show(i){
       cur=i; var d=D[i];
       screen.classList.remove('swap'); void screen.offsetWidth;
       screen.setAttribute('data-t',i);
-      els.url.textContent=d.url; els.eye.innerHTML=d.eye.replace('\u00b7','&middot;'); els.name.textContent=d.name; els.line.textContent=d.line; els.book.textContent=d.book;
+      els.url.textContent=d.url;
+      if(d.cta){els.previewLink.hidden=true;els.cta.hidden=false;}
+      else{els.cta.hidden=true;els.previewLink.hidden=false;els.preview.src=d.src;els.preview.alt=d.alt;els.previewLink.href=d.href;els.previewLink.setAttribute('aria-label',d.label);}
       if(!RM) screen.classList.add('swap');
       chips.forEach(function(c,k){c.setAttribute('aria-pressed',k===i?'true':'false');});
     }
