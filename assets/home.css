@@ -251,6 +251,7 @@ html[data-theme="light"] .demo-frame{box-shadow:12px 12px 0 #151515}
   .demo-frame{transform:rotate(1deg)}
   .df-screen{aspect-ratio:4/3}
 }
+@media (min-width:981px) and (max-width:1180px){.df-screen{aspect-ratio:4/3}}
 @media (max-width:460px){
   .df-screen{aspect-ratio:1/1}
   .df-cta{padding:14px;gap:8px}
