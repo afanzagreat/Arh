@@ -15,7 +15,7 @@
 })();
 </script>
 <link rel="stylesheet" href="assets/site.css">
-<link rel="stylesheet" href="assets/home.css?v=live-example-frames-2">
+<link rel="stylesheet" href="assets/home.css?v=preview-expand-1">
 <link rel="stylesheet" href="assets/services.css">
 <link rel="stylesheet" href="assets/prices.css">
 <link rel="stylesheet" href="assets/home-extra.css">
@@ -86,8 +86,9 @@
       <p class="hero-fine" data-r>Reply within 1 business day.</p>
     </div>
     <div class="demo" data-r>
-      <div class="demo-frame">
-        <div class="df-bar" aria-hidden="true"><i></i><i></i><i></i><span class="df-url" id="dfUrl">shabibi-juice.store</span></div>
+      <div class="df-backdrop" id="dfBackdrop" hidden aria-hidden="true"></div>
+      <div class="demo-frame" id="dfFrame">
+        <div class="df-bar"><i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i><span class="df-url" id="dfUrl">shabibi-juice.store</span><button class="df-expand" id="dfExpand" type="button" aria-label="Expand website preview" hidden>EXPAND <span aria-hidden="true">↗</span></button><button class="df-close" id="dfClose" type="button" aria-label="Close expanded website preview" hidden>CLOSE <span aria-hidden="true">×</span></button></div>
         <div class="df-screen" id="dfScreen" data-t="0">
           <iframe class="df-live-frame" id="dfLiveFrame" src="https://www.shabibi-juice.store/" title="Live website preview: Shabibi Juice" loading="eager" referrerpolicy="strict-origin-when-cross-origin"></iframe>
           <div class="df-cta" id="dfCta" hidden>
@@ -266,7 +267,7 @@
 <script src="assets/site.js"></script>
 <script src="assets/footer-dots.js"></script>
 <script src="assets/doodle.js"></script>
-<script src="assets/home.js?v=no-template-wall-1"></script>
+<script src="assets/home.js?v=preview-expand-1"></script>
 <script src="assets/services.js"></script>
 <script src="assets/prices.js"></script>
 </body>
