@@ -215,6 +215,23 @@ html[data-theme="light"] .demo-frame{box-shadow:12px 12px 0 #151515}
 .df-bar i{width:10px;height:10px;border-radius:50%;background:#FFFAF0;opacity:.5}
 .df-bar i:first-child{background:var(--accent);opacity:1}
 .df-url{margin-left:10px;font-family:var(--mono);font-size:.78rem;letter-spacing:.04em;background:rgba(255,250,240,.14);padding:.2em .8em;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.df-expand,.df-close{flex:none;min-height:36px;border:2px solid var(--accent);padding:.4em .65em;background:var(--accent);color:#000F08;font-family:var(--mono);font-weight:700;font-size:.7rem;letter-spacing:.05em;cursor:pointer;white-space:nowrap}
+.df-expand:hover,.df-close:hover{background:#FFFAF0;border-color:#FFFAF0;color:#000F08}
+.df-expand:focus-visible,.df-close:focus-visible{outline:3px solid #FFFAF0;outline-offset:2px}
+.df-expand[hidden],.df-close[hidden],.df-backdrop[hidden]{display:none}
+.df-backdrop{position:fixed;inset:0;z-index:1;background:rgba(0,15,8,.78);cursor:pointer}
+.preview-open .hero.hero2{z-index:500}
+.preview-open .demo{position:static;transform:none!important;opacity:1!important}
+.preview-open .demo-frame{position:fixed;z-index:2;inset:clamp(24px,5vh,56px) clamp(20px,5vw,80px);display:flex;flex-direction:column;transform:none;box-shadow:8px 8px 0 var(--accent);background:var(--bg)}
+.preview-open .df-screen{flex:1 1 auto;width:100%;height:auto;min-height:0;aspect-ratio:auto}
+.preview-open .df-bar{flex:none}
+@media (max-width:600px){
+  .df-bar{gap:4px;padding:7px 8px}
+  .df-bar i{width:7px;height:7px}
+  .df-url{margin-left:4px;font-size:.67rem;padding:.2em .4em}
+  .df-expand,.df-close{min-height:40px;padding:.35em .55em;font-size:.65rem}
+  .preview-open .demo-frame{inset:24px 16px;box-shadow:5px 5px 0 var(--accent)}
+}
 .df-screen{position:relative;aspect-ratio:16/9;min-height:0;padding:0;overflow:hidden;background:var(--bg);color:var(--fg);transition:background .4s,color .4s}
 .df-live-frame{position:absolute;inset:0;z-index:1;display:block;width:100%;height:100%;border:0;background:#fff;overscroll-behavior:contain}
 .df-live-frame[hidden]{display:none}
