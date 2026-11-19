@@ -11,11 +11,11 @@
   var d=document.documentElement;d.classList.add('js');
   try{var t=localStorage.getItem('arh-theme');d.setAttribute('data-theme',t==='light'?'light':'dark');}catch(e){}
   try{var rv=+sessionStorage.getItem('arh-reveal');sessionStorage.removeItem('arh-reveal');if(rv&&Date.now()-rv<6000)d.classList.add('reveal');}catch(e){}
-  try{var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;if(!rm&&!sessionStorage.getItem('arh-loader')){d.classList.add('show-loader');}}catch(e){}
+  try{var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;if(!rm){d.classList.add('show-loader');}}catch(e){}
 })();
 </script>
 <link rel="stylesheet" href="assets/site.css">
-<link rel="stylesheet" href="assets/home.css?v=preview-expand-1">
+<link rel="stylesheet" href="assets/home.css?v=preview-cycle-2">
 <link rel="stylesheet" href="assets/services.css">
 <link rel="stylesheet" href="assets/prices.css">
 <link rel="stylesheet" href="assets/home-extra.css">
@@ -104,10 +104,10 @@
           </div>
         </div>
       </div>
-      <div class="demo-chips" data-nocursor role="group" aria-label="See an example design">
-        <button type="button" data-i="0" aria-pressed="true">Shabibi Juice</button>
-        <button type="button" data-i="1" aria-pressed="false">Former homepage — arhdesign.tech/a/</button>
-        <button type="button" data-i="2" aria-pressed="false">YOUR WEBSITE</button>
+      <div class="demo-chips" data-nocursor role="group" aria-label="Choose a website preview">
+        <button type="button" data-i="0" aria-label="Show Shabibi Juice preview" aria-pressed="true"><span aria-hidden="true"></span></button>
+        <button type="button" data-i="1" aria-label="Show former ARH homepage preview" aria-pressed="false"><span aria-hidden="true"></span></button>
+        <button type="button" data-i="2" aria-label="Show YOUR WEBSITE contact preview" aria-pressed="false"><span aria-hidden="true"></span></button>
       </div>
     </div>
     <nav class="h-tabs" aria-label="Explore the site" data-r>
@@ -267,7 +267,7 @@
 <script src="assets/site.js"></script>
 <script src="assets/footer-dots.js"></script>
 <script src="assets/doodle.js"></script>
-<script src="assets/home.js?v=preview-expand-1"></script>
+<script src="assets/home.js?v=preview-cycle-2"></script>
 <script src="assets/services.js"></script>
 <script src="assets/prices.js"></script>
 </body>
