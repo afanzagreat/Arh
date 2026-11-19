@@ -50,11 +50,12 @@
     var demo=els.box&&els.box.closest('.demo');
     var chips=[].slice.call(document.querySelectorAll('.demo-chips button')),cur=0;
     var canExpand=els.box&&els.expand&&els.close&&els.backdrop;
-    var inertNodes=[],previousOverflow='',rotationTimer=null,nextAt=Date.now()+5000,pauseUntil=0,hoverPaused=false;
+    var inertNodes=[],previousOverflow='',rotationTimer=null,nextAt=Date.now()+5000,pauseUntil=0,hoverPaused=false,touchViewing=false;
+    var touchDevice=matchMedia('(hover: none) and (pointer: coarse)').matches;
     function clearRotation(){if(rotationTimer){clearTimeout(rotationTimer);rotationTimer=null;}}
     function scheduleRotation(){
       clearRotation();
-      if(document.hidden||hoverPaused||html.classList.contains('preview-open')||document.activeElement===els.frame) return;
+      if(document.hidden||hoverPaused||touchViewing||html.classList.contains('preview-open')||document.activeElement===els.frame) return;
       var wait=Math.max(0,nextAt-Date.now(),pauseUntil-Date.now());
       rotationTimer=setTimeout(function(){rotationTimer=null;if(document.hidden||hoverPaused||html.classList.contains('preview-open')){scheduleRotation();return;}show((cur+1)%D.length);},wait);
     }
@@ -114,7 +115,10 @@
       demo.addEventListener('touchend',function(){pauseFor(2500);},{passive:true});
       demo.addEventListener('wheel',function(){pauseFor(2500);},{passive:true});
     }
-    window.addEventListener('scroll',function(){pauseFor(2500);},{passive:true});
+    window.addEventListener('scroll',function(){
+      if(touchDevice){var r=screen.getBoundingClientRect();touchViewing=r.bottom>0&&r.top<window.innerHeight;}
+      pauseFor(2500);
+    },{passive:true});
     document.addEventListener('visibilitychange',function(){if(document.hidden) clearRotation();else{nextAt=Date.now()+5000;scheduleRotation();}});
     els.frame.addEventListener('focus',clearRotation);
     els.frame.addEventListener('blur',function(){nextAt=Date.now()+5000;scheduleRotation();});
@@ -202,10 +206,12 @@
   ARH.onScroll();
 
   /* ---------- start ---------- */
+  var started=false;
   function start(){
+    if(started) return;started=true;
     if(html.classList.contains('show-loader')&&!RM){ runLoader(); }
     else { revealHero(.1); }
   }
-  if(document.fonts&&document.fonts.ready){document.fonts.ready.then(start);}else{start();}
+  if(document.fonts&&document.fonts.ready){document.fonts.ready.then(start,start);setTimeout(start,250);}else{start();}
   setTimeout(function(){ if(!heroDone){ html.classList.add('ready'); ARH.setReady(); } },12000);
 })();
