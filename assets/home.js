@@ -43,17 +43,26 @@
     var D=[
       {url:'shabibi-juice.store',src:'https://www.shabibi-juice.store/',title:'Live website preview: Shabibi Juice'},
       {url:'arhdesign.tech/a/',src:'https://arhdesign.tech/a/',title:'Live website preview: former ARH homepage'},
-      {url:'arhdesign.tech/contact',cta:true}
+      {url:'arhdesign.tech/contact',cta:true,title:'YOUR WEBSITE contact preview'}
     ];
     var els={url:document.getElementById('dfUrl'),frame:document.getElementById('dfLiveFrame'),cta:document.getElementById('dfCta'),box:document.getElementById('dfFrame'),expand:document.getElementById('dfExpand'),close:document.getElementById('dfClose'),backdrop:document.getElementById('dfBackdrop')};
     if(!els.url||!els.frame||!els.cta) return;
-    var chips=[].slice.call(document.querySelectorAll('.demo-chips button')), cur=0;
+    var demo=els.box&&els.box.closest('.demo');
+    var chips=[].slice.call(document.querySelectorAll('.demo-chips button')),cur=0;
     var canExpand=els.box&&els.expand&&els.close&&els.backdrop;
-    var inertNodes=[], previousOverflow='';
+    var inertNodes=[],previousOverflow='',rotationTimer=null,nextAt=Date.now()+5000,pauseUntil=0,hoverPaused=false;
+    function clearRotation(){if(rotationTimer){clearTimeout(rotationTimer);rotationTimer=null;}}
+    function scheduleRotation(){
+      clearRotation();
+      if(document.hidden||hoverPaused||html.classList.contains('preview-open')||document.activeElement===els.frame) return;
+      var wait=Math.max(0,nextAt-Date.now(),pauseUntil-Date.now());
+      rotationTimer=setTimeout(function(){rotationTimer=null;if(document.hidden||hoverPaused||html.classList.contains('preview-open')){scheduleRotation();return;}show((cur+1)%D.length);},wait);
+    }
+    function pauseFor(ms){var now=Date.now();nextAt=Math.max(nextAt,now+5000);pauseUntil=Math.max(pauseUntil,now+ms);scheduleRotation();}
     function expand(){
       if(!canExpand||D[cur].cta||html.classList.contains('preview-open')) return;
-      var demo=els.box.parentElement, hero=demo.closest('.hero'), main=hero.parentElement;
-      inertNodes=[];
+      var hero=demo.closest('.hero'),main=hero.parentElement;
+      clearRotation();inertNodes=[];
       function makeInert(el){inertNodes.push({el:el,inert:el.inert});el.inert=true;}
       [].slice.call(document.body.children).forEach(function(el){if(el!==main) makeInert(el);});
       [].slice.call(main.children).forEach(function(el){if(el!==hero) makeInert(el);});
@@ -72,6 +81,7 @@
       document.body.style.overflow=previousOverflow;
       inertNodes.forEach(function(item){item.el.inert=item.inert;});inertNodes=[];
       if(!els.expand.hidden) els.expand.focus({preventScroll:true});
+      nextAt=Date.now()+5000;scheduleRotation();
     }
     if(canExpand){
       els.expand.hidden=false;
@@ -83,8 +93,8 @@
       });
     }
     function show(i){
-      cur=i; var d=D[i];
-      screen.classList.remove('swap'); void screen.offsetWidth;
+      cur=i;var d=D[i];
+      screen.classList.remove('swap');void screen.offsetWidth;
       screen.setAttribute('data-t',i);
       els.url.textContent=d.url;
       if(d.cta){els.frame.hidden=true;els.cta.hidden=false;}
@@ -92,14 +102,29 @@
       if(canExpand) els.expand.hidden=!!d.cta;
       if(!RM) screen.classList.add('swap');
       chips.forEach(function(c,k){c.setAttribute('aria-pressed',k===i?'true':'false');});
+      nextAt=Date.now()+5000;scheduleRotation();
     }
-    chips.forEach(function(c){ c.addEventListener('click',function(){ show(+c.getAttribute('data-i')); }); });
+    chips.forEach(function(c){c.addEventListener('click',function(){show(+c.getAttribute('data-i'));});});
+    if(demo){
+      demo.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse'||e.pointerType==='pen'){hoverPaused=true;scheduleRotation();}});
+      demo.addEventListener('pointerleave',function(e){if(e.pointerType==='mouse'||e.pointerType==='pen'){hoverPaused=false;nextAt=Date.now()+5000;scheduleRotation();}});
+      demo.addEventListener('pointerdown',function(){pauseFor(2500);},{passive:true});
+      demo.addEventListener('pointerup',function(){pauseFor(2500);},{passive:true});
+      demo.addEventListener('touchstart',function(){pauseFor(2500);},{passive:true});
+      demo.addEventListener('touchend',function(){pauseFor(2500);},{passive:true});
+      demo.addEventListener('wheel',function(){pauseFor(2500);},{passive:true});
+    }
+    window.addEventListener('scroll',function(){pauseFor(2500);},{passive:true});
+    document.addEventListener('visibilitychange',function(){if(document.hidden) clearRotation();else{nextAt=Date.now()+5000;scheduleRotation();}});
+    els.frame.addEventListener('focus',clearRotation);
+    els.frame.addEventListener('blur',function(){nextAt=Date.now()+5000;scheduleRotation();});
+    els.frame.addEventListener('load',function(){try{els.frame.contentWindow.addEventListener('scroll',function(){pauseFor(2500);},{passive:true});}catch(e){}});
+    scheduleRotation();
   })();
 
   /* ---------- loader: numbers jumble, then lock into ARH DESIGN ---------- */
   var L=document.getElementById('loader');
   function finishLoader(){
-    try{sessionStorage.setItem('arh-loader','1');}catch(e){}
     html.classList.remove('show-loader');
   }
   function runLoader(){
@@ -119,7 +144,7 @@
     var probe=document.createElement('span');probe.className='cur';probe.style.cssText='position:absolute;visibility:hidden;left:0;top:0;transform:none';probe.textContent='0';W.appendChild(probe);
     var dw=probe.getBoundingClientRect().width||1; W.removeChild(probe);
     slots.forEach(function(s){var w=s.el.getBoundingClientRect().width; s.cur.style.setProperty('--sx',Math.min(1,w/dw).toFixed(3));});
-    var start=performance.now(), lockBase=300, lockStep=55, lastLock=lockBase+(slots.length-1)*lockStep, endAt=lastLock+170;
+    var start=performance.now(), lockBase=240, lockStep=45, lastLock=lockBase+(slots.length-1)*lockStep, endAt=lastLock+110;
     var lifted=false, over=false;
     var skip=document.getElementById('ldSkip'); skip.focus({preventScroll:true});
     function setProgress(p){
@@ -129,10 +154,10 @@
     function lift(fast){
       if(lifted) return; lifted=true;
       setProgress(1); status.textContent='Ready';
-      L.style.transitionDuration=fast?'.5s':'';
+      L.style.transitionDuration=fast?'.5s':'.54s';
       L.classList.add('lift');
       revealHero(fast?.05:.15);
-      setTimeout(finishLoader,fast?520:720);
+      setTimeout(finishLoader,fast?520:560);
     }
     skip.addEventListener('click',function(){over=true;lift(true);});
     function frame(now){
